@@ -1,26 +1,220 @@
+import { Pricing } from "@/components/ui/pricing";
 
+const constructionPlans = [
+    {
+        name: "BASIC PACKAGE",
+        price: "2099",
+        yearlyPrice: "2099",
+        period: "sqft",
+        features: [
+            {
+                name: "Design",
+                details: [
+                    "2D Floor Plan",
+                    "3D Elevation Design",
+                    "Structural Designing",
+                ]
+            },
+            {
+                name: "Project Management",
+                details: [
+                    "Daily Progress Updates",
+                    "Standard Quality Monitoring",
+                    "Proper Timeline Management",
+                    "Site Suprevision",
+                ]
+            },
+            {
+                name: "Structure",
+                details: [
+                    "Basement Height: Upto 3 feet",
+                    "Steel: ARUN ,SURYADEV",
+                    "Aggregate: 20mm & 40mm",
+                    "Bricks: Standard Red Bricks (Senggal)",
+                    "Cement: ZUARI ,DALIMA",
+                    "M Sand: Brick work",
+                    "P Sand: Plastering",
+                    "RCC Design Mix: M20",
+                    "Ceiling Height: 10 Feet",
+                ]
+            },
+            {
+                name: "Bathroom & Plumbing",
+                details: [
+                    "Supreme, Star Toilet Fittings",
+                    "Bathroom Door: PVC Door & Frame",
+                    "Plumbing Materials: Ashirvad & Finolex",
+                    "KAG & SPARROW Tiles",
+                ]
+            },
+            {
+                name: "Flooring",
+                details: [
+                    "Tiles: KAG or SPARROW",
+                    "Tile Size: 2x2",
+                    "Professional Tile Installation",
+                ]
+            },
+            {
+                name: "What's Not Included",
+                details: [
+                    "Comound Wall and Gate",
+                    "Sump and Septic Tank",
+                    "Lift, Lift Pit & Shaft",
+                ]
+            },
+        ],
+        description: "Essential construction services for your dream home.",
+        buttonText: "For Detailed specifications",
+        href: "/contact",
+        isPopular: false,
+    },
+    {
+        name: "STANDARD PACKAGE",
+        price: "2399",
+        yearlyPrice: "2399",
+        period: "sqft",
+        features: [
+            {
+                name: "Design",
+                details: [
+                    "2D Floor Plan",
+                    "3D Elevation Design",
+                    "Structural Designing",
+                ]
+            },
+            {
+                name: "Project Management",
+                details: [
+                    "Daily Progress Updates",
+                    "Standard Quality Monitoring",
+                    "Proper Timeline Management",
+                    "Site Suprevision",
+                ]
+            },
+            {
+                name: "Structure",
+                details: [
+                    "Basement Height: Upto 3 feet",
+                    "Steel: GBR, ARS",
+                    "Aggregate: 20mm & 40mm",
+                    "Bricks: Red Bricks \"Wirecut\" (Senggal)",
+                    "Cement: COREMENTAL, ULTRATECH",
+                    "M Sand: Brick work",
+                    "P Sand: Plastering",
+                    "RCC Design Mix: M20",
+                    "Ceiling Height: 10 Feet",
+                ]
+            },
+            {
+                name: "Bathroom & Plumbing",
+                details: [
+                    "Parryware Toilet Fittings",
+                    "Bathroom Door: WPC Door & Frame",
+                    "Plumbing Materials: Ashirvad & Finolex",
+                    "KAJARIA, SOMANY, KAG Tiles",
+                ]
+            },
+            {
+                name: "Flooring",
+                details: [
+                    "Tiles: KAJARIA, SOMANY, KAG",
+                    "Tile Size: 2x2",
+                    "Professional Tile Installation",
+                ]
+            },
+            {
+                name: "What's Not Included",
+                details: [
+                    "Comound Wall and Gate",
+                    "Sump and Septic Tank",
+                    "Lift, Lift Pit & Shaft",
+                ]
+            },
+        ],
+        description: "Most popular choice with balanced features.",
+        buttonText: "For Detailed specifications",
+        href: "/contact",
+        isPopular: true,
+    },
+    {
+        name: "PREMIUM PACKAGE",
+        price: "2599",
+        yearlyPrice: "2599",
+        period: "sqft",
+        features: [
+            {
+                name: "Design",
+                details: [
+                    "2D Floor Plan",
+                    "3D Elevation Design",
+                    "Structural Designing",
+                ]
+            },
+            {
+                name: "Project Management",
+                details: [
+                    "Daily Progress Updates",
+                    "Standard Quality Monitoring",
+                    "Proper Timeline Management",
+                    "Site Suprevision",
+                ]
+            },
+            {
+                name: "Structure",
+                details: [
+                    "Basement Height: Upto 3 feet",
+                    "Steel: TATA, JSW, I-STEEL",
+                    "Aggregate: 20mm & 40mm",
+                    "Bricks: Red Bricks \"Wirecut\" (Senggal)",
+                    "Cement: COREMENTAL, ULTRATECH",
+                    "M Sand: Brick work",
+                    "P Sand: Plastering",
+                    "RCC Design Mix: M20",
+                    "Ceiling Height: 10 Feet",
+                ]
+            },
+            {
+                name: "Bathroom & Plumbing",
+                details: [
+                    "Parryware, Jaguar, Kohler Toilet Fittings",
+                    "Bathroom Door: WPC Door & Frame",
+                    "Plumbing Materials: Ashirvad & Finolex",
+                    "KAJARIA, SOMANY, KAG, ORIENBELL Tiles",
+                ]
+            },
+            {
+                name: "Flooring",
+                details: [
+                    "Tiles: KAJARIA, SOMANY, KAG, ORIENBELL",
+                    "Tile Size: 4x2",
+                    "Professional Tile Installation",
+                ]
+            },
+            {
+                name: "What's Not Included",
+                details: [
+                    "Comound Wall and Gate",
+                    "Sump and Septic Tank",
+                    "Lift, Lift Pit & Shaft",
+                ]
+            },
+        ],
+        description: "Premium finishes and extensive coverage.",
+        buttonText: "For Detailed specifications",
+        href: "/contact",
+        isPopular: false,
+    },
+];
 
-const Packages = () => {
+export default function Packages() {
     return (
-        <div className="pt-32 px-8 min-h-screen bg-white text-center">
-            <h1 className="text-5xl font-bold text-primary mb-8">Packages</h1>
-            <p className="text-xl text-gray-600 mb-12">Choose the best package for your needs.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {['Basic', 'Premium', 'Luxury'].map((pkg) => (
-                    <div key={pkg} className="border-2 border-primary/10 rounded-xl p-8 hover:border-primary-red transition-colors">
-                        <h3 className="text-3xl font-bold text-primary mb-4">{pkg}</h3>
-                        <div className="text-4xl font-bold text-gray-800 mb-6">$XXX <span className="text-base font-normal text-gray-500">/ sqft</span></div>
-                        <ul className="text-left space-y-3 mb-8 text-gray-600">
-                            <li>✓ Feature One</li>
-                            <li>✓ Feature Two</li>
-                            <li>✓ Feature Three</li>
-                        </ul>
-                        <button className="px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/90 w-full">Select Plan</button>
-                    </div>
-                ))}
-            </div>
+        <div className="min-h-screen bg-background pt-24">
+            <Pricing
+                plans={constructionPlans}
+                title="Construction Packages"
+                description="Choose the package that fits your needs and budget. All packages include our commitment to quality and transparency."
+            />
         </div>
     );
-};
-
-export default Packages;
+}

@@ -1,6 +1,7 @@
 import Hero from '@/components/ui/animated-shader-hero';
 import AboutUsSection from '@/components/ui/about-us-section';
 import StoryBehindSection from '@/components/ui/story-behind-section';
+import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
 const Home = () => {
     return (
@@ -36,6 +37,47 @@ const Home = () => {
             />
             <AboutUsSection />
             <StoryBehindSection />
+            <section className="py-20 bg-gray-50">
+                <div className="container mx-auto text-center mb-10">
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mb-4">Why Choose Us</h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">We don't just build structures; we build relationships. Here is what makes us the preferred choice for construction.</p>
+                </div>
+                <AnimatedTestimonials
+                    testimonials={[
+                        {
+                            quote: "We respect your time. Our efficient project management ensures that we stick to the schedule and hand over your keys exactly when promised.",
+                            name: "Timely Completion",
+                            designation: "On-time Delivery Guaranteed",
+                            src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop"
+                        },
+                        {
+                            quote: "Our diverse team of architects and designers bring fresh, innovative ideas to the table, ensuring your space is unique, functional, and aesthetically stunning.",
+                            name: "Experienced Team",
+                            designation: "Experts in Design & Execution",
+                            src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            quote: "We don't compromise on quality. Our rigorous inspection process ensures every material and construction stage meets the highest industry standards.",
+                            name: "Quality Construction",
+                            designation: "120+ Quality Checks",
+                            src: "https://images.unsplash.com/photo-1581094794329-cd1096a78438?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            quote: "Your dream home, your way. We offer fully customizable design packages to suit your specific lifestyle needs and preferences.",
+                            name: "Customizable Designs",
+                            designation: "Tailored to Your Vision",
+                            src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            quote: "Honesty is our policy. Our quotes are comprehensive, with absolutely no surprise costs or hidden fees down the line. What we agree on is what you pay.",
+                            name: "Transparent Process",
+                            designation: "No Hidden Charges",
+                            src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop"
+                        }
+                    ]}
+                    autoplay={true}
+                />
+            </section>
         </div>
     );
 };
