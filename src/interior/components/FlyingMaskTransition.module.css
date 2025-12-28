@@ -1,0 +1,170 @@
+.section {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg-white);
+    overflow: hidden;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh;
+    z-index: 10;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.svgMask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    padding: 8rem 4rem 4rem;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.headerSection {
+    margin-bottom: 4rem;
+}
+
+.sectionLabel {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-gray);
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.sectionTitle {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--text-dark);
+    font-style: italic;
+    line-height: 1.1;
+}
+
+.clientGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+/* Client Card - Base */
+.clientCard {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+}
+
+/* Default State */
+.cardDefault {
+    position: absolute;
+    inset: 0;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoText {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Hover State */
+.cardHover {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hoverContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.hoverLogo {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.75rem;
+}
+
+.hoverDescription {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    margin-bottom: auto;
+    flex-grow: 1;
+}
+
+.hoverAmount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.hoverTags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 0.375rem 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--text-white);
+    letter-spacing: 0.05em;
+}
+
+/* Hover Effects */
+.clientCard:hover .cardDefault {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.clientCard:hover .cardHover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .clientGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content {
+        padding: 6rem 2rem 3rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .clientGrid {
+        grid-template-columns: 1fr;
+    }
+}

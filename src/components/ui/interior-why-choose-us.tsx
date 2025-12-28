@@ -92,7 +92,7 @@ export function InteriorWhyChooseUs() {
     };
 
     return (
-        <section className="py-24 bg-white" ref={containerRef}>
+        <section className="py-24 pb-48 bg-blue-50" ref={containerRef}>
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="flex flex-col lg:flex-row gap-16 items-start">
 
@@ -197,7 +197,7 @@ export function InteriorWhyChooseUs() {
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
                             variants={fadeInUp}
-                            className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 aspect-[4/5] w-full"
+                            className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 aspect-square w-full"
                         >
                             <video
                                 className="w-full h-full object-cover"

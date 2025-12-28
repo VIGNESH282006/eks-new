@@ -1,6 +1,17 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import GooeyNav from '@/components/ui/navbar';
+import { useState, useEffect } from 'react';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from '@/components/ui/resizable-navbar';
+import { Link } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
 import Packages from '@/pages/Packages';
@@ -81,6 +92,7 @@ const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const customHeroProps = pageHeroConfig[location.pathname];
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const defaultHeroProps = {
     mainText: "Building your dreams with precision and passion.",
@@ -92,10 +104,61 @@ const Layout = () => {
 
   const heroProps = { ...defaultHeroProps, ...customHeroProps };
 
+  // Transform navItems to match new component's expected format (name, link)
+  // Filter out CONTACT US as requested (it's already a button on the right)
+  const formattedNavItems = navItems
+    .filter(item => item.label !== 'CONTACT US')
+    .map(item => ({ name: item.label, link: item.href }));
+
   return (
     <>
       <ScrollToTop />
-      <GooeyNav items={navItems} />
+      <Navbar className="top-2">
+        <NavBody>
+          <NavbarLogo />
+          <NavItems items={formattedNavItems} />
+          <div className="flex items-center gap-4">
+            <NavbarButton as={Link} href="/contact" variant="primary">CONTACT US</NavbarButton>
+          </div>
+        </NavBody>
+
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {formattedNavItems.map((item, idx) => (
+              <Link
+                key={`mobile-link-${idx}`}
+                to={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="relative text-neutral-600 dark:text-neutral-300"
+              >
+                <span className="block">{item.name}</span>
+              </Link>
+            ))}
+            <div className="flex w-full flex-col gap-4 mt-4">
+              <NavbarButton
+                as={Link}
+                href="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full"
+              >
+                CONTACT US
+              </NavbarButton>
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
       {!isHomePage && (
         <MinimalistHero
           key={location.pathname}
