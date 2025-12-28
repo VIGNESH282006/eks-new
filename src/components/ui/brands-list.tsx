@@ -1,4 +1,4 @@
-const BRANDS = [
+export const BRANDS = [
     "/brands/ARS.jpg",
     "/brands/ashirvad-pipes.jpg",
     "/brands/asian-paints.jpg",
