@@ -1,0 +1,20 @@
+const BRANDS = [
+    "/brands/ARS.jpg",
+    "/brands/ashirvad-pipes.jpg",
+    "/brands/asian-paints.jpg",
+    "/brands/coromandel.jpg",
+    "/brands/finolex-pipes.jpg",
+    "/brands/gbr-tmt.jpg",
+    "/brands/jaquar.jpg",
+    "/brands/johnson-tiles.jpg",
+    "/brands/jsw-steel.jpg",
+    "/brands/kag-tiles.jpg",
+    "/brands/kajaria-tiles.jpg",
+    "/brands/kamachi-tmt-bars.jpg",
+    "/brands/orbit-cables.jpg",
+    "/brands/orientbell-tiles.jpg",
+    "/brands/ramco-cement.jpg",
+    "/brands/tirumala-steel.jpg",
+    "/brands/ultratech.jpg",
+    "/brands/zuari-cement-logo.jpg"
+];

@@ -14,6 +14,27 @@ import {
     Building,
 } from "lucide-react"
 
+const BRANDS = [
+    "/brands/ARS.jpg",
+    "/brands/ashirvad-pipes.jpg",
+    "/brands/asian-paints.jpg",
+    "/brands/coromandel.jpg",
+    "/brands/finolex-pipes.jpg",
+    "/brands/gbr-tmt.jpg",
+    "/brands/jaquar.jpg",
+    "/brands/johnson-tiles.jpg",
+    "/brands/jsw-steel.jpg",
+    "/brands/kag-tiles.jpg",
+    "/brands/kajaria-tiles.jpg",
+    "/brands/kamachi-tmt-bars.jpg",
+    "/brands/orbit-cables.jpg",
+    "/brands/orientbell-tiles.jpg",
+    "/brands/ramco-cement.jpg",
+    "/brands/tirumala-steel.jpg",
+    "/brands/ultratech.jpg",
+    "/brands/zuari-cement-logo.jpg"
+];
+
 const SUCCESS_FACTORS = [
     {
         id: "factor-1",
@@ -120,13 +141,35 @@ export default function StoryBehindSection() {
                                 Excellence in every aspect of construction. We believe in transparency, quality, and delivering exactly what we promise.
                             </p>
 
-                            <div className="mt-10 flex gap-4">
-                                <div className="flex -space-x-4">
-                                    {[1, 2, 3, 4].map(i => (
-                                        <div key={i} className="w-12 h-12 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
-                                            <img src={`https://randomuser.me/api/portraits/men/${i * 12}.jpg`} className="w-full h-full object-cover" alt="Team member" />
-                                        </div>
-                                    ))}
+                            <div className="mt-12">
+                                <h3 className="text-[#C11336] font-bold uppercase tracking-wider mb-6 flex items-center gap-2 text-sm">
+                                    <Building className="w-4 h-4" />
+                                    Our Retail Partners
+                                </h3>
+
+                                <div className="relative w-full max-w-md overflow-hidden">
+                                    <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#f8fafc] to-transparent z-10"></div>
+                                    <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#f8fafc] to-transparent z-10"></div>
+
+                                    <motion.div
+                                        className="flex gap-4 w-max"
+                                        animate={{ x: ["0%", "-50%"] }}
+                                        transition={{
+                                            repeat: Infinity,
+                                            ease: "linear",
+                                            duration: 20
+                                        }}
+                                    >
+                                        {[...BRANDS, ...BRANDS].map((brand, i) => (
+                                            <div key={i} className="w-32 h-32 flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-md border border-gray-100 p-2 grayscale hover:grayscale-0 transition-all duration-300">
+                                                <img
+                                                    src={brand}
+                                                    alt="Brand Logo"
+                                                    className="w-full h-full object-contain"
+                                                />
+                                            </div>
+                                        ))}
+                                    </motion.div>
                                 </div>
                             </div>
                         </motion.div>
@@ -137,15 +180,15 @@ export default function StoryBehindSection() {
                             {SUCCESS_FACTORS.map((factor) => (
                                 <Card
                                     key={factor.id}
-                                    className="w-full h-[400px] rounded-3xl border-4 border-white/50 shadow-2xl overflow-hidden bg-white max-w-xl mx-auto"
+                                    className="w-full aspect-square rounded-3xl border-4 border-white/50 shadow-2xl overflow-hidden bg-white max-w-[450px] mx-auto"
                                 >
                                     <div className="flex flex-col h-full">
                                         {/* Card Header with Image */}
-                                        <div className="relative h-48 sm:h-56 overflow-hidden bg-slate-50">
+                                        <div className="relative h-[60%] overflow-hidden bg-white">
                                             <img
                                                 src={factor.image}
                                                 alt={factor.title}
-                                                className="w-full h-full object-contain transition-transform duration-700 hover:scale-105 p-2"
+                                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
                                                 <div
