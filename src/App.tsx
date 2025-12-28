@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import GooeyNav from '@/components/ui/navbar';
 import Home from '@/pages/Home';
 import Services from '@/pages/Services';
@@ -8,6 +9,7 @@ import Projects from '@/pages/Projects';
 import Careers from '@/pages/Careers';
 import Contact from '@/pages/Contact';
 import { MinimalistHero } from '@/components/ui/minimalist-hero';
+import { Footer } from '@/components/ui/footer-taped-design';
 
 const navItems = [
   { label: 'HOME', href: '/' },
@@ -64,6 +66,17 @@ const pageHeroConfig: Record<string, any> = {
   }
 };
 
+// Component to scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+};
+
 const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -81,15 +94,18 @@ const Layout = () => {
 
   return (
     <>
+      <ScrollToTop />
       <GooeyNav items={navItems} />
       {!isHomePage && (
         <MinimalistHero
+          key={location.pathname}
           {...heroProps}
         />
       )}
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }

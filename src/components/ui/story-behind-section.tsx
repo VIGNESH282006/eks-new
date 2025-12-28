@@ -161,7 +161,7 @@ export default function StoryBehindSection() {
                                         }}
                                     >
                                         {[...BRANDS, ...BRANDS].map((brand, i) => (
-                                            <div key={i} className="w-32 h-32 flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-md border border-gray-100 p-2 grayscale hover:grayscale-0 transition-all duration-300">
+                                            <div key={i} className="w-32 h-32 flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-md border border-gray-100 p-2 transition-all duration-300 hover:scale-110">
                                                 <img
                                                     src={brand}
                                                     alt="Brand Logo"

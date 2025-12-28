@@ -10,7 +10,14 @@ module.exports = {
                 primary: {
                     DEFAULT: "#082E6D", // Blue
                     red: "#C11336", // Red
-                }
+                },
+                neutral: "#222222",
+                "base-content": "#0A0A0A",
+                "base-300": "#F2F2F2",
+            },
+            fontFamily: {
+                display: ['Outfit', 'sans-serif'],
+                sans: ['Inter Tight', 'sans-serif'],
             },
             animation: {
                 "fade-up": "fadeUp 0.5s ease-out forwards",

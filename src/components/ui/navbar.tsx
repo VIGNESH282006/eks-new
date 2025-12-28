@@ -154,7 +154,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         {`
           :root {
              --color-1: #C11336;
-             --color-2: #082E6D;
+             --color-2: #2563eb;
              --color-3: #ffffff;
              --color-4: #C11336;
           }
@@ -278,7 +278,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
           }
         `}
       </style>
-      <div className="flex items-center justify-between w-full px-8 py-4 fixed top-0 left-0 z-50 bg-white/10 backdrop-blur-sm border-b border-white/20">
+      <div className="flex items-center justify-between w-full px-8 py-4 fixed top-0 left-0 z-50 bg-white/40 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
         {/* Left Side: Bigger Logo */}
         <div className="flex-none mr-8">
           <Link to="/">
@@ -297,7 +297,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
               {items.filter(item => item.label !== 'CONTACT US').map((item, index) => (
                 <li
                   key={index}
-                  className={`rounded-full relative cursor-pointer font-medium text-sm lg:text-base transition-colors duration-300 ${activeIndex === index ? 'active text-transparent' : 'text-primary'
+                  className={`rounded-full relative cursor-pointer font-bold text-sm lg:text-base transition-colors duration-300 ${activeIndex === index ? 'active text-transparent' : 'text-primary hover:text-red-600'
                     }`}
                 >
                   <Link
