@@ -36,36 +36,36 @@ const pageHeroConfig: Record<string, any> = {
   '/services': {
     mainText: "Expert construction services tailored to your needs. From planning to execution, we handle it all.",
     overlayText: { part1: 'Our', part2: 'Services' },
-    imageSrc: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop",
-    imageAlt: "Construction Services",
+    imageSrc: "/genie-img-services.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
   },
   '/packages': {
     mainText: "Flexible packages designed for every budget. Transparent pricing, no hidden costs.",
     overlayText: { part1: 'Best', part2: 'Packages' },
-    imageSrc: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop",
-    imageAlt: "Packages",
+    imageSrc: "/genie-img-packages.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop"
   },
   '/interior': {
     mainText: "Transform your space with our premium interior design solutions. Beauty meets functionality.",
     overlayText: { part1: 'Interior', part2: 'Design' },
-    imageSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop",
-    imageAlt: "Interior Design",
+    imageSrc: "/genie-img-interior.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
   },
   '/projects': {
     mainText: "A showcase of our finest work. Explore our portfolio of completed projects across the region.",
     overlayText: { part1: 'Our', part2: 'Work' },
-    imageSrc: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
-    imageAlt: "Projects",
+    imageSrc: "/genie-img-projects.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
   },
   '/careers': {
     mainText: "Join our team of dedicated professionals. Build your future with EKS Construction.",
     overlayText: { part1: 'Join', part2: 'Us' },
-    imageSrc: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
-    imageAlt: "Careers",
+    imageSrc: "/genie-img-careers.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
   },
   '/contact': {

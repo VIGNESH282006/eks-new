@@ -70,10 +70,21 @@ export const MinimalistHero = ({
                     <motion.img
                         src={imageSrc}
                         alt={imageAlt}
-                        className="relative z-10 h-auto w-56 object-cover md:w-64 scale-150 lg:w-72 shadow-2xl rounded-lg"
+                        className="relative z-10 h-auto w-80 object-contain md:w-96 lg:w-[450px]"
                         initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+                        animate={{
+                            opacity: 1,
+                            y: [0, -15, 0],
+                        }}
+                        transition={{
+                            opacity: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
+                            y: {
+                                duration: 3,
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                                repeatType: "loop"
+                            }
+                        }}
                         onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.onerror = null;
