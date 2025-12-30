@@ -1,6 +1,8 @@
 import { ServiceCard } from "@/components/ui/service-card";
 import WhatWeOfferSection from "@/components/ui/what-we-offer-section";
 import TimelineSection from "@/components/ui/timeline-section";
+import { ServicePopup } from "@/components/ui/service-popup";
+import { useState, useEffect, useRef } from "react";
 
 const SERVICES = [
     {
@@ -54,13 +56,36 @@ const SERVICES = [
 ];
 
 const Services = () => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [hasSeenPopup, setHasSeenPopup] = useState(false);
+    const triggerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasSeenPopup) {
+                    setIsPopupOpen(true);
+                    setHasSeenPopup(true);
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (triggerRef.current) {
+            observer.observe(triggerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasSeenPopup]);
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+            <ServicePopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
             {/* Services Section */}
             <section className="py-20 px-4 md:px-8">
                 <div className="max-w-7xl mx-auto">
                     {/* Section Header */}
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-16" ref={triggerRef}>
                         <span className="text-[#C11336] font-semibold tracking-wider uppercase text-sm">What We Offer</span>
                         <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mt-4 mb-6">
                             Our Premium Services

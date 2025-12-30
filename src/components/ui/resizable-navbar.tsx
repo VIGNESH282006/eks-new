@@ -51,10 +51,7 @@ interface MobileNavMenuProps {
 
 export const Navbar = ({ children, className }: NavbarProps) => {
     const ref = useRef<HTMLDivElement>(null);
-    const { scrollY } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"],
-    });
+    const { scrollY } = useScroll();
     const [visible, setVisible] = useState<boolean>(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -69,7 +66,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
         <motion.div
             ref={ref}
             // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-            className={cn("sticky inset-x-0 top-2 z-50 w-full", className)}
+            className={cn("fixed inset-x-0 top-2 z-50 w-full", className)}
         >
             {React.Children.map(children, (child) =>
                 React.isValidElement(child)
@@ -87,16 +84,16 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     return (
         <motion.div
             animate={{
-                backdropFilter: visible ? "blur(10px)" : "none",
-                backgroundColor: visible ? "rgba(255, 255, 255, 0.8)" : "transparent",
+                backdropFilter: "blur(12px)",
+                backgroundColor: visible ? "rgba(255, 255, 255, 0.9)" : "rgba(255, 255, 255, 0.5)",
                 boxShadow: visible
                     ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-                    : "none",
-                width: visible ? "95%" : "100%",
-                y: visible ? 20 : 0,
-                borderRadius: visible ? "24px" : "0px",
+                    : "0 0 10px rgba(0,0,0,0.05)",
+                width: visible ? "85%" : "95%",
+                y: visible ? 20 : 10,
+                borderRadius: visible ? "100px" : "100px",
                 paddingLeft: visible ? "20px" : "32px",
-                paddingRight: visible ? "10px" : "32px",
+                paddingRight: visible ? "8px" : "32px",
             }}
             transition={{
                 type: "spring",
@@ -104,11 +101,10 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
                 damping: 50,
             }}
             style={{
-                minWidth: visible ? "800px" : "100%", // Keep it wide enough for content
+                minWidth: visible ? "550px" : "85%",
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-8 py-4 lg:flex dark:bg-transparent transition-all duration-300",
-                visible && "bg-white/80 dark:bg-neutral-950/80",
+                "relative z-[60] mx-auto hidden w-full max-w-5xl flex-row items-center justify-between self-start px-8 py-3 lg:flex dark:bg-transparent transition-all duration-300",
                 className,
             )}
         >
@@ -124,7 +120,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-1",
                 className,
             )}
         >
@@ -132,7 +128,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 <Link
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
-                    className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+                    className="relative px-3 py-2 text-neutral-600 dark:text-neutral-300 font-bold text-xs xl:text-sm"
                     key={`link-${idx}`}
                     to={item.link}
                 >
@@ -243,7 +239,7 @@ export const NavbarLogo = () => {
             <img
                 src="/logo.png"
                 alt="logo"
-                className="h-12 w-auto object-contain"
+                className="h-10 w-auto object-contain"
             />
         </Link>
     );
@@ -267,13 +263,12 @@ export const NavbarButton = ({
         | React.ComponentPropsWithoutRef<"button">
     )) => {
     const baseStyles =
-        "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+        "px-6 py-2.5 rounded-full text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
     const variantStyles = {
-        primary:
-            "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+        primary: "bg-blue-600 text-white shadow-lg hover:bg-blue-700",
         secondary: "bg-transparent shadow-none dark:text-white",
-        dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+        dark: "bg-black text-white shadow-lg",
         gradient:
             "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
     };

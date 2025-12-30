@@ -46,7 +46,7 @@ const Hero: FC<HeroProps> = ({
                     playsInline
                     className="w-full h-full object-cover"
                 >
-                    <source src="/intro-video.mp4" type="video/mp4" />
+                    <source src="/intro-video.webm" type="video/mp4" />
                 </video>
                 {/* Light Dark Overlay */}
                 <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>

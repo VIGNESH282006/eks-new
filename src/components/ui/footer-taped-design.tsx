@@ -50,16 +50,16 @@ export const Footer = () => {
                         }}
                     >
                         <span className="text-[120px] md:text-[200px] font-black text-white/[0.04] tracking-tight select-none">
-                            EKS CONSTRUCTION&emsp;&emsp;
+                            eks construction&emsp;&emsp;
                         </span>
                         <span className="text-[120px] md:text-[200px] font-black text-white/[0.04] tracking-tight select-none">
-                            EKS CONSTRUCTION&emsp;&emsp;
+                            eks construction&emsp;&emsp;
                         </span>
                         <span className="text-[120px] md:text-[200px] font-black text-white/[0.04] tracking-tight select-none">
-                            EKS CONSTRUCTION&emsp;&emsp;
+                            eks construction&emsp;&emsp;
                         </span>
                         <span className="text-[120px] md:text-[200px] font-black text-white/[0.04] tracking-tight select-none">
-                            EKS CONSTRUCTION&emsp;&emsp;
+                            eks construction&emsp;&emsp;
                         </span>
                     </motion.div>
                 </div>

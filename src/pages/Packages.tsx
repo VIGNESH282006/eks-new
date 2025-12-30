@@ -1,4 +1,8 @@
+
 import { Pricing } from "@/components/ui/pricing";
+import { CostCalculator } from "@/components/ui/cost-calculator";
+import { PackagesPopup } from "@/components/ui/packages-popup";
+import { useState, useEffect, useRef } from "react";
 
 const constructionPlans = [
     {
@@ -208,13 +212,40 @@ const constructionPlans = [
 ];
 
 export default function Packages() {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [hasSeenPopup, setHasSeenPopup] = useState(false);
+    const triggerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasSeenPopup) {
+                    setIsPopupOpen(true);
+                    setHasSeenPopup(true);
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (triggerRef.current) {
+            observer.observe(triggerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasSeenPopup]);
+
     return (
         <div className="min-h-screen bg-background pt-24">
+            <PackagesPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+
             <Pricing
                 plans={constructionPlans}
                 title="Construction Packages"
                 description="Choose the package that fits your needs and budget. All packages include our commitment to quality and transparency."
             />
+            <div className="py-20 bg-gray-50/50" ref={triggerRef}>
+                <CostCalculator />
+            </div>
         </div>
     );
 }

@@ -10,4 +10,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://eks-projectmanager.eksconstruction.in',
+        changeOrigin: true,
+        secure: false, // In case of self-signed certs, though unlikely for this domain
+      }
+    }
+  }
 })

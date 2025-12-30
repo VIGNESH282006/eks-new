@@ -21,6 +21,7 @@ import Careers from '@/pages/Careers';
 import Contact from '@/pages/Contact';
 import { MinimalistHero } from '@/components/ui/minimalist-hero';
 import { Footer } from '@/components/ui/footer-taped-design';
+import { GenieChat } from '@/components/ui/genie-chat';
 
 const navItems = [
   { label: 'HOME', href: '/' },
@@ -169,6 +170,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <GenieChat />
     </>
   )
 }

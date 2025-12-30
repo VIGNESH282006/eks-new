@@ -108,7 +108,7 @@ export function InteriorWhyChooseUs() {
                             {/* Heading */}
                             <motion.div variants={fadeInUp} className="space-y-6 text-center lg:text-left">
                                 <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
-                                    Why Choose <span className="text-[#ef4444]">eks</span> <span className="text-blue-600">construction</span> for Interior Design?
+                                    Why Choose <span className="text-[#082E6D]">e</span><span className="text-[#C11336]">k</span><span className="text-[#082E6D]">s construction</span> for Interior Design?
                                 </h2>
                                 <p className="text-lg text-gray-600 leading-relaxed">
                                     Your home is more than just a space—it's a reflection of who you are. At eks Construction, we understand that great interior design goes beyond beautiful aesthetics. It's about creating spaces that enhance your daily life, boost your mood, and tell your unique story.
