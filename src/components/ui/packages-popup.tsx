@@ -1,17 +1,113 @@
-"use client";
-
+import React, { useRef, useState } from "react";
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+// ========================================
+// EMAILJS CONFIGURATION
+// ========================================
+const EMAILJS_SERVICE_ID = 'service_hbqfu0d';
+const EMAILJS_TEMPLATE_ID = 'template_ebsy7cm';
+const EMAILJS_PUBLIC_KEY = '0bXXByMr7szLNAm3i';
+// ========================================
 
 interface PackagesPopupProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
+// Toast Notification Component
+const Toast = ({
+    message,
+    type,
+    onClose
+}: {
+    message: string;
+    type: 'success' | 'error';
+    onClose: () => void;
+}) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.9 }}
+            className={`absolute top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-4 rounded-xl shadow-xl border ${type === 'success'
+                    ? 'bg-green-500 text-white border-green-600'
+                    : 'bg-red-500 text-white border-red-600'
+                }`}
+        >
+            {type === 'success' ? (
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+            ) : (
+                <XCircle className="w-5 h-5 flex-shrink-0" />
+            )}
+            <span className="font-medium text-sm">{message}</span>
+            <button
+                onClick={onClose}
+                className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+            >
+                <X className="w-4 h-4" />
+            </button>
+        </motion.div>
+    );
+};
+
 export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
+    const formRef = useRef<HTMLFormElement>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
+        show: false,
+        message: '',
+        type: 'success'
+    });
+
     if (!isOpen) return null;
+
+    const showToast = (message: string, type: 'success' | 'error') => {
+        setToast({ show: true, message, type });
+        setTimeout(() => {
+            setToast(prev => ({ ...prev, show: false }));
+        }, 5000);
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!formRef.current) return;
+
+        setIsSubmitting(true);
+
+        try {
+            const formData = new FormData(formRef.current);
+            const templateParams = {
+                user_name: formData.get('user_name'),
+                user_mobile: formData.get('user_mobile'),
+                user_email: formData.get('user_email'),
+                location: formData.get('location'),
+                land_area: formData.get('land_area'),
+                form_source: 'Packages Popup'
+            };
+
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY
+            );
+
+            showToast('Query submitted successfully!', 'success');
+            formRef.current.reset();
+            // Optional: Close popup after success
+            setTimeout(onClose, 3000);
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            showToast('Failed to submit. Please try again.', 'error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <AnimatePresence>
@@ -29,6 +125,17 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                     onClick={(e) => e.stopPropagation()}
                     className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[650px]"
                 >
+                    {/* Toast Inside Popup */}
+                    <AnimatePresence>
+                        {toast.show && (
+                            <Toast
+                                message={toast.message}
+                                type={toast.type}
+                                onClose={() => setToast(prev => ({ ...prev, show: false }))}
+                            />
+                        )}
+                    </AnimatePresence>
+
                     {/* Close Button */}
                     <button
                         onClick={onClose}
@@ -54,9 +161,11 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                             </h2>
                         </div>
 
-                        <form className="space-y-4 relative z-10">
+                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 relative z-10">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
+                                    name="user_name"
+                                    required
                                     placeholder="Your Name"
                                     className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
@@ -65,6 +174,8 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                                         +91
                                     </div>
                                     <Input
+                                        name="user_mobile"
+                                        required
                                         placeholder="Mobile Number"
                                         type="tel"
                                         className="h-12 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none flex-1"
@@ -73,6 +184,8 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                             </div>
 
                             <Input
+                                name="user_email"
+                                required
                                 placeholder="Email Address"
                                 type="email"
                                 className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
@@ -80,17 +193,31 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input
+                                    name="location"
+                                    required
                                     placeholder="Project Location"
                                     className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                                 <Input
+                                    name="land_area"
                                     placeholder="Land Area (Sq.ft)"
                                     className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                             </div>
 
-                            <Button className="w-full h-14 text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-[#C11336] to-[#E91E63] hover:from-red-700 hover:to-red-600 text-white shadow-lg shadow-red-500/30 rounded-lg mt-6 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
-                                Get Free Consultation
+                            <Button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full h-14 text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-[#C11336] to-[#E91E63] hover:from-red-700 hover:to-red-600 text-white shadow-lg shadow-red-500/30 rounded-lg mt-6 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer relative z-20"
+                            >
+                                {isSubmitting ? (
+                                    <span className="flex items-center gap-2">
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Sending...
+                                    </span>
+                                ) : (
+                                    'Get Free Consultation'
+                                )}
                             </Button>
                         </form>
                     </div>

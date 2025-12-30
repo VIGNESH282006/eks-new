@@ -72,8 +72,8 @@ const pageHeroConfig: Record<string, any> = {
   '/contact': {
     mainText: "We're here to help. Reach out to us for quotes, inquiries, or just to say hello.",
     overlayText: { part1: 'Get in', part2: 'Touch' },
-    imageSrc: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1974&auto=format&fit=crop",
-    imageAlt: "Contact Us",
+    imageSrc: "/genie-img-contact.png",
+    imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1974&auto=format&fit=crop"
   }
 };

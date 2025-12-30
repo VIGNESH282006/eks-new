@@ -24,20 +24,21 @@ export const Footer = () => {
     return (
         <footer className="-mt-32 mb-0 px-4 w-full text-base-content mx-auto">
             {/* Two mascots holding the footer card from left and right */}
-            <div className="relative flex justify-between items-end -mb-24 z-10 w-full mx-auto px-2">
+
+            <div className="relative flex justify-between items-end -mb-24 bottom-14 z-20 w-full max-w-[95%] mx-auto px-4 pointer-events-none">
                 <img
                     src="/mascot-left.png"
                     alt="EKS Mascot Left"
-                    className="w-60 md:w-72 h-auto object-contain drop-shadow-lg"
+                    className="w-32 md:w-48 h-auto object-contain drop-shadow-xl"
                 />
                 <img
                     src="/mascot-right.png"
                     alt="EKS Mascot Right"
-                    className="w-60 md:w-72 h-auto object-contain drop-shadow-lg"
+                    className="w-32 md:w-48 h-auto object-contain drop-shadow-xl"
                 />
             </div>
 
-            <div className="relative bg-gradient-to-br from-slate-900 via-[#082E6D] to-slate-800 rounded-3xl w-full mx-auto px-10 py-12 flex flex-col gap-8 shadow-lg overflow-hidden">
+            <div className="relative bg-gradient-to-br from-slate-900 via-[#082E6D] to-slate-800 rounded-3xl w-full mx-auto px-10 py-8 flex flex-col gap-6 shadow-lg overflow-hidden">
                 {/* Animated EKS CONSTRUCTION Marquee Watermark */}
                 <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none">
                     <motion.div

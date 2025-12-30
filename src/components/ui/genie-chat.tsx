@@ -32,12 +32,12 @@ export function GenieChat() {
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="mb-2 w-72 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 dark:bg-neutral-900 origin-bottom-right"
+                        className="mb-2 w-56 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black/5 dark:bg-neutral-900 origin-bottom-right"
                     >
                         {/* Header */}
-                        <div className="relative bg-[#0052cc] p-5 text-white">
-                            <h3 className="text-xl font-bold">Hi!!</h3>
-                            <p className="text-sm opacity-90 mt-1">How can I help you?</p>
+                        <div className="relative bg-[#0052cc] p-3 text-white">
+                            <h3 className="text-lg font-bold">Hi!!</h3>
+                            <p className="text-xs opacity-90 mt-0.5">How can I help you?</p>
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="absolute top-3 right-3 p-1 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-colors"
@@ -47,23 +47,23 @@ export function GenieChat() {
                         </div>
 
                         {/* Options */}
-                        <div className="flex flex-col p-3 gap-2">
+                        <div className="flex flex-col p-2 gap-1.5">
                             <button
                                 onClick={openWhatsApp}
-                                className="flex items-center gap-4 rounded-xl p-4 text-base font-semibold text-neutral-700 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-100 dark:border-neutral-800 shadow-sm"
+                                className="flex items-center gap-3 rounded-lg p-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-100 dark:border-neutral-800 shadow-sm"
                             >
-                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
-                                    <MessageCircle size={22} fill="currentColor" className="opacity-90" />
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600">
+                                    <MessageCircle size={18} fill="currentColor" className="opacity-90" />
                                 </div>
                                 WhatsApp
                             </button>
 
                             <button
                                 onClick={openPhone}
-                                className="flex items-center gap-4 rounded-xl p-4 text-base font-semibold text-neutral-700 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-100 dark:border-neutral-800 shadow-sm"
+                                className="flex items-center gap-3 rounded-lg p-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 dark:text-neutral-200 dark:hover:bg-neutral-800 transition-colors border border-neutral-100 dark:border-neutral-800 shadow-sm"
                             >
-                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                                    <Phone size={22} fill="currentColor" className="opacity-90" />
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                                    <Phone size={18} fill="currentColor" className="opacity-90" />
                                 </div>
                                 Phone
                             </button>
@@ -77,7 +77,7 @@ export function GenieChat() {
                 onClick={toggleChat}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative h-32 w-32 bg-transparent focus:outline-none z-50 filter drop-shadow-2xl"
+                className="relative h-40 w-40 bg-transparent focus:outline-none z-50 filter drop-shadow-2xl"
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
