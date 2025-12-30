@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input";
 // ========================================
 // EMAILJS CONFIGURATION
 // ========================================
-const EMAILJS_SERVICE_ID = 'service_hbqfu0d';
-const EMAILJS_TEMPLATE_ID = 'template_ebsy7cm';
-const EMAILJS_PUBLIC_KEY = '0bXXByMr7szLNAm3i';
+const EMAILJS_SERVICE_ID = 'service_ii7mbet';
+const EMAILJS_TEMPLATE_ID = 'template_97i61hm';
+const EMAILJS_PUBLIC_KEY = 'hs432_oCc0PnIh1Tr';
 // ========================================
 
 interface PackagesPopupProps {
@@ -34,8 +34,8 @@ const Toast = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.9 }}
             className={`absolute top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-4 rounded-xl shadow-xl border ${type === 'success'
-                    ? 'bg-green-500 text-white border-green-600'
-                    : 'bg-red-500 text-white border-red-600'
+                ? 'bg-green-500 text-white border-green-600'
+                : 'bg-red-500 text-white border-red-600'
                 }`}
         >
             {type === 'success' ? (

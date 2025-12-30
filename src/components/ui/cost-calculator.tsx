@@ -2,9 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, X, Loader2, CheckCircle2, XCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
+import emailjs from '@emailjs/browser';
+
+// ========================================
+// EMAILJS CONFIGURATION
+// ========================================
+const EMAILJS_SERVICE_ID = 'service_ii7mbet';
+const EMAILJS_TEMPLATE_ID = 'template_abuyi9g';
+const EMAILJS_PUBLIC_KEY = 'hs432_oCc0PnIh1Tr';
+// ========================================
 
 type PackageType = "Basic" | "Standard" | "Premium";
 type FloorsType = "Ground" | "Ground + 1" | "Ground + 2" | "Ground + 3";
@@ -25,6 +34,42 @@ const INITIAL_DATA = {
     sumpSize: "",
     septicTankSize: "",
     compoundWallLength: "", // Default feet
+};
+
+// Toast Notification Component
+const Toast = ({
+    message,
+    type,
+    onClose
+}: {
+    message: string;
+    type: 'success' | 'error';
+    onClose: () => void;
+}) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.9 }}
+            className={`fixed top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-4 rounded-xl shadow-xl border ${type === 'success'
+                    ? 'bg-green-500 text-white border-green-600'
+                    : 'bg-red-500 text-white border-red-600'
+                }`}
+        >
+            {type === 'success' ? (
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+            ) : (
+                <XCircle className="w-5 h-5 flex-shrink-0" />
+            )}
+            <span className="font-medium text-sm">{message}</span>
+            <button
+                onClick={onClose}
+                className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+            >
+                <X className="w-4 h-4" />
+            </button>
+        </motion.div>
+    );
 };
 
 export function CostCalculator() {
@@ -66,6 +111,12 @@ export function CostCalculator() {
 
     const [showResult, setShowResult] = useState(false);
     const [totalCost, setTotalCost] = useState(0);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
+        show: false,
+        message: '',
+        type: 'success'
+    });
 
     useEffect(() => {
         setRowInputs((prev) => ({
@@ -83,6 +134,13 @@ export function CostCalculator() {
             ...prev,
             [name]: name === "landArea" ? (value === "" ? "" : Number(value)) : value,
         }));
+    };
+
+    const showToast = (message: string, type: 'success' | 'error') => {
+        setToast({ show: true, message, type });
+        setTimeout(() => {
+            setToast(prev => ({ ...prev, show: false }));
+        }, 5000);
     };
 
     const currentPackage = PACKAGES[formData.packageType];
@@ -141,7 +199,18 @@ export function CostCalculator() {
 
     const floorRows = renderFloorRows();
 
-    const calculateTotal = () => {
+    const calculateTotal = async () => {
+        if (!formData.landArea || Number(formData.landArea) <= 0) {
+            showToast("Please enter a valid Land Area.", "error");
+            return;
+        }
+        if (!formData.name || !formData.phone) {
+            showToast("Please enter your name and phone number.", "error");
+            return;
+        }
+
+        setIsSubmitting(true);
+
         let total = 0;
 
         // Add floor costs
@@ -156,39 +225,84 @@ export function CostCalculator() {
         total += calculateCost(Number(rowInputs.compoundWall || 0), 1850);
 
         setTotalCost(total);
-        setShowResult(true);
 
-        // Trigger confetti
-        const duration = 3 * 1000;
-        const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 50 };
+        // Send Email
+        try {
+            const templateParams = {
+                user_name: formData.name,
+                user_mobile: formData.phone,
+                user_email: formData.email,
+                location: formData.location,
+                land_area: formData.landArea,
+                floors: formData.floors,
+                package_type: formData.packageType,
+                total_cost: formatCurrency(total),
+                breakdown_ground: rowInputs.groundFloor || 0,
+                breakdown_sump: rowInputs.sump || 0,
+                breakdown_septic: rowInputs.septic || 0,
+                breakdown_compound: rowInputs.compoundWall || 0,
+            };
 
-        const random = (min: number, max: number) => Math.random() * (max - min) + min;
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY
+            );
 
-        const interval: any = setInterval(function () {
-            const timeLeft = animationEnd - Date.now();
+            setShowResult(true);
+            showToast("Estimate calculated & sent to your email!", "success");
 
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
+            // Trigger confetti
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 }; // Boost z-index for confetti
 
-            const particleCount = 50 * (timeLeft / duration);
+            const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 }
-            });
-            confetti({
-                ...defaults,
-                particleCount,
-                origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 }
-            });
-        }, 250);
+            const interval: any = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                const particleCount = 50 * (timeLeft / duration);
+
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 }
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 }
+                });
+            }, 250);
+
+        } catch (error) {
+            console.error("EmailJS Error:", error);
+            showToast("Calculated, but failed to send email report.", "error");
+            setShowResult(true); // Still show result even if email fails
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <div className="w-full max-w-6xl mx-auto p-4 md:p-8 font-sans relative">
+
+            <AnimatePresence>
+                {toast.show && (
+                    <Toast
+                        message={toast.message}
+                        type={toast.type}
+                        onClose={() => setToast(prev => ({ ...prev, show: false }))}
+                    />
+                )}
+            </AnimatePresence>
+
             <AnimatePresence>
                 {showResult && (
                     <motion.div
@@ -426,12 +540,22 @@ export function CostCalculator() {
                             whileHover={{ scale: 1.02, translateY: -2 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={calculateTotal}
-                            className="bg-gradient-to-r from-primary-red to-[#d91f42] hover:shadow-2xl hover:shadow-red-500/30 text-white font-bold py-5 px-12 rounded-2xl shadow-xl text-xl uppercase tracking-wider transition-all duration-300 w-full md:w-auto flex items-center gap-3"
+                            disabled={isSubmitting}
+                            className={`bg-gradient-to-r from-primary-red to-[#d91f42] hover:shadow-2xl hover:shadow-red-500/30 text-white font-bold py-5 px-12 rounded-2xl shadow-xl text-xl uppercase tracking-wider transition-all duration-300 w-full md:w-auto flex items-center gap-3 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed`}
                         >
-                            <span>Get Free Estimate Now</span>
-                            <span className="bg-white/20 rounded-full p-1">
-                                <ChevronDown className="h-5 w-5 -rotate-90" />
-                            </span>
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="h-6 w-6 animate-spin" />
+                                    <span>Calculating & Sending...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>Get Free Estimate Now</span>
+                                    <span className="bg-white/20 rounded-full p-1">
+                                        <ChevronDown className="h-5 w-5 -rotate-90" />
+                                    </span>
+                                </>
+                            )}
                         </motion.button>
                     </div>
                 </div>
