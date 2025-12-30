@@ -1,6 +1,7 @@
 import Hero from '@/components/ui/animated-shader-hero';
 import AboutUsSection from '@/components/ui/about-us-section';
 import StoryBehindSection from '@/components/ui/story-behind-section';
+import ManagementSection from '@/components/ui/management-section';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
                 }}
             />
             <AboutUsSection />
+            <ManagementSection />
             <StoryBehindSection />
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto text-center mb-10">
