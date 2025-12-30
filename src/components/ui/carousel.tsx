@@ -9,21 +9,21 @@ interface Role {
     description: string;
 }
 
-interface SlideData {
+export interface SlideData {
     title: string;
     button: string;
     src: string;
     roles?: Role[];
 }
 
-interface SlideProps {
+export interface SlideProps {
     slide: SlideData;
     index: number;
     current: number;
     handleSlideClick: (index: number) => void;
 }
 
-const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
+export const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     const slideRef = useRef<HTMLLIElement>(null);
     const [isFlipped, setIsFlipped] = useState(false);
 

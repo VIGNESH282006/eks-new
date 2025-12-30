@@ -1,6 +1,6 @@
 
 import { FeatureSteps } from "../components/ui/feature-section";
-import { Carousel } from "../components/ui/carousel";
+import { MarqueeCarousel } from "../components/ui/marquee-carousel";
 import { CareerApplicationForm } from "../components/ui/career-form";
 
 const features = [
@@ -67,7 +67,7 @@ const slideData = [
     {
         title: "Sales & Marketing",
         button: "Explore Roles",
-        src: "https://images.unsplash.com/photo-1628348070889-cb656235b4eb?q=80&w=2570&auto=format&fit=crop",
+        src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2674&auto=format&fit=crop",
         roles: [
             {
                 title: "CRM Executive",
@@ -127,7 +127,7 @@ const Careers = () => {
 
             <div className="relative overflow-hidden w-full h-full py-20 bg-gray-50 mt-20 rounded-[3rem]">
                 <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900">Explore Departments</h2>
-                <Carousel slides={slideData} />
+                <MarqueeCarousel slides={slideData} />
             </div>
 
             <CareerApplicationForm />
