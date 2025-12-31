@@ -39,7 +39,7 @@ export default function WhatWeOfferSection() {
     const [activeId, setActiveId] = useState<string | null>("civil");
 
     return (
-        <section className="bg-gradient-to-br from-stone-50 to-[#e5e5e5] py-24 px-4 overflow-hidden"> {/* Light Stone Background */}
+        <section className="bg-gradient-to-br from-stone-50 to-[#e5e5e5] py-12 px-4 overflow-hidden"> {/* Light Stone Background */}
             <div className="max-w-7xl mx-auto">
                 <div className="mb-12 text-center">
                     <h2 className="text-4xl md:text-6xl font-black text-stone-900 uppercase tracking-tighter mb-4">

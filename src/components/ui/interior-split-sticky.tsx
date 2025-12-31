@@ -84,7 +84,7 @@ export function InteriorSplitSticky() {
     return (
         <section ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 min-h-auto lg:min-h-[200vh] bg-[#284370] relative">
             {/* Left Column - Sticky */}
-            <div ref={leftRef} className="lg:sticky top-0 h-screen flex items-center justify-center p-8 overflow-hidden">
+            <div ref={leftRef} className="lg:sticky top-0 h-auto lg:h-screen flex items-center justify-center p-8 lg:p-8 overflow-hidden">
                 <div ref={imageRef} className="w-full max-w-[600px] aspect-square bg-[#1e3458] rounded-[2rem] overflow-hidden shadow-2xl origin-center will-change-transform border border-blue-400/20 relative group">
                     {/* Video Element */}
                     <video
@@ -102,7 +102,7 @@ export function InteriorSplitSticky() {
             </div>
 
             {/* Right Column - Scrolling Content */}
-            <div className="flex flex-col justify-start px-8 lg:px-16 pt-32 pb-48 text-white">
+            <div className="flex flex-col justify-start px-8 lg:px-16 pt-10 lg:pt-32 pb-24 lg:pb-48 text-white">
                 <div className="mb-12">
                     <span className="block text-xs font-medium tracking-[0.15em] text-blue-300/70 mb-2">EKS CONSTRUCTION IN NUMBERS</span>
                 </div>
@@ -117,7 +117,7 @@ export function InteriorSplitSticky() {
                 </div>
 
                 {/* Divider */}
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent my-20"></div>
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent my-10"></div>
 
                 <div className="mb-12">
                     <span className="block text-xs font-medium tracking-[0.15em] text-blue-300/70 mb-2">OUR DESIGN PHILOSOPHY</span>

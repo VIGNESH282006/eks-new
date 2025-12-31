@@ -3,7 +3,7 @@ import { MoveRight } from "lucide-react";
 
 export function InteriorHero() {
     return (
-        <section className="min-h-[100dvh] md:min-h-[80vh] flex items-center py-24 md:py-32 px-6 md:px-8 bg-[#284370] text-white relative overflow-hidden">
+        <section className="h-auto flex items-center pt-20 pb-10 px-6 md:px-8 bg-[#284370] text-white relative overflow-hidden">
             <div className="container mx-auto max-w-7xl relative z-10 text-center">
                 {/* Label */}
                 <span className="block text-xs font-medium tracking-[0.2em] text-blue-200 mb-8 uppercase">

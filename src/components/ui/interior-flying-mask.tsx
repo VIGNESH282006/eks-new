@@ -94,7 +94,7 @@ export function InteriorFlyingMask() {
     ];
 
     return (
-        <section ref={sectionRef} className="relative min-h-screen bg-white overflow-hidden">
+        <section ref={sectionRef} className="relative h-auto bg-white overflow-hidden pb-12">
             {/* Black mask with SVG curved bottom which flies up - Desktop only */}
             <div ref={maskRef} className="absolute top-0 left-0 w-full h-[50vh] z-10 pointer-events-none will-change-transform hidden lg:block">
                 <svg
@@ -111,8 +111,8 @@ export function InteriorFlyingMask() {
             </div>
 
             {/* White section content (Sets Us Apart) */}
-            <div className="pt-16 md:pt-24 lg:pt-48 pb-16 px-8 lg:px-16 max-w-7xl mx-auto">
-                <div className="mb-20 text-center lg:text-left">
+            <div className="pt-10 md:pt-24 lg:pt-48 pb-0 px-8 lg:px-16 max-w-7xl mx-auto">
+                <div className="mb-8 text-center lg:text-left">
                     <span className="block text-xs font-medium tracking-[0.1em] text-zinc-400 mb-4 uppercase">
                         Product Design and Construction Agency
                     </span>
@@ -121,7 +121,7 @@ export function InteriorFlyingMask() {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {features.map((feature, index) => (
                         <div key={index} className="aspect-square rounded-2xl relative overflow-hidden cursor-pointer border border-zinc-200 group bg-zinc-50 shadow-sm hover:shadow-xl transition-all duration-300">
                             {/* Default State - Logo */}

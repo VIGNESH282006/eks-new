@@ -1,48 +1,21 @@
 "use client";
 
-import {
-    ContainerScroll,
-    ContainerSticky,
-    ProcessCard,
-    ProcessCardBody,
-    ProcessCardTitle,
-    useContainerScrollContext
-} from "@/components/ui/process-timeline";
-import { useTransform, motion } from "framer-motion";
+import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
 import { Check } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const DynamicHeader = () => {
-    const { scrollYProgress } = useContainerScrollContext();
-
-    // Fade out "Our Design Process" quickly
-    const opacityTitle = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
-
-    // Fade in "Bringing Vision to Life"
-    const opacityNewTitle = useTransform(scrollYProgress, [0.05, 0.1], [0, 1]);
-    const yNewTitle = useTransform(scrollYProgress, [0.05, 0.1], [20, 0]);
-
     return (
         <div className="relative h-24 md:h-32 mb-8">
-            <motion.div
-                style={{ opacity: opacityTitle } as any}
-                className="absolute inset-0"
-            >
+            <div className="absolute inset-0">
                 <span className="block text-xs font-medium tracking-[0.1em] text-indigo-300 mb-4 uppercase">
                     HOW WE WORK
                 </span>
-                <h2 className="bg-gradient-to-r from-indigo-200/60 via-indigo-50 to-indigo-200/60 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-5xl">
-                    Our Design Process
-                </h2>
-            </motion.div>
-
-            <motion.div
-                style={{ opacity: opacityNewTitle, y: yNewTitle } as any}
-                className="absolute inset-0 flex items-center"
-            >
                 <h2 className="text-4xl md:text-6xl font-serif italic text-white leading-tight">
                     Bringing your vision to life <span className="text-indigo-400">step by step.</span>
                 </h2>
-            </motion.div>
+            </div>
         </div>
     );
 };
@@ -120,65 +93,64 @@ export function InteriorStackingCards() {
 
     return (
         <section className="bg-zinc-950 relative">
-            <ContainerScroll
-                className="container px-6 py-12 h-auto md:h-[350vh]"
-                style={{
-                    background: "#284370",
-                }}
-            >
-                <ContainerSticky className="top-20 flex flex-col items-start gap-8 z-20">
-                    <div className="space-y-4 max-w-4xl w-full">
-                        <DynamicHeader />
-                        <p className="max-w-[52ch] text-sm text-slate-300">
-                            From concept to completion, we follow a structured approach to bring your dream space to reality.
-                        </p>
-                    </div>
+            {/* Scroll Animation using ScrollStack for all devices */}
+            <div className="relative bg-[#284370]">
+                {/* Header Container */}
+                <div className="absolute top-10 left-6 md:left-10 z-10 pointer-events-none w-full max-w-4xl pr-4">
+                    <DynamicHeader />
+                </div>
 
-                    <div className="flex flex-nowrap items-start w-full">
+                {/* ScrollStack Container */}
+                <div className="pt-20 md:pt-0"> {/* Add padding top on mobile to clear header? Or header is absolute so it overlays. */}
+                    <ScrollStack
+                        itemDistance={50}
+                        itemStackDistance={20}
+                        stackPosition="35%"
+                        scaleEndPosition="10%"
+                        itemScale={0.05}
+                        useWindowScroll
+                    >
                         {processSteps.map((step, index) => (
-                            <ProcessCard
-                                key={step.id}
-                                itemsLength={processSteps.length}
-                                index={index}
-                                className="min-w-full md:min-w-[70%] max-w-full md:max-w-[70%] h-auto md:h-[500px]"
-                                variant="indigo"
-                            >
-                                <ProcessCardTitle className="border-r border-slate-700/50">
-                                    <div className="rounded-full size-12 bg-indigo-600/20 text-indigo-200 border border-indigo-500/30 text-lg font-bold flex justify-center items-center">
-                                        {step.id}
+                            <ScrollStackItem key={step.id} itemClassName="bg-[#284370] border border-white/20 shadow-2xl p-6 md:p-12">
+                                <div className="flex flex-col md:flex-row h-full gap-6 md:gap-8 items-start md:items-center">
+                                    {/* Number & Icon */}
+                                    <div className="md:border-r border-slate-700/50 md:pr-8 flex flex-row md:flex-col items-center md:justify-center gap-4 md:pt-4 w-full md:w-[20%] md:h-full">
+                                        <div className="rounded-full size-12 md:size-16 bg-indigo-600/20 text-indigo-200 border border-indigo-500/30 text-lg md:text-xl font-bold flex justify-center items-center md:mb-6 shrink-0">
+                                            {step.id}
+                                        </div>
+                                        <div className="text-4xl md:text-6xl opacity-80 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                            {step.image}
+                                        </div>
                                     </div>
-                                    <div className="mt-8 text-4xl opacity-50 filter grayscale group-hover:grayscale-0 transition-all duration-300">
-                                        {step.image}
-                                    </div>
-                                </ProcessCardTitle>
-                                <ProcessCardBody className="flex flex-col gap-6 justify-center h-full flex-1">
-                                    <div>
-                                        <h3 className="text-2xl font-semibold leading-tight text-white/90 mb-4">
+
+                                    {/* Content */}
+                                    <div className="flex-1 flex flex-col justify-center h-full py-2 md:py-4 w-full">
+                                        <h3 className="text-2xl md:text-4xl font-semibold leading-tight text-white mb-2 md:mb-4">
                                             {step.title}
                                         </h3>
-                                        <p className="text-slate-300 leading-relaxed font-light text-sm md:text-lg mb-6">
+                                        <p className="text-slate-300 leading-relaxed font-light text-base md:text-xl mb-6 md:mb-8 max-w-full md:max-w-[90%]">
                                             {step.description}
                                         </p>
 
-                                        <div className="space-y-3">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                             {step.details.map((detail, i) => (
-                                                <div key={i} className="flex items-center gap-3 group/item">
-                                                    <div className="rounded-full bg-indigo-500/10 p-1 group-hover/item:bg-indigo-500/20 transition-colors">
-                                                        <Check className="w-3 h-3 text-indigo-300" />
+                                                <div key={i} className="flex items-center gap-3">
+                                                    <div className="rounded-full bg-indigo-500/10 p-1.5 shrink-0">
+                                                        <Check className="w-4 h-4 text-indigo-300" />
                                                     </div>
-                                                    <span className="text-sm text-slate-400 group-hover/item:text-slate-200 transition-colors">
+                                                    <span className="text-sm md:text-base text-slate-200">
                                                         {detail}
                                                     </span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
-                                </ProcessCardBody>
-                            </ProcessCard>
+                                </div>
+                            </ScrollStackItem>
                         ))}
-                    </div>
-                </ContainerSticky>
-            </ContainerScroll>
+                    </ScrollStack>
+                </div>
+            </div>
         </section>
     );
 }

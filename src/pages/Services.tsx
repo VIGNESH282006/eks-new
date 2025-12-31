@@ -120,7 +120,7 @@ const Services = () => {
             <TimelineSection />
 
             {/* CTA Section */}
-            <section className="py-20 px-4 bg-[#082E6D]">
+            <section className="py-20 pb-[5.5rem] px-4 bg-[#082E6D]">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                         Ready to Start Your Project?
