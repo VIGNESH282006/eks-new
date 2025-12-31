@@ -35,7 +35,7 @@ const Hero: FC<HeroProps> = ({
     className = ""
 }) => {
     return (
-        <div className={`relative w-full h-screen overflow-hidden bg-white ${className}`}>
+        <div className={`relative w-full h-[100dvh] md:h-screen overflow-hidden bg-white ${className}`}>
 
             {/* Video Background */}
             <div className="absolute inset-0 z-[1]">
@@ -60,10 +60,10 @@ const Hero: FC<HeroProps> = ({
                         {title ? title : (
                             headline && (
                                 <div className="space-y-2">
-                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent transform-gpu">
                                         {headline.line1}
                                     </h1>
-                                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary-red via-red-500 to-orange-500 bg-clip-text text-transparent">
+                                    <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary-red via-red-500 to-orange-500 bg-clip-text text-transparent transform-gpu">
                                         {headline.line2}
                                     </h1>
                                 </div>

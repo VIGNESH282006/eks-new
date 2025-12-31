@@ -27,7 +27,7 @@ export const MinimalistHero = ({
     return (
         <div
             className={cn(
-                'relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background p-8 font-sans md:p-12',
+                'relative flex min-h-[100dvh] md:h-screen w-full flex-col items-center justify-center overflow-hidden bg-background p-4 md:p-12 font-sans',
                 className
             )}
         >
@@ -53,7 +53,7 @@ export const MinimalistHero = ({
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="order-2 md:order-1 text-center md:text-left text-white"
                 >
-                    <h1 className="text-5xl font-extrabold text-white md:text-6xl lg:text-7xl drop-shadow-lg">
+                    <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl drop-shadow-lg">
                         {overlayText.part1}
                         <br />
                         {overlayText.part2}
