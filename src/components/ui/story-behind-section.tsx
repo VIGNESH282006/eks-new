@@ -121,33 +121,84 @@ const SUCCESS_FACTORS = [
 
 export default function StoryBehindSection() {
     return (
-        <section className="w-full bg-[#f8fafc] py-24 px-4 overflow-hidden">
+        <section className="w-full bg-[#f8fafc] py-16 md:py-24 px-4 overflow-hidden">
             <div className="container mx-auto">
-                <div className="grid lg:grid-cols-[45%_55%] gap-4 lg:gap-0 items-center">
+                {/* Mobile: Flex column with text first then cards, Desktop: Grid layout */}
+                <div className="flex flex-col lg:grid lg:grid-cols-[45%_55%] gap-8 lg:gap-0 items-center">
 
-                    {/* Left Side - Sticky Content */}
-                    <div className="lg:sticky lg:top-32 lg:h-[calc(100vh-16rem)] flex flex-col justify-center mb-12 lg:mb-0 pl-4 lg:pr-8">
+                    {/* Left Side - Content (Mobile: First, centered) */}
+                    <div className="lg:sticky lg:top-32 lg:h-[calc(100vh-16rem)] flex flex-col justify-center mb-8 lg:mb-0 px-4 lg:pl-4 lg:pr-8 text-center lg:text-left">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6 }}
                             viewport={{ once: true }}
+                            className="flex flex-col items-center lg:items-start"
                         >
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#082E6D] leading-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-[#082E6D] leading-tight">
                                 Reason Behind <br />
                                 <span className="text-[#C11336]">Our Success</span>
                             </h2>
-                            <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-lg">
+                            <p className="text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed max-w-[350px] md:max-w-lg text-center lg:text-left px-4 lg:px-0 mx-auto lg:mx-0">
                                 Excellence in every aspect of construction. We believe in transparency, quality, and delivering exactly what we promise.
                             </p>
 
-                            <div className="mt-12">
-                                <h3 className="text-[#C11336] font-bold uppercase tracking-wider mb-6 flex items-center gap-2 text-sm">
+                            {/* Mobile-only: Cards shown below paragraph */}
+                            <div className="lg:hidden relative h-[420px] w-full flex justify-center ml-32 lg:ml-0">
+                                <CardSwap delay={3000} cardDistance={25} pauseOnHover={true}>
+                                    {SUCCESS_FACTORS.map((factor) => (
+                                        <Card
+                                            key={factor.id}
+                                            className="w-full aspect-square rounded-3xl border-4 border-white/50 shadow-2xl overflow-hidden bg-white max-w-[320px] mx-auto"
+                                        >
+                                            <div className="flex flex-col h-full">
+                                                {/* Card Header with Image */}
+                                                <div className="relative h-[55%] overflow-hidden bg-white">
+                                                    <img
+                                                        src={factor.image}
+                                                        alt={factor.title}
+                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+                                                        <div
+                                                            className="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-2 shadow-lg backdrop-blur-sm"
+                                                            style={{ backgroundColor: factor.bg }}
+                                                        >
+                                                            {factor.icon}
+                                                        </div>
+                                                        <h3 className="text-lg font-bold text-white tracking-tight">
+                                                            {factor.title}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
+                                                {/* Card Content */}
+                                                <div className="p-4 flex-1 flex flex-col bg-white">
+                                                    <div className="flex items-center justify-between mb-2">
+                                                        <span
+                                                            className="inline-flex w-6 h-6 rounded-full text-xs font-bold text-white shadow-sm items-center justify-center"
+                                                            style={{ backgroundColor: factor.bg }}
+                                                        >
+                                                            {factor.index}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-gray-600 leading-relaxed text-sm text-left">
+                                                        {factor.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    ))}
+                                </CardSwap>
+                            </div>
+
+                            <div className="mt-10 lg:mt-12 w-full">
+                                <h3 className="text-[#C11336] font-bold uppercase tracking-wider mb-6 flex items-center justify-center lg:justify-start gap-2 text-sm">
                                     <Building className="w-4 h-4" />
                                     Our Retail Partners
                                 </h3>
 
-                                <div className="relative w-full max-w-md overflow-hidden">
+                                <div className="relative w-full max-w-md mx-auto lg:mx-0 overflow-hidden">
                                     <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#f8fafc] to-transparent z-10"></div>
                                     <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#f8fafc] to-transparent z-10"></div>
 
@@ -175,7 +226,8 @@ export default function StoryBehindSection() {
                         </motion.div>
                     </div>
 
-                    <div className="relative h-[600px] w-full mt-12 lg:mt-0 lg:-ml-8">
+                    {/* Desktop only: Cards on right side */}
+                    <div className="hidden lg:block relative h-[600px] w-full lg:-ml-8">
                         <CardSwap delay={3000} cardDistance={25} pauseOnHover={true}>
                             {SUCCESS_FACTORS.map((factor) => (
                                 <Card

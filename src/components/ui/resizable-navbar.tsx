@@ -126,7 +126,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 <Link
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
-                    className="relative px-3 py-2 text-neutral-600 dark:text-neutral-300 font-bold text-xs xl:text-sm"
+                    className="relative px-3 py-2 text-gray-800 dark:text-neutral-300 font-medium text-xs xl:text-sm tracking-wide uppercase"
                     key={`link-${idx}`}
                     to={item.link}
                 >
@@ -163,8 +163,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
                 damping: 50,
             }}
             className={cn(
-                "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-                visible && "bg-white/80 dark:bg-neutral-950/80",
+                "relative z-50 mx-auto flex w-[calc(100vw-1.5rem)] max-w-[calc(100vw-1.5rem)] flex-col items-center justify-between bg-white/90 backdrop-blur-md px-3 py-2 lg:hidden rounded-full shadow-md",
+                visible && "bg-white/95 dark:bg-neutral-950/80",
                 className,
             )}
         >
@@ -221,9 +221,17 @@ export const MobileNavToggle = ({
     onClick: () => void;
 }) => {
     return isOpen ? (
-        <IconX className="text-black dark:text-white" onClick={onClick} />
+        <IconX
+            className="text-black w-8 h-8 cursor-pointer"
+            onClick={onClick}
+            strokeWidth={2.5}
+        />
     ) : (
-        <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+        <IconMenu2
+            className="text-black w-8 h-8 cursor-pointer"
+            onClick={onClick}
+            strokeWidth={2.5}
+        />
     );
 };
 

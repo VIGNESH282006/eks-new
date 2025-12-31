@@ -116,6 +116,21 @@ export const AnimatedTestimonials = ({
                             ease: "easeInOut",
                         }}
                     >
+                        {/* Arrows - above heading, centered, increased size */}
+                        <div className="flex gap-4 pb-4 justify-center md:justify-start">
+                            <button
+                                onClick={handlePrev}
+                                className="h-14 w-14 md:h-12 md:w-12 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-secondary/80 transition-colors"
+                            >
+                                <ArrowLeft className="h-8 w-8 md:h-6 md:w-6 text-foreground group-hover/button:rotate-12 transition-transform duration-300" />
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className="h-14 w-14 md:h-12 md:w-12 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-secondary/80 transition-colors"
+                            >
+                                <ArrowRight className="h-8 w-8 md:h-6 md:w-6 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
+                            </button>
+                        </div>
                         <h3 className="text-3xl md:text-4xl font-bold text-foreground">
                             {testimonials[active].name}
                         </h3>
@@ -148,20 +163,6 @@ export const AnimatedTestimonials = ({
                             ))}
                         </motion.p>
                     </motion.div>
-                    <div className="flex gap-4 pt-4">
-                        <button
-                            onClick={handlePrev}
-                            className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-secondary/80 transition-colors"
-                        >
-                            <ArrowLeft className="h-6 w-6 text-foreground group-hover/button:rotate-12 transition-transform duration-300" />
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-secondary/80 transition-colors"
-                        >
-                            <ArrowRight className="h-6 w-6 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

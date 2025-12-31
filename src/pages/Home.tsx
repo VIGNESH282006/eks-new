@@ -9,7 +9,7 @@ const Home = () => {
         <div className="min-h-screen bg-white">
             <Hero
                 title={
-                    <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                    <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                         <span className="text-[#082E6D]">e</span>
                         <span className="text-[#C11336]">k</span>
                         <span className="text-[#082E6D]">s</span>

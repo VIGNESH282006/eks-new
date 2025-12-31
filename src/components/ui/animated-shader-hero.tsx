@@ -94,7 +94,7 @@ const Hero: FC<HeroProps> = ({
                             {buttons.secondary && (
                                 <button
                                     onClick={buttons.secondary.onClick}
-                                    className="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm shadow-sm"
+                                    className="px-8 py-4 bg-black/40 md:bg-white/10 hover:bg-black/50 md:hover:bg-white/20 border border-white/50 md:border-white/30 hover:border-white/80 md:hover:border-white/50 text-white rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm shadow-sm"
                                 >
                                     {buttons.secondary.text}
                                 </button>

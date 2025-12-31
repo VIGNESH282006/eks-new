@@ -56,7 +56,7 @@ const ManagementSection = () => {
                     <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gray-50 border border-gray-200 shadow-sm animate-fade-in-down">
                         <span className="flex h-2 w-2 rounded-full bg-[#FB0224]"></span>
                         <span className="text-sm md:text-base font-semibold tracking-wide text-gray-700">
-                             Chennai's <span className="text-[#FB0224]">No.1</span> Construction Management Tool
+                            Chennai's <span className="text-[#FB0224]">No.1</span> Construction Management Tool
                         </span>
                     </div>
                 </div>
@@ -78,13 +78,28 @@ const ManagementSection = () => {
                         </div>
 
                         {/* App Availability */}
-                        <div className="flex items-center gap-4 text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 w-fit shadow-sm">
-                            <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
-                                <Smartphone size={28} />
+                        <div className="flex flex-col md:flex-row gap-6">
+                            <div className="flex items-center gap-4 text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 w-fit shadow-sm">
+                                <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
+                                    <Smartphone size={28} />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900">Available on Mobile App</h4>
+                                    <p className="text-xs md:text-sm text-gray-500">Seamlessly manage projects on iOS & Android</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900">Available on Mobile App</h4>
-                                <p className="text-xs md:text-sm text-gray-500">Seamlessly manage projects on iOS & Android</p>
+
+                            {/* Mobile Only: Efficiency Boost Card */}
+                            <div className="lg:hidden flex items-center justify-between gap-6 bg-black/90 text-white p-4 rounded-xl shadow-lg border border-gray-800 max-w-sm">
+                                <div>
+                                    <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Efficiency</p>
+                                    <p className="text-xl font-bold">35% <span className="text-green-400 text-xs">▲</span></p>
+                                </div>
+                                <div className="h-8 w-[1px] bg-white/20"></div>
+                                <div>
+                                    <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Savings</p>
+                                    <p className="text-xl font-bold">20% <span className="text-green-400 text-xs">▲</span></p>
+                                </div>
                             </div>
                         </div>
 
@@ -107,12 +122,21 @@ const ManagementSection = () => {
                                         </div>
                                     </div>
                                     <div
-                                        className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"}`}
+                                        className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
                                     >
-                                        <div className="px-12 pb-6 pt-0">
+                                        <div className="px-12 pb-6 pt-0 space-y-4">
                                             <p className="text-gray-600 text-sm leading-relaxed">
                                                 {feature.description}
                                             </p>
+
+                                            {/* Mobile: Image inside box below text */}
+                                            <div className="lg:hidden rounded-lg overflow-hidden border border-gray-100 shadow-sm mt-4">
+                                                <img
+                                                    src={images[index]}
+                                                    alt={feature.title}
+                                                    className="w-full h-auto object-contain"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -132,8 +156,8 @@ const ManagementSection = () => {
                         </div>
                     </div>
 
-                    {/* Right Image Section */}
-                    <div className="w-full lg:w-1/2 relative min-h-[400px]">
+                    {/* Right Image Section - Hidden on Mobile */}
+                    <div className="hidden lg:block w-full lg:w-1/2 relative min-h-[400px]">
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 aspect-video lg:aspect-[4/3] group">
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 opacity-60"></div>
 
