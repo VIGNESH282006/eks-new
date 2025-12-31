@@ -14,33 +14,37 @@ export function InteriorSplitSticky() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Pin the left side and animate scale on scroll end
-            ScrollTrigger.create({
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: 'bottom bottom',
-                pin: leftRef.current,
-                pinSpacing: false,
-                onUpdate: (self) => {
-                    // Scale down and fade the image as we near the end
-                    const progress = self.progress;
-                    if (progress > 0.85) {
-                        const fadeProgress = (progress - 0.85) / 0.15;
-                        gsap.to(imageRef.current, {
-                            scale: 1 - (fadeProgress * 0.1),
-                            opacity: 1 - (fadeProgress * 0.3),
-                            duration: 0.1,
-                            overwrite: true
-                        });
-                    } else {
-                        gsap.to(imageRef.current, {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 0.1,
-                            overwrite: true
-                        });
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 1024px)", () => {
+                // Pin the left side and animate scale on scroll end
+                ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    pin: leftRef.current,
+                    pinSpacing: false,
+                    onUpdate: (self) => {
+                        // Scale down and fade the image as we near the end
+                        const progress = self.progress;
+                        if (progress > 0.85) {
+                            const fadeProgress = (progress - 0.85) / 0.15;
+                            gsap.to(imageRef.current, {
+                                scale: 1 - (fadeProgress * 0.1),
+                                opacity: 1 - (fadeProgress * 0.3),
+                                duration: 0.1,
+                                overwrite: true
+                            });
+                        } else {
+                            gsap.to(imageRef.current, {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.1,
+                                overwrite: true
+                            });
+                        }
                     }
-                }
+                });
             });
         }, sectionRef);
 
@@ -78,7 +82,7 @@ export function InteriorSplitSticky() {
     ];
 
     return (
-        <section ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 min-h-[200vh] bg-[#284370] relative">
+        <section ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 min-h-auto lg:min-h-[200vh] bg-[#284370] relative">
             {/* Left Column - Sticky */}
             <div ref={leftRef} className="lg:sticky top-0 h-screen flex items-center justify-center p-8 overflow-hidden">
                 <div ref={imageRef} className="w-full max-w-[600px] aspect-square bg-[#1e3458] rounded-[2rem] overflow-hidden shadow-2xl origin-center will-change-transform border border-blue-400/20 relative group">

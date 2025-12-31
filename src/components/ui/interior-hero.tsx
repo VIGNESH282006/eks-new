@@ -3,7 +3,7 @@ import { MoveRight } from "lucide-react";
 
 export function InteriorHero() {
     return (
-        <section className="min-h-[80vh] flex items-center py-32 px-8 bg-[#284370] text-white relative overflow-hidden">
+        <section className="min-h-[100dvh] md:min-h-[80vh] flex items-center py-24 md:py-32 px-6 md:px-8 bg-[#284370] text-white relative overflow-hidden">
             <div className="container mx-auto max-w-7xl relative z-10 text-center">
                 {/* Label */}
                 <span className="block text-xs font-medium tracking-[0.2em] text-blue-200 mb-8 uppercase">
@@ -11,7 +11,7 @@ export function InteriorHero() {
                 </span>
 
                 {/* Main Headline */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.1] mb-12 max-w-5xl mx-auto text-white">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.2] md:leading-[1.1] mb-8 md:mb-12 max-w-5xl mx-auto text-white">
                     Why Choose <span className="text-[#ef4444] italic font-serif">eks</span> <span className="text-blue-300 italic font-serif">construction</span><br />
                     for Interior Design?
                 </h1>

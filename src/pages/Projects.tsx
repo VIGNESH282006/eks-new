@@ -140,7 +140,7 @@ const Projects = () => {
                                 No projects found in this category.
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-10">
                                 {filteredProjects.map((project) => (
                                     <ProjectCard key={project.id} project={project} className="h-full" />
                                 ))}

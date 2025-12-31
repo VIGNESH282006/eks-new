@@ -90,20 +90,20 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
 
     return (
         <header className={`relative z-20 flex flex-col items-center
-                       pl-10 pr-10 py-5 backdrop-blur-md
-                       ${headerShapeClass}
+                       px-4 md:px-10 py-5 md:py-5 backdrop-blur-md
+                       rounded-[2rem] lg:rounded-full
                        border border-gray-200 bg-white/90
-                       w-fit min-w-[600px]
-                       transition-[border-radius] duration-0 ease-in-out shadow-lg`}>
+                       w-[95%] lg:w-fit lg:min-w-[600px] mx-auto
+                       transition-all duration-300 ease-in-out shadow-lg`}>
 
-            <div className="flex items-center justify-between gap-x-12 sm:gap-x-16 w-full px-4">
+            <div className="flex items-center justify-between gap-x-4 md:gap-x-12 sm:gap-x-16 w-full md:px-4">
                 {showBrand && (
-                    <div className="flex items-center">
+                    <div className="flex items-center flex-shrink-0">
                         {logoElement}
                     </div>
                 )}
 
-                <nav className="flex items-center space-x-8 sm:space-x-12 w-full justify-center">
+                <nav className="grid grid-cols-2 gap-x-6 gap-y-3 w-full justify-items-center lg:flex lg:items-center lg:space-x-8 lg:w-auto lg:justify-center">
                     {navLinksData.map((link) => (
                         <AnimatedNavLink key={link.href} href={link.href} isActive={location.search.includes(link.href.split('?')[1] || '')}>
                             {link.label}

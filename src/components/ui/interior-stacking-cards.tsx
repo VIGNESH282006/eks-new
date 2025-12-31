@@ -24,7 +24,7 @@ const DynamicHeader = () => {
     return (
         <div className="relative h-24 md:h-32 mb-8">
             <motion.div
-                style={{ opacity: opacityTitle }}
+                style={{ opacity: opacityTitle } as any}
                 className="absolute inset-0"
             >
                 <span className="block text-xs font-medium tracking-[0.1em] text-indigo-300 mb-4 uppercase">
@@ -36,7 +36,7 @@ const DynamicHeader = () => {
             </motion.div>
 
             <motion.div
-                style={{ opacity: opacityNewTitle, y: yNewTitle }}
+                style={{ opacity: opacityNewTitle, y: yNewTitle } as any}
                 className="absolute inset-0 flex items-center"
             >
                 <h2 className="text-4xl md:text-6xl font-serif italic text-white leading-tight">
@@ -121,7 +121,7 @@ export function InteriorStackingCards() {
     return (
         <section className="bg-zinc-950 relative">
             <ContainerScroll
-                className="container px-6 py-12 h-[350vh]"
+                className="container px-6 py-12 h-auto md:h-[350vh]"
                 style={{
                     background: "#284370",
                 }}
@@ -140,7 +140,7 @@ export function InteriorStackingCards() {
                                 key={step.id}
                                 itemsLength={processSteps.length}
                                 index={index}
-                                className="min-w-[90%] md:min-w-[70%] max-w-[90%] md:max-w-[70%] h-[400px] md:h-[500px]"
+                                className="min-w-full md:min-w-[70%] max-w-full md:max-w-[70%] h-auto md:h-[500px]"
                                 variant="indigo"
                             >
                                 <ProcessCardTitle className="border-r border-slate-700/50">

@@ -14,39 +14,45 @@ export function InteriorFlyingMask() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Initial curved path (U-shape at bottom) - this is the starting state
-            const curvedPath = "M0,0 L0,85 Q25,100 50,85 L50,0 Z M50,0 L50,85 Q75,100 100,85 L100,0 Z";
-            // Final flat path (pulled up) - this is the end state
-            const flatPath = "M0,0 L0,0 Q25,0 50,0 L50,0 Z M50,0 L50,0 Q75,0 100,0 L100,0 Z";
+            const mm = gsap.matchMedia();
 
-            // Set initial path
-            if (pathRef.current) gsap.set(pathRef.current, { attr: { d: curvedPath } });
+            mm.add("(min-width: 1024px)", () => {
+                // Initial curved path
+                const curvedPath = "M0,0 L0,85 Q25,100 50,85 L50,0 Z M50,0 L50,85 Q75,100 100,85 L100,0 Z";
+                // Final flat path
+                const flatPath = "M0,0 L0,0 Q25,0 50,0 L50,0 Z M50,0 L50,0 Q75,0 100,0 L100,0 Z";
 
-            // Animate the path morphing
-            if (pathRef.current) {
-                gsap.to(pathRef.current, {
-                    attr: { d: flatPath },
+                // Set initial path
+                if (pathRef.current) gsap.set(pathRef.current, { attr: { d: curvedPath } });
+
+                // Animate the path morphing
+                if (pathRef.current) {
+                    gsap.to(pathRef.current, {
+                        attr: { d: flatPath },
+                        ease: 'power2.inOut',
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: 'top 80%',
+                            end: 'top 20%',
+                            scrub: 1,
+                        }
+                    });
+                }
+
+                // Also animate the mask container position
+                gsap.to(maskRef.current, {
+                    yPercent: -100,
                     ease: 'power2.inOut',
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: 'top 80%',
-                        end: 'top 20%',
-                        scrub: 1,
+                        start: 'top 50%',
+                        end: 'top -20%',
+                        scrub: 1.5,
                     }
                 });
-            }
-
-            // Also animate the mask container position
-            gsap.to(maskRef.current, {
-                yPercent: -100,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top 50%',
-                    end: 'top -20%',
-                    scrub: 1.5,
-                }
             });
+
+            // Mobile fallback cleanup if needed (optional since we scoped to min-width)
         }, sectionRef);
 
         return () => ctx.revert();
@@ -89,8 +95,8 @@ export function InteriorFlyingMask() {
 
     return (
         <section ref={sectionRef} className="relative min-h-screen bg-white overflow-hidden">
-            {/* Black mask with SVG curved bottom which flies up */}
-            <div ref={maskRef} className="absolute top-0 left-0 w-full h-[50vh] z-10 pointer-events-none will-change-transform">
+            {/* Black mask with SVG curved bottom which flies up - Desktop only */}
+            <div ref={maskRef} className="absolute top-0 left-0 w-full h-[50vh] z-10 pointer-events-none will-change-transform hidden lg:block">
                 <svg
                     className="absolute bottom-0 left-0 w-full h-full"
                     viewBox="0 0 100 100"
@@ -105,7 +111,7 @@ export function InteriorFlyingMask() {
             </div>
 
             {/* White section content (Sets Us Apart) */}
-            <div className="pt-48 pb-16 px-8 lg:px-16 max-w-7xl mx-auto">
+            <div className="pt-16 md:pt-24 lg:pt-48 pb-16 px-8 lg:px-16 max-w-7xl mx-auto">
                 <div className="mb-20 text-center lg:text-left">
                     <span className="block text-xs font-medium tracking-[0.1em] text-zinc-400 mb-4 uppercase">
                         Product Design and Construction Agency
