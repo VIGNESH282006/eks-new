@@ -25,7 +25,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, _setIsOpen] = useState(false);
     const [headerShapeClass, setHeaderShapeClass] = useState('rounded-full');
     const shapeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 

@@ -78,7 +78,7 @@ export default function TimelineSection() {
         }
 
         // Kinetic typography - animate each card's content as it enters
-        cards.forEach((card, index) => {
+        cards.forEach((card) => {
             const textItems = card.querySelectorAll('.text-item');
             const image = card.querySelector('.card-image');
             const stepBadge = card.querySelector('.step-badge');
