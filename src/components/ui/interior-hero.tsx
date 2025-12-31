@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MoveRight } from "lucide-react";
 
 export function InteriorHero() {
@@ -17,14 +18,14 @@ export function InteriorHero() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                    <button className="inline-flex items-center gap-2.5 px-7 py-4 bg-orange-600 hover:bg-orange-500 text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 transform hover:-translate-y-0.5 group shadow-lg shadow-orange-600/20">
+                    <Link to="/contact" className="inline-flex items-center gap-2.5 px-7 py-4 bg-orange-600 hover:bg-orange-500 text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 transform hover:-translate-y-0.5 group shadow-lg shadow-orange-600/20">
                         LET'S TALK
                         <MoveRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </button>
-                    <button className="inline-flex items-center gap-2.5 px-7 py-4 bg-transparent border border-blue-300/30 hover:bg-white/10 text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 transform hover:-translate-y-0.5 group">
+                    </Link>
+                    <Link to="/projects" className="inline-flex items-center gap-2.5 px-7 py-4 bg-transparent border border-blue-300/30 hover:bg-white/10 text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 transform hover:-translate-y-0.5 group">
                         VIEW OUR PROJECTS
                         <MoveRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Subhead */}

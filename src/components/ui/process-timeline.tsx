@@ -46,7 +46,7 @@ interface ProcessCardProps
 const ContainerScrollContext = React.createContext<
     ContainerScrollContextValue | undefined
 >(undefined)
-function useContainerScrollContext() {
+export function useContainerScrollContext() {
     const context = React.useContext(ContainerScrollContext)
     if (!context) {
         throw new Error(

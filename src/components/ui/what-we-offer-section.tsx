@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Building2, PaintBucket, Fan } from "lucide-react";
+import { Building2, PaintBucket, Fan } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SERVICES = [
@@ -122,10 +122,7 @@ export default function WhatWeOfferSection() {
                                                         {service.description}
                                                     </p>
 
-                                                    <button className="flex items-center gap-2 text-white font-semibold group/btn hover:text-red-400 transition-colors text-sm md:text-base">
-                                                        Learn more
-                                                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                                                    </button>
+
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>

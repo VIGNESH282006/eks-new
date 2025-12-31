@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Folder, Loader2, CheckCircle2, XCircle, X, UploadCloud } from "lucide-react";
+import { Loader2, CheckCircle2, XCircle, X, UploadCloud } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 
@@ -170,174 +170,196 @@ export function CareerApplicationForm() {
     };
 
     return (
-        <div className="flex items-center justify-center p-4 md:p-10 bg-gradient-to-br from-primary to-primary-red rounded-[3rem] mt-20 relative">
-            <AnimatePresence>
-                {toast.show && (
-                    <Toast
-                        message={toast.message}
-                        type={toast.type}
-                        onClose={() => setToast(prev => ({ ...prev, show: false }))}
-                    />
-                )}
-            </AnimatePresence>
+        <section className="relative w-full py-20 overflow-hidden">
+            {/* Minimalist Background Decoration */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/3" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-100/50 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3" />
 
-            <div className="w-full max-w-4xl bg-white p-8 md:p-12 rounded-3xl shadow-2xl shadow-black/20 border border-white/20">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                    Apply Now
-                </h3>
+            <div className="flex items-center justify-center p-4 md:p-10">
+                <AnimatePresence>
+                    {toast.show && (
+                        <Toast
+                            message={toast.message}
+                            type={toast.type}
+                            onClose={() => setToast(prev => ({ ...prev, show: false }))}
+                        />
+                    )}
+                </AnimatePresence>
 
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <Label htmlFor="first-name" className="font-medium">
-                                First Name <span className="text-primary-red">*</span>
+                <div className="w-full max-w-4xl bg-white/80 backdrop-blur-3xl p-8 md:p-14 rounded-[2.5rem] border border-white/50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)]">
+                    <div className="text-center mb-12 space-y-3">
+                        <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold tracking-wide border border-blue-100 animate-fade-in-up">
+                            CAREERS
+                        </div>
+                        <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                            Join <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">The Team</span>
+                        </h3>
+                        <p className="text-slate-500 text-lg max-w-lg mx-auto leading-relaxed">
+                            Ready to build something amazing? Fill out the form below and let's get started.
+                        </p>
+                    </div>
+
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                            <div className="space-y-2 group">
+                                <Label htmlFor="first-name" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                    First Name
+                                </Label>
+                                <Input
+                                    type="text"
+                                    id="first-name"
+                                    name="first-name"
+                                    placeholder="Jane"
+                                    required
+                                    className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
+                                />
+                            </div>
+
+                            <div className="space-y-2 group">
+                                <Label htmlFor="last-name" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                    Last Name
+                                </Label>
+                                <Input
+                                    type="text"
+                                    id="last-name"
+                                    name="last-name"
+                                    placeholder="Doe"
+                                    required
+                                    className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="space-y-2 group">
+                            <Label htmlFor="email" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                Email Address
                             </Label>
                             <Input
-                                type="text"
-                                id="first-name"
-                                name="first-name"
-                                placeholder="Enter your first name"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="jane@example.com"
                                 required
-                                className="h-12 bg-gray-50/50"
+                                className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="last-name" className="font-medium">
-                                Last Name <span className="text-primary-red">*</span>
+                        <div className="space-y-2 group">
+                            <Label htmlFor="phone" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                Phone Number
                             </Label>
                             <Input
-                                type="text"
-                                id="last-name"
-                                name="last-name"
-                                placeholder="Enter your last name"
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+1 (555) 000-0000"
                                 required
-                                className="h-12 bg-gray-50/50"
+                                className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
                             />
                         </div>
-                    </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="email" className="font-medium">
-                            Email Address <span className="text-primary-red">*</span>
-                        </Label>
-                        <Input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter Email"
-                            required
-                            className="h-12 bg-gray-50/50"
-                        />
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                            <div className="space-y-2 group">
+                                <Label htmlFor="experience" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                    Experience
+                                </Label>
+                                <Input
+                                    type="text"
+                                    id="experience"
+                                    name="experience"
+                                    placeholder="e.g. 5+ years"
+                                    required
+                                    className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
+                                />
+                            </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="phone" className="font-medium">
-                            Phone Number <span className="text-primary-red">*</span>
-                        </Label>
-                        <Input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="Enter phone number"
-                            required
-                            className="h-12 bg-gray-50/50"
-                        />
-                    </div>
+                            <div className="space-y-2 group">
+                                <Label htmlFor="position" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                    Desired Position
+                                </Label>
+                                <Input
+                                    type="text"
+                                    id="position"
+                                    name="position"
+                                    placeholder="e.g. Senior Architect"
+                                    required
+                                    className="h-14 rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400"
+                                />
+                            </div>
+                        </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="experience" className="font-medium">
-                            Experience <span className="text-primary-red">*</span>
-                        </Label>
-                        <Input
-                            type="text"
-                            id="experience"
-                            name="experience"
-                            placeholder="e.g., +5 years experience in Civil"
-                            required
-                            className="h-12 bg-gray-50/50"
-                        />
-                    </div>
+                        <div className="space-y-4">
+                            <Label htmlFor="resume" className="text-sm font-semibold text-slate-700 ml-1">
+                                Resume / CV
+                            </Label>
+                            <div
+                                className={`relative group border-2 border-dashed rounded-3xl p-10 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-blue-400 hover:bg-blue-50/50 cursor-pointer overflow-hidden ${selectedFile ? 'border-green-400 bg-green-50/30' : 'border-slate-200 bg-slate-50'
+                                    }`}
+                            >
+                                <input
+                                    type="file"
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                                    accept=".pdf,.doc,.docx"
+                                    onChange={handleFileChange}
+                                    required={!selectedFile}
+                                />
 
-                    <div className="space-y-2">
-                        <Label htmlFor="position" className="font-medium">
-                            Desired Position <span className="text-primary-red">*</span>
-                        </Label>
-                        <Input
-                            type="text"
-                            id="position"
-                            name="position"
-                            placeholder="e.g., Civil Engineer, Project Manager"
-                            required
-                            className="h-12 bg-gray-50/50"
-                        />
-                    </div>
+                                <div className="z-10 flex flex-col items-center gap-3 transition-transform duration-300 group-hover:scale-105">
+                                    {selectedFile ? (
+                                        <>
+                                            <div className="w-14 h-14 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center shadow-sm">
+                                                <CheckCircle2 className="w-7 h-7" />
+                                            </div>
+                                            <div>
+                                                <p className="text-slate-900 font-bold max-w-[280px] truncate">{selectedFile.name}</p>
+                                                <p className="text-sm text-green-600 font-medium">Ready to upload</p>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center shadow-sm group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                                                <UploadCloud className="w-7 h-7" />
+                                            </div>
+                                            <div>
+                                                <p className="text-slate-900 font-bold text-lg">Click to upload</p>
+                                                <p className="text-sm text-slate-500">or drag and drop here (PDF, DOC)</p>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="resume" className="font-medium">
-                            Your Resume <span className="text-primary-red">*</span>
-                        </Label>
-                        <div
-                            className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer group relative ${selectedFile ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-gray-50/30 hover:bg-gray-50'
-                                }`}
+                        <div className="space-y-2 group">
+                            <Label htmlFor="message" className="text-sm font-semibold text-slate-700 ml-1 group-focus-within:text-blue-600 transition-colors">
+                                Message
+                            </Label>
+                            <Textarea
+                                id="message"
+                                name="message"
+                                placeholder="Tell us why you're a great fit..."
+                                required
+                                className="min-h-[160px] rounded-2xl bg-slate-50 border-transparent focus:border-blue-500/20 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all font-medium text-slate-800 placeholder:text-slate-400 resize-none p-5 text-base"
+                            />
+                        </div>
+
+                        <Button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-full h-14 text-lg font-bold bg-slate-900 text-white rounded-2xl hover:bg-slate-800 hover:scale-[1.01] hover:shadow-xl hover:shadow-slate-900/10 active:scale-[0.98] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                         >
-                            <input
-                                type="file"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                accept=".pdf,.doc,.docx"
-                                onChange={handleFileChange}
-                                required={!selectedFile}
-                            />
-
-                            {selectedFile ? (
-                                <>
-                                    <CheckCircle2 className="w-10 h-10 text-green-500 mb-3" />
-                                    <p className="text-green-700 font-bold mb-1 max-w-[90%] truncate">{selectedFile.name}</p>
-                                    <p className="text-xs text-green-600">Click to change file</p>
-                                </>
+                            {isSubmitting ? (
+                                <span className="flex items-center gap-2">
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                    {statusMessage || "Submitting..."}
+                                </span>
                             ) : (
-                                <>
-                                    <Folder className="w-10 h-10 text-yellow-400 mb-3 group-hover:scale-110 transition-transform" />
-                                    <p className="text-primary font-medium mb-1">Click to upload</p>
-                                    <p className="text-sm text-gray-500 mb-4">or drag and drop</p>
-                                    <p className="text-xs text-gray-400 mb-4">PDF, DOC, DOCX (max 10MB)</p>
-                                    <Button type="button" variant="default" className="bg-primary hover:bg-primary/90 text-white pointer-events-none">
-                                        Choose File
-                                    </Button>
-                                </>
+                                "Send Application"
                             )}
-                        </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="message" className="font-medium">
-                            Message to Hiring Team <span className="text-primary-red">*</span>
-                        </Label>
-                        <Textarea
-                            id="message"
-                            name="message"
-                            placeholder="Tell us why you'd like to work with eks Construction..."
-                            required
-                            className="min-h-[150px] bg-gray-50/50 resize-none p-4"
-                        />
-                    </div>
-
-                    <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 text-white mt-8 rounded-xl shadow-lg shadow-primary/20 disabled:opacity-70 disabled:cursor-not-allowed"
-                    >
-                        {isSubmitting ? (
-                            <span className="flex items-center gap-2">
-                                <Loader2 className="w-5 h-5 animate-spin" />
-                                {statusMessage || "Processing..."}
-                            </span>
-                        ) : (
-                            "SUBMIT APPLICATION"
-                        )}
-                    </Button>
-                </form>
+                        </Button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }

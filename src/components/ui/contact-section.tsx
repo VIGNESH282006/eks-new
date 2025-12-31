@@ -129,16 +129,16 @@ export const ContactSection = () => {
                 )}
             </AnimatePresence>
 
-            <section className="relative min-h-screen w-full flex items-center justify-center p-4 lg:p-8 overflow-hidden bg-zinc-950">
+            <section className="relative min-h-screen w-full flex items-center justify-center p-4 lg:p-8 overflow-hidden bg-gray-50">
 
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2670&auto=format&fit=crop"
                         alt="Construction Background"
-                        className="w-full h-full object-cover opacity-40"
+                        className="w-full h-full object-cover opacity-10"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-gray-50/80 to-transparent" />
                 </div>
 
                 <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -150,38 +150,38 @@ export const ContactSection = () => {
                         transition={{ duration: 0.8 }}
                         className="space-y-8"
                     >
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.9] drop-shadow-2xl">
+                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 tracking-tighter leading-[0.9] drop-shadow-sm">
                             Let's build <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">something</span> <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-600">something</span> <br />
                             amazing <br />
                             together!
                         </h1>
-                        <p className="text-xl text-zinc-300 max-w-lg font-light leading-relaxed">
+                        <p className="text-xl text-gray-600 max-w-lg font-light leading-relaxed">
                             From dream homes to iconic skylines, we turn your vision into concrete reality.
                         </p>
                     </motion.div>
 
-                    {/* Right Side: Dark Form Card */}
+                    {/* Right Side: Light Form Card */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="bg-zinc-950/80 backdrop-blur-2xl border border-white/10 p-8 md:p-10 rounded-[2rem] shadow-2xl relative overflow-hidden"
+                        className="bg-white/80 backdrop-blur-2xl border border-gray-200 p-8 md:p-10 rounded-[2rem] shadow-xl relative overflow-hidden"
                     >
                         {/* Glow Effect */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/20 rounded-full blur-[80px] -mr-16 -mt-16 pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-200/40 rounded-full blur-[80px] -mr-16 -mt-16 pointer-events-none" />
 
                         <div className="relative z-10">
-                            <h2 className="text-3xl font-bold text-white mb-2">Reach out to us today! ✨</h2>
+                            <h2 className="text-3xl font-bold text-gray-900 mb-2">Reach out to us today! ✨</h2>
                             <div className="mb-8">
-                                <p className="text-zinc-400 text-sm mb-1">Mail us at</p>
-                                <a href="mailto:info@eksconstruction.in" className="text-white font-medium hover:text-orange-400 transition-colors">info@eksconstruction.in</a>
+                                <p className="text-gray-500 text-sm mb-1">Mail us at</p>
+                                <a href="mailto:info@eksconstruction.in" className="text-gray-900 font-medium hover:text-orange-600 transition-colors">info@eksconstruction.in</a>
 
                                 <div className="flex items-center gap-4 mt-4">
-                                    <span className="text-zinc-500 text-xs font-bold uppercase tracking-widest">Follow Us</span>
+                                    <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Follow Us</span>
                                     <div className="flex gap-2">
                                         {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                                            <a key={i} href="#" className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black transition-all">
+                                            <a key={i} href="#" className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-black hover:text-white transition-all">
                                                 <Icon size={14} />
                                             </a>
                                         ))}
@@ -192,48 +192,48 @@ export const ContactSection = () => {
                             <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-zinc-500 uppercase">Your Name</label>
+                                        <label className="text-xs font-bold text-gray-500 uppercase">Your Name</label>
                                         <Input
                                             name="user_name"
                                             placeholder="John Doe"
                                             required
-                                            className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
+                                            className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
                                         />
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-xs font-bold text-zinc-500 uppercase">Email</label>
+                                        <label className="text-xs font-bold text-gray-500 uppercase">Email</label>
                                         <Input
                                             type="email"
                                             name="user_email"
                                             placeholder="john@example.com"
                                             required
-                                            className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
+                                            className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-xs font-bold text-zinc-500 uppercase">Phone Number</label>
+                                    <label className="text-xs font-bold text-gray-500 uppercase">Phone Number</label>
                                     <Input
                                         type="tel"
                                         name="user_phone"
                                         placeholder="+91 98765 43210"
-                                        className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
+                                        className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all h-12 rounded-xl"
                                     />
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-xs font-bold text-zinc-500 uppercase">Briefly describe your project idea...</label>
+                                    <label className="text-xs font-bold text-gray-500 uppercase">Briefly describe your project idea...</label>
                                     <Textarea
                                         name="message"
                                         placeholder="I want to build a..."
                                         required
-                                        className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all min-h-[100px] rounded-xl resize-none"
+                                        className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all min-h-[100px] rounded-xl resize-none"
                                     />
                                 </div>
 
                                 <div className="space-y-3">
-                                    <label className="text-xs font-bold text-zinc-500 uppercase">I'm looking for...</label>
+                                    <label className="text-xs font-bold text-gray-500 uppercase">I'm looking for...</label>
                                     <div className="grid grid-cols-2 gap-3">
                                         {services.map((item) => (
                                             <div key={item} className="flex items-center gap-2">
@@ -241,9 +241,9 @@ export const ContactSection = () => {
                                                     id={item}
                                                     checked={selectedServices.includes(item)}
                                                     onCheckedChange={() => handleServiceToggle(item)}
-                                                    className="border-zinc-700 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
+                                                    className="border-gray-300 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
                                                 />
-                                                <Label htmlFor={item} className="text-zinc-300 text-sm cursor-pointer">{item}</Label>
+                                                <Label htmlFor={item} className="text-gray-700 text-sm cursor-pointer">{item}</Label>
                                             </div>
                                         ))}
                                     </div>
@@ -252,7 +252,7 @@ export const ContactSection = () => {
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full h-14 bg-white hover:bg-zinc-200 text-black font-bold text-lg rounded-xl mt-4 transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer relative z-20"
+                                    className="w-full h-14 bg-black hover:bg-gray-800 text-white font-bold text-lg rounded-xl mt-4 transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer relative z-20"
                                 >
                                     {isSubmitting ? (
                                         <span className="flex items-center justify-center gap-2">

@@ -36,7 +36,7 @@ const GallerySection = () => {
                         {chunk1.map((img, index) => (
                             <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
                                 <img
-                                    className="aspect-video block h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
                                     src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
                                     alt={img.heading}
                                 />
@@ -52,7 +52,7 @@ const GallerySection = () => {
                         {chunk2.map((img, index) => (
                             <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
                                 <img
-                                    className="aspect-video block h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
                                     src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
                                     alt={img.heading}
                                 />
@@ -68,7 +68,7 @@ const GallerySection = () => {
                         {chunk3.map((img, index) => (
                             <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
                                 <img
-                                    className="aspect-video block h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
                                     src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
                                     alt={img.heading}
                                 />

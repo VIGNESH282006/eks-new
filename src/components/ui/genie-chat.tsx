@@ -8,10 +8,30 @@ export function GenieChat() {
     const { scrollY } = useScroll();
 
     // Auto-open when scrolling past hero section (approx 600px)
+    // Also handle hiding when near footer (approx bottom 100px)
     useMotionValueEvent(scrollY, "change", (latest) => {
+        // Auto open logic
         if (latest > 600 && !hasAutoOpened.current && !isOpen) {
             setIsOpen(true);
             hasAutoOpened.current = true;
+        }
+
+        // Hide when near bottom (Footer area)
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+        const distanceToBottom = documentHeight - (latest + windowHeight);
+
+        // If we are within 400px of the bottom (approx footer height), opacity/pointer-events should change
+        // We'll control this via a class on the parent div or state
+        const chatContainer = document.getElementById('genie-chat-container');
+        if (chatContainer) {
+            if (distanceToBottom < 300) {
+                chatContainer.style.opacity = '0';
+                chatContainer.style.pointerEvents = 'none';
+            } else {
+                chatContainer.style.opacity = '1';
+                chatContainer.style.pointerEvents = 'auto';
+            }
         }
     });
 
@@ -23,7 +43,7 @@ export function GenieChat() {
     const openPhone = () => window.open("tel:+919962590632");
 
     return (
-        <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2">
+        <div id="genie-chat-container" className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 transition-opacity duration-300">
 
             {/* Chat Popup Menu */}
             <AnimatePresence>

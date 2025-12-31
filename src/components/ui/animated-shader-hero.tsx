@@ -48,8 +48,7 @@ const Hero: FC<HeroProps> = ({
                 >
                     <source src="/intro-video.webm" type="video/mp4" />
                 </video>
-                {/* Light Dark Overlay */}
-                <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+
             </div>
 
             {/* Hero Content Overlay */}

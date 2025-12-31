@@ -8,19 +8,19 @@ const features = [
         step: 'Innovation',
         title: 'Innovation',
         content: 'We offer a range of exciting opportunities for professionals at all stages of their careers.',
-        image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop'
+        image: '/our values/Innovation.jpg'
     },
     {
         step: 'Support',
         title: 'Support',
         content: 'We pride ourselves on creating an innovative and supportive work environment.',
-        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop'
+        image: '/our values/Support.jpg'
     },
     {
         step: 'Excellence',
         title: 'Excellence',
         content: 'Our commitment to excellence drives us to seek dedicated and skilled individuals.',
-        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop'
+        image: '/our values/Excellence.jpg'
     },
 ];
 
@@ -107,8 +107,8 @@ const slideData = [
 
 const Careers = () => {
     return (
-        <div className="pt-32 px-4 md:px-8 min-h-screen bg-white text-center font-sans">
-            <div className="max-w-4xl mx-auto mb-16">
+        <div className="pt-32 min-h-screen bg-white text-center font-sans">
+            <div className="max-w-4xl mx-auto mb-16 px-4 md:px-8">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                     Why Choose <span className="text-[#082E6D]">e</span><span className="text-[#C11336]">k</span><span className="text-[#082E6D]">s construction</span>?
                 </h1>
@@ -117,20 +117,24 @@ const Careers = () => {
                 </p>
             </div>
 
-            <FeatureSteps
-                features={features}
-                title="Our Values"
-                autoPlayInterval={4000}
-                imageHeight="h-[400px]"
-                className="bg-transparent"
-            />
+            <div className="px-4 md:px-8">
+                <FeatureSteps
+                    features={features}
+                    title="Our Values"
+                    autoPlayInterval={4000}
+                    imageHeight="h-[400px]"
+                    className="bg-transparent"
+                />
+            </div>
 
-            <div className="relative overflow-hidden w-full h-full py-20 bg-gray-50 mt-20 rounded-[3rem]">
-                <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900">Explore Departments</h2>
+            <div className="relative overflow-hidden w-full h-full py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-900 mt-20">
+                <h2 className="text-3xl md:text-4xl font-bold mb-10 text-white">Explore Departments</h2>
                 <MarqueeCarousel slides={slideData} />
             </div>
 
-            <CareerApplicationForm />
+            <div className="px-4 md:px-8">
+                <CareerApplicationForm />
+            </div>
 
             <div className="max-w-4xl mx-auto mt-20 mb-20">
             </div>

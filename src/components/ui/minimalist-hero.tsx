@@ -39,8 +39,8 @@ export const MinimalistHero = ({
                         alt="Hero Background"
                         className="w-full h-full object-cover"
                     />
-                    {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-black/50" />
+                    {/* Overlay - Slight dark to make white text readable */}
+                    <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
                 </div>
             )}
 
@@ -71,7 +71,7 @@ export const MinimalistHero = ({
                     <motion.img
                         src={imageSrc}
                         alt={imageAlt}
-                        className="relative z-10 h-auto w-96 object-contain md:w-[450px] lg:w-[550px]"
+                        className="relative z-10 h-auto w-[550px] object-contain md:w-[720px] lg:w-[860px]"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{
                             opacity: 1,

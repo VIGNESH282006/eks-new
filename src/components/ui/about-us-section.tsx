@@ -214,9 +214,9 @@ export default function AboutUsSection() {
                                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
                             >
                                 <img
-                                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=3000&auto=format&fit=crop"
-                                    alt="Modern House Construction"
-                                    className="w-full h-full object-cover aspect-[3/4]"
+                                    src="/about-us-genie.png"
+                                    alt="EKS Genie Mascot"
+                                    className="w-full h-auto object-contain"
                                 />
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-t from-[#082E6D]/60 to-transparent flex items-end justify-center p-6"

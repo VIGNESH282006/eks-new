@@ -62,7 +62,7 @@ const Home = () => {
                             quote: "We don't compromise on quality. Our rigorous inspection process ensures every material and construction stage meets the highest industry standards.",
                             name: "Quality Construction",
                             designation: "120+ Quality Checks",
-                            src: "https://images.unsplash.com/photo-1581094794329-cd1096a78438?q=80&w=2070&auto=format&fit=crop"
+                            src: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop"
                         },
                         {
                             quote: "Your dream home, your way. We offer fully customizable design packages to suit your specific lifestyle needs and preferences.",

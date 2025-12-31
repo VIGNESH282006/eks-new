@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const AnimatedNavLink = ({ href, children, isActive }: { href: string; children: React.ReactNode; isActive?: boolean }) => {
-    const defaultTextColor = isActive ? 'text-white' : 'text-gray-100'; // Brighter text
-    const hoverTextColor = 'text-white';
+    const defaultTextColor = isActive ? 'text-black' : 'text-gray-500'; // Darker text for white bg
+    const hoverTextColor = 'text-black';
     const textSizeClass = 'text-base font-bold'; // Bold font
 
     return (
@@ -53,10 +53,10 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
 
     const logoElement = (
         <div className="relative w-5 h-5 flex items-center justify-center">
-            <span className="absolute w-1.5 h-1.5 rounded-full bg-gray-200 top-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
-            <span className="absolute w-1.5 h-1.5 rounded-full bg-gray-200 left-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
-            <span className="absolute w-1.5 h-1.5 rounded-full bg-gray-200 right-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
-            <span className="absolute w-1.5 h-1.5 rounded-full bg-gray-200 bottom-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
+            <span className="absolute w-1.5 h-1.5 rounded-full bg-black top-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
+            <span className="absolute w-1.5 h-1.5 rounded-full bg-black left-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
+            <span className="absolute w-1.5 h-1.5 rounded-full bg-black right-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
+            <span className="absolute w-1.5 h-1.5 rounded-full bg-black bottom-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
         </div>
     );
 
@@ -69,7 +69,7 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
     const location = useLocation();
 
     const loginButtonElement = (
-        <button className="px-4 py-2 sm:px-3 text-xs sm:text-sm border border-[#333] bg-[rgba(31,31,31,0.62)] text-gray-300 rounded-full hover:border-white/50 hover:text-white transition-colors duration-200 w-full sm:w-auto">
+        <button className="px-4 py-2 sm:px-3 text-xs sm:text-sm border border-gray-200 bg-gray-50 text-gray-700 rounded-full hover:border-gray-400 hover:text-black transition-colors duration-200 w-full sm:w-auto">
             LogIn
         </button>
     );
@@ -92,9 +92,9 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
         <header className={`relative z-20 flex flex-col items-center
                        pl-10 pr-10 py-5 backdrop-blur-md
                        ${headerShapeClass}
-                       border border-[#333] bg-black/80
+                       border border-gray-200 bg-white/90
                        w-fit min-w-[600px]
-                       transition-[border-radius] duration-0 ease-in-out shadow-2xl`}>
+                       transition-[border-radius] duration-0 ease-in-out shadow-lg`}>
 
             <div className="flex items-center justify-between gap-x-12 sm:gap-x-16 w-full px-4">
                 {showBrand && (

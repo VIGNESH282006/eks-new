@@ -64,7 +64,7 @@ const pageHeroConfig: Record<string, any> = {
   },
   '/careers': {
     mainText: "Join our team of dedicated professionals. Build your future with EKS Construction.",
-    overlayText: { part1: 'Join', part2: 'Us' },
+    overlayText: { part1: 'Join Us' },
     imageSrc: "/genie-img-careers.png",
     imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
@@ -74,7 +74,7 @@ const pageHeroConfig: Record<string, any> = {
     overlayText: { part1: 'Get in', part2: 'Touch' },
     imageSrc: "/genie-img-contact.png",
     imageAlt: "EKS Construction Genie Mascot",
-    backgroundImage: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=1974&auto=format&fit=crop"
+    backgroundImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
   }
 };
 
