@@ -131,25 +131,25 @@ const Services = () => {
                 </div>
 
                 {/* Blue Overlay */}
-                <div className="absolute inset-0 z-0 bg-[#082E6D]/90 mix-blend-multiply"></div>
+                <div className="absolute inset-0 z-0 bg-gray-50/90 mix-blend-multiply"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#082E6D] mb-6">
                         Ready to Start Your Project?
                     </h2>
-                    <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+                    <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
                         Let's discuss how we can bring your vision to life. Contact us today for a free consultation and quote.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href="/contact"
-                            className="px-8 py-4 bg-[#C11336] hover:bg-red-700 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+                            className="px-8 py-4 bg-[#C11336] hover:bg-red-700 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg shadow-red-100"
                         >
                             Get Free Quote
                         </a>
                         <a
                             href="/packages"
-                            className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-semibold transition-all duration-300"
+                            className="px-8 py-4 bg-white hover:bg-gray-100 text-[#082E6D] border border-gray-200 rounded-full font-semibold transition-all duration-300 shadow-sm"
                         >
                             View Packages
                         </a>

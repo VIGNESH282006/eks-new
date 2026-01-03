@@ -66,9 +66,9 @@ const ManagementSection = () => {
                     {/* Left Content Section */}
                     <div className="w-full lg:w-1/2 space-y-8">
                         <div>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
-                                Manage Your Site <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                                <span className="text-[#082E6D]">Manage Your Site</span> <br />
+                                <span className="text-[#FB0224]">
                                     From Anywhere With <span className="text-[#FB0224]">Mobile</span> <span className="text-blue-600">App</span>
                                 </span>
                             </h2>
