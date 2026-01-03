@@ -2,6 +2,7 @@ import Hero from '@/components/ui/animated-shader-hero';
 import AboutUsSection from '@/components/ui/about-us-section';
 import StoryBehindSection from '@/components/ui/story-behind-section';
 import ManagementSection from '@/components/ui/management-section';
+import RetailPartnersSection from '@/components/ui/retail-partners-section';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
 const Home = () => {
@@ -39,6 +40,7 @@ const Home = () => {
             <AboutUsSection />
             <ManagementSection />
             <StoryBehindSection />
+            <RetailPartnersSection />
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mb-4">Why Choose Us</h2>

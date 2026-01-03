@@ -1,6 +1,5 @@
 "use client"
 
-import CardSwap, { Card } from "@/components/ui/card-swap"
 import { motion } from "framer-motion"
 import {
     ClipboardCheck,
@@ -12,28 +11,10 @@ import {
     TrendingUp,
     Users,
     Building,
+    ChevronLeft,
+    ChevronRight,
 } from "lucide-react"
-
-const BRANDS = [
-    "/brands/ARS.jpg",
-    "/brands/ashirvad-pipes.jpg",
-    "/brands/asian-paints.jpg",
-    "/brands/coromandel.jpg",
-    "/brands/finolex-pipes.jpg",
-    "/brands/gbr-tmt.jpg",
-    "/brands/jaquar.jpg",
-    "/brands/johnson-tiles.jpg",
-    "/brands/jsw-steel.jpg",
-    "/brands/kag-tiles.jpg",
-    "/brands/kajaria-tiles.jpg",
-    "/brands/kamachi-tmt-bars.jpg",
-    "/brands/orbit-cables.jpg",
-    "/brands/orientbell-tiles.jpg",
-    "/brands/ramco-cement.jpg",
-    "/brands/tirumala-steel.jpg",
-    "/brands/ultratech.jpg",
-    "/brands/zuari-cement-logo.jpg"
-];
+import { useCarousel } from "../../hooks/use-carousel"
 
 const SUCCESS_FACTORS = [
     {
@@ -70,7 +51,7 @@ const SUCCESS_FACTORS = [
         description: "Building a home should be exciting, not exhausting. We handle all the permits, procurement, and management so you can enjoy the journey.",
         icon: <Smile className="w-8 h-8 text-white" />,
         bg: "#C11336", // Red
-        image: "/success/success-card-img9.jpg" // Using 9 based on assumption/user pref, or sequentially
+        image: "/success/success-card-img9.jpg"
     },
     {
         id: "factor-5",
@@ -115,168 +96,151 @@ const SUCCESS_FACTORS = [
         description: "From the first sketch to the final coat of paint, we manage everything. A complete turnkey solution for a hassle-free experience.",
         icon: <Building className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
-        image: "/success/success-card-img4.jpg" // Swapped or matched
+        image: "/success/success-card-img4.jpg"
     }
 ]
 
+const SuccessCard = ({ factor }: { factor: typeof SUCCESS_FACTORS[0] }) => (
+    <div className="h-full w-full p-4">
+        <div className="h-full w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row">
+            {/* Image */}
+            <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                <img
+                    src={factor.image}
+                    alt={factor.title}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                />
+            </div>
+            {/* Content */}
+            <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg" style={{ backgroundColor: factor.bg }}>
+                        {factor.icon}
+                    </div>
+                    <span className="text-4xl font-bold text-gray-100 absolute right-4 top-4 md:right-8 md:top-8 pointer-events-none select-none opacity-20">
+                        {factor.index}
+                    </span>
+                </div>
+                <h3 className="text-2xl font-bold text-[#082E6D] mb-3">{factor.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{factor.description}</p>
+            </div>
+        </div>
+    </div>
+);
+
 export default function StoryBehindSection() {
+    // 3000ms = 3 seconds interval
+    const [active, setActive, handlers, style, next, prev] = useCarousel(SUCCESS_FACTORS.length, 3000);
+
     return (
         <section className="w-full bg-[#f8fafc] py-16 md:py-24 px-4 overflow-hidden">
             <div className="container mx-auto">
-                {/* Mobile: Flex column with text first then cards, Desktop: Grid layout */}
-                <div className="flex flex-col lg:grid lg:grid-cols-[45%_55%] gap-8 lg:gap-0 items-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-12"
+                >
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-[#082E6D] leading-tight">
+                        Reason Behind <br />
+                        <span className="text-[#C11336]">Our Success</span>
+                    </h2>
+                    <p className="text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto">
+                        Excellence in every aspect of construction. We believe in transparency, quality, and delivering exactly what we promise.
+                    </p>
+                </motion.div>
 
-                    {/* Left Side - Content (Mobile: First, centered) */}
-                    <div className="lg:sticky lg:top-32 lg:h-[calc(100vh-16rem)] flex flex-col justify-center mb-8 lg:mb-0 px-4 lg:pl-4 lg:pr-8 text-center lg:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="flex flex-col items-center lg:items-start"
+                {/* Carousel Container */}
+                <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center gap-4">
+
+                    {/* Previous Button - Left Side */}
+                    <button
+                        onClick={() => prev()}
+                        className="hidden md:flex flex-shrink-0 items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg border border-gray-100 text-[#082E6D] hover:bg-[#082E6D] hover:text-white transition-all z-10"
+                        aria-label="Previous slide"
+                    >
+                        <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
+
+                    <div className="relative w-full overflow-hidden rounded-2xl max-w-5xl">
+                        <div
+                            className="flex h-[500px] w-full relative"
+                            {...handlers}
+                            style={style as any}
                         >
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-[#082E6D] leading-tight">
-                                Reason Behind <br />
-                                <span className="text-[#C11336]">Our Success</span>
-                            </h2>
-                            <p className="text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed max-w-[350px] md:max-w-lg text-center lg:text-left px-4 lg:px-0 mx-auto lg:mx-0">
-                                Excellence in every aspect of construction. We believe in transparency, quality, and delivering exactly what we promise.
-                            </p>
-
-                            {/* Mobile-only: Cards shown below paragraph */}
-                            <div className="lg:hidden relative h-[420px] w-full flex justify-center ml-32 lg:ml-0">
-                                <CardSwap delay={3000} cardDistance={25} pauseOnHover={true}>
-                                    {SUCCESS_FACTORS.map((factor) => (
-                                        <Card
-                                            key={factor.id}
-                                            className="w-full aspect-square rounded-3xl border-4 border-white/50 shadow-2xl overflow-hidden bg-white max-w-[320px] mx-auto"
-                                        >
-                                            <div className="flex flex-col h-full">
-                                                {/* Card Header with Image */}
-                                                <div className="relative h-[55%] overflow-hidden bg-white">
-                                                    <img
-                                                        src={factor.image}
-                                                        alt={factor.title}
-                                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                                    />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
-                                                        <div
-                                                            className="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-2 shadow-lg backdrop-blur-sm"
-                                                            style={{ backgroundColor: factor.bg }}
-                                                        >
-                                                            {factor.icon}
-                                                        </div>
-                                                        <h3 className="text-lg font-bold text-white tracking-tight">
-                                                            {factor.title}
-                                                        </h3>
-                                                    </div>
-                                                </div>
-
-                                                {/* Card Content */}
-                                                <div className="p-4 flex-1 flex flex-col bg-white">
-                                                    <div className="flex items-center justify-between mb-2">
-                                                        <span
-                                                            className="inline-flex w-6 h-6 rounded-full text-xs font-bold text-white shadow-sm items-center justify-center"
-                                                            style={{ backgroundColor: factor.bg }}
-                                                        >
-                                                            {factor.index}
-                                                        </span>
-                                                    </div>
-                                                    <p className="text-gray-600 leading-relaxed text-sm text-left">
-                                                        {factor.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    ))}
-                                </CardSwap>
+                            {/* Duplicate Last Item */}
+                            <div
+                                className="h-full flex-shrink-0 flex-grow-0"
+                                style={{ width: `${100 / (SUCCESS_FACTORS.length + 2)}%` }}
+                            >
+                                <SuccessCard factor={SUCCESS_FACTORS[SUCCESS_FACTORS.length - 1]} />
                             </div>
 
-                            <div className="mt-10 lg:mt-12 w-full">
-                                <h3 className="text-[#C11336] font-bold uppercase tracking-wider mb-6 flex items-center justify-center lg:justify-start gap-2 text-sm">
-                                    <Building className="w-4 h-4" />
-                                    Our Retail Partners
-                                </h3>
-
-                                <div className="relative w-full max-w-md mx-auto lg:mx-0 overflow-hidden">
-                                    <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#f8fafc] to-transparent z-10"></div>
-                                    <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#f8fafc] to-transparent z-10"></div>
-
-                                    <motion.div
-                                        className="flex gap-4 w-max"
-                                        animate={{ x: ["0%", "-50%"] }}
-                                        transition={{
-                                            repeat: Infinity,
-                                            ease: "linear",
-                                            duration: 20
-                                        }}
-                                    >
-                                        {[...BRANDS, ...BRANDS].map((brand, i) => (
-                                            <div key={i} className="w-32 h-32 flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-md border border-gray-100 p-2 transition-all duration-300 hover:scale-110">
-                                                <img
-                                                    src={brand}
-                                                    alt="Brand Logo"
-                                                    className="w-full h-full object-contain"
-                                                />
-                                            </div>
-                                        ))}
-                                    </motion.div>
+                            {/* Items */}
+                            {SUCCESS_FACTORS.map((factor, index) => (
+                                <div
+                                    key={index}
+                                    className="h-full flex-shrink-0 flex-grow-0"
+                                    style={{ width: `${100 / (SUCCESS_FACTORS.length + 2)}%` }}
+                                >
+                                    <SuccessCard factor={factor} />
                                 </div>
+                            ))}
+
+                            {/* Duplicate First Item */}
+                            <div
+                                className="h-full flex-shrink-0 flex-grow-0"
+                                style={{ width: `${100 / (SUCCESS_FACTORS.length + 2)}%` }}
+                            >
+                                <SuccessCard factor={SUCCESS_FACTORS[0]} />
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
 
-                    {/* Desktop only: Cards on right side */}
-                    <div className="hidden lg:block relative h-[600px] w-full lg:-ml-8">
-                        <CardSwap delay={3000} cardDistance={25} pauseOnHover={true}>
-                            {SUCCESS_FACTORS.map((factor) => (
-                                <Card
-                                    key={factor.id}
-                                    className="w-full aspect-square rounded-3xl border-4 border-white/50 shadow-2xl overflow-hidden bg-white max-w-[450px] mx-auto"
-                                >
-                                    <div className="flex flex-col h-full">
-                                        {/* Card Header with Image */}
-                                        <div className="relative h-[60%] overflow-hidden bg-white">
-                                            <img
-                                                src={factor.image}
-                                                alt={factor.title}
-                                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
-                                                <div
-                                                    className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 shadow-lg backdrop-blur-sm"
-                                                    style={{ backgroundColor: factor.bg }}
-                                                >
-                                                    {factor.icon}
-                                                </div>
-                                                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                                                    {factor.title}
-                                                </h3>
-                                            </div>
-                                        </div>
+                    {/* Next Button - Right Side */}
+                    <button
+                        onClick={() => next()}
+                        className="hidden md:flex flex-shrink-0 items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg border border-gray-100 text-[#082E6D] hover:bg-[#082E6D] hover:text-white transition-all z-10"
+                        aria-label="Next slide"
+                    >
+                        <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
 
-                                        {/* Card Content */}
-                                        <div className="p-6 sm:p-8 flex-1 flex flex-col bg-white">
-                                            <div className="flex items-center justify-between mb-4">
-                                                <span className="text-5xl font-black text-gray-100 absolute right-6 top-64 -z-0">
-                                                    {factor.index}
-                                                </span>
-                                                <span
-                                                    className="inline-block w-8 h-8 rounded-full text-sm font-bold text-white shadow-sm relative z-10 flex items-center justify-center"
-                                                    style={{ backgroundColor: factor.bg }}
-                                                >
-                                                    {factor.index}
-                                                </span>
-                                            </div>
+                </div>
 
-                                            <p className="text-gray-600 leading-relaxed text-base relative z-10">
-                                                {factor.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Card>
-                            ))}
-                        </CardSwap>
+                {/* Mobile Navigation & Indicators */}
+                <div className="flex flex-col items-center gap-4 mt-8">
+                    {/* Mobile Arrows (Visible only on small screens) */}
+                    <div className="flex justify-between w-full max-w-xs md:hidden">
+                        <button
+                            onClick={() => prev()}
+                            className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 text-[#082E6D] hover:bg-gray-50 transition-all"
+                            aria-label="Previous slide"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button
+                            onClick={() => next()}
+                            className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 text-[#082E6D] hover:bg-gray-50 transition-all"
+                            aria-label="Next slide"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2">
+                        {SUCCESS_FACTORS.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setActive(index)}
+                                className={`h-3 rounded-full transition-all duration-300 ${active === index ? "w-8 bg-[#C11336]" : "w-3 bg-gray-300 hover:bg-gray-400"
+                                    }`}
+                                aria-label={`Go to slide ${index + 1}`}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

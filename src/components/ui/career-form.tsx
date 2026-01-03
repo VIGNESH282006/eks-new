@@ -346,7 +346,7 @@ export function CareerApplicationForm() {
                         <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full h-14 text-lg font-bold bg-slate-900 text-white rounded-2xl hover:bg-slate-800 hover:scale-[1.01] hover:shadow-xl hover:shadow-slate-900/10 active:scale-[0.98] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
+                            className="w-full h-14 text-lg font-bold bg-blue-600 text-white rounded-2xl hover:bg-blue-700 hover:scale-[1.01] hover:shadow-xl hover:shadow-blue-600/20 active:scale-[0.98] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed mt-4"
                         >
                             {isSubmitting ? (
                                 <span className="flex items-center gap-2">

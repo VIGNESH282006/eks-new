@@ -154,10 +154,10 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                             <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-600 text-xs font-bold tracking-wider mb-4 border border-red-100 uppercase">
                                 Limited Time Offer
                             </span>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-tight uppercase font-display">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#082E6D] leading-tight uppercase font-display">
                                 Home Construction<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Experts in </span>
-                                <span className="text-red-600 underline decoration-4 decoration-red-200 underline-offset-4">Chennai</span>
+                                <span className="text-[#C11336]">Experts in </span>
+                                <span className="text-[#C11336] underline decoration-4 decoration-red-200 underline-offset-4">Chennai</span>
                             </h2>
                         </div>
 

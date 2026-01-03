@@ -71,7 +71,7 @@ export const MinimalistHero = ({
                     <motion.img
                         src={imageSrc}
                         alt={imageAlt}
-                        className="relative z-10 h-auto w-[550px] object-contain md:w-[720px] lg:w-[860px]"
+                        className="relative z-10 h-auto w-[650px] object-contain md:w-[850px] lg:w-[1000px]"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{
                             opacity: 1,

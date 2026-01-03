@@ -69,7 +69,7 @@ const ManagementSection = () => {
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
                                 Manage Your Site <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500">
-                                    From Anywhere.
+                                    From Anywhere With <span className="text-[#FB0224]">Mobile</span> <span className="text-blue-600">App</span>
                                 </span>
                             </h2>
                             <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
@@ -79,13 +79,13 @@ const ManagementSection = () => {
 
                         {/* App Availability */}
                         <div className="flex flex-col md:flex-row gap-6">
-                            <div className="flex items-center gap-4 text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 w-fit shadow-sm">
-                                <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
-                                    <Smartphone size={28} />
+                            <div className="flex items-center gap-6 text-gray-700 bg-white p-6 rounded-2xl border border-gray-100 w-full md:w-fit shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
+                                <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl text-blue-600 group-hover:scale-110 transition-transform duration-300">
+                                    <Smartphone size={32} />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-gray-900">Available on Mobile App</h4>
-                                    <p className="text-xs md:text-sm text-gray-500">Seamlessly manage projects on iOS & Android</p>
+                                    <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Available on Mobile App</h4>
+                                    <p className="text-sm text-gray-500 mt-1">Seamlessly manage projects on iOS & Android</p>
                                 </div>
                             </div>
 

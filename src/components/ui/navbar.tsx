@@ -157,7 +157,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
              --color-1: #C11336;
              --color-2: #2563eb;
              --color-3: #ffffff;
-             --color-4: #C11336;
+             --color-4: #C11336;lo
           }
           .effect {
             position: absolute;
@@ -283,7 +283,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
         {/* Left Side: Bigger Logo */}
         <div className="flex-none mr-8">
           <Link to="/">
-            <img src="/logo.png" alt="Company Logo" className="h-20 w-auto object-contain" />
+            <img src="/logo.png" alt="Company Logo" className="h-28 lg:h-56 w-auto object-contain" />
           </Link>
         </div>
 

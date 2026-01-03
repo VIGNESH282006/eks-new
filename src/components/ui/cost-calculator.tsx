@@ -52,8 +52,8 @@ const Toast = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.9 }}
             className={`fixed top-6 left-1/2 -translate-x-1/2 z-[200] flex items-center gap-3 px-6 py-4 rounded-xl shadow-xl border ${type === 'success'
-                    ? 'bg-green-500 text-white border-green-600'
-                    : 'bg-red-500 text-white border-red-600'
+                ? 'bg-green-500 text-white border-green-600'
+                : 'bg-red-500 text-white border-red-600'
                 }`}
         >
             {type === 'success' ? (
@@ -251,7 +251,7 @@ export function CostCalculator() {
             );
 
             setShowResult(true);
-            showToast("Estimate calculated & sent to your email!", "success");
+            // showToast("Estimate calculated & sent to your email!", "success");
 
             // Trigger confetti
             const duration = 3 * 1000;
@@ -327,8 +327,12 @@ export function CostCalculator() {
                             </button>
 
                             <div className="mb-8 mt-2">
-                                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-50 text-4xl mb-6 shadow-inner ring-4 ring-white">
-                                    🎉
+                                <div className="flex justify-center mb-6">
+                                    <img
+                                        src="/success/estimate-celebration.png"
+                                        alt="Success"
+                                        className="w-48 h-auto object-contain drop-shadow-lg"
+                                    />
                                 </div>
                                 <h3 className="text-3xl font-bold text-gray-900 mb-2 font-display">Congratulations!</h3>
                                 <p className="text-gray-500 font-medium">Your estimated construction cost is ready</p>
@@ -352,14 +356,14 @@ export function CostCalculator() {
                             </div>
 
                             <div className="space-y-4">
-                                <motion.button
+                                {/* <motion.button
                                     whileHover={{ scale: 1.02, translateY: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full bg-gradient-to-r from-primary to-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-primary/25 text-lg"
                                     onClick={() => setShowResult(false)}
                                 >
                                     Start Your Project
-                                </motion.button>
+                                </motion.button> */}
                                 <p className="text-xs text-center text-gray-400 max-w-xs mx-auto leading-relaxed">
                                     * This acts as an approximate estimate. Final pricing may vary based on material selection and site conditions.
                                 </p>

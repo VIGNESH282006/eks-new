@@ -120,8 +120,20 @@ const Services = () => {
             <TimelineSection />
 
             {/* CTA Section */}
-            <section className="py-20 pb-[5.5rem] px-4 bg-[#082E6D]">
-                <div className="max-w-4xl mx-auto text-center">
+            <section className="relative py-20 pb-[5.5rem] px-4 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="/blue-construction-bg.png"
+                        alt="Construction Background"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+
+                {/* Blue Overlay */}
+                <div className="absolute inset-0 z-0 bg-[#082E6D]/90 mix-blend-multiply"></div>
+
+                <div className="relative z-10 max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                         Ready to Start Your Project?
                     </h2>

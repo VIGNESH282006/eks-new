@@ -44,7 +44,7 @@ const pageHeroConfig: Record<string, any> = {
   '/packages': {
     mainText: "Flexible packages designed for every budget. Transparent pricing, no hidden costs.",
     overlayText: { part1: 'Best', part2: 'Packages' },
-    imageSrc: "/genie-img-packages.png",
+    imageSrc: "/genie-img-packages-v2.png",
     imageAlt: "EKS Construction Genie Mascot",
     backgroundImage: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop"
   },
@@ -118,7 +118,7 @@ const Layout = () => {
         <NavBody>
           <NavbarLogo />
           <NavItems items={formattedNavItems} />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mr-6">
             <NavbarButton as={Link} href="/contact" variant="primary">CONTACT US</NavbarButton>
           </div>
         </NavBody>
@@ -160,7 +160,7 @@ const Layout = () => {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      {!isHomePage && (
+      {!isHomePage && !location.pathname.startsWith('/interior') && (
         <MinimalistHero
           key={location.pathname}
           {...heroProps}
