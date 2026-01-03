@@ -123,7 +123,7 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     exit={{ scale: 0.95, opacity: 0, y: 30 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[650px]"
+                    className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[95vh] md:max-h-[650px]"
                 >
                     {/* Toast Inside Popup */}
                     <AnimatePresence>
@@ -145,29 +145,29 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                     </button>
 
                     {/* Left Column: Form (Flipped) */}
-                    <div className="w-full md:w-7/12 p-8 md:p-12 lg:p-14 bg-white flex flex-col justify-center order-2 md:order-1 relative overflow-hidden">
+                    <div className="w-full md:w-7/12 p-5 md:p-12 lg:p-14 bg-white flex flex-col justify-center order-2 md:order-1 relative overflow-y-auto">
                         {/* Decorative Background Element */}
                         <div className="absolute top-0 left-0 w-32 h-32 bg-red-50 rounded-br-full -z-10 opacity-50"></div>
                         <div className="absolute bottom-0 right-0 w-40 h-40 bg-red-50 rounded-tl-full -z-10 opacity-50"></div>
 
-                        <div className="mb-8 text-center md:text-left relative">
-                            <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-600 text-xs font-bold tracking-wider mb-4 border border-red-100 uppercase">
+                        <div className="mb-4 md:mb-8 text-center md:text-left relative">
+                            <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-600 text-[10px] md:text-xs font-bold tracking-wider mb-2 md:mb-4 border border-red-100 uppercase">
                                 Limited Time Offer
                             </span>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#082E6D] leading-tight uppercase font-display">
+                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#082E6D] leading-tight uppercase font-display">
                                 Home Construction<br />
                                 <span className="text-[#C11336]">Experts in </span>
                                 <span className="text-[#C11336] underline decoration-4 decoration-red-200 underline-offset-4">Chennai</span>
                             </h2>
                         </div>
 
-                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 relative z-10">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-3 md:space-y-4 relative z-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <Input
                                     name="user_name"
                                     required
                                     placeholder="Your Name"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                                 <div className="flex bg-gray-50 border border-gray-200 rounded-lg overflow-hidden transition-all hover:bg-white focus-within:ring-2 focus-within:ring-red-500/20 focus-within:border-red-500">
                                     <div className="flex items-center justify-center px-3 bg-gray-100 text-gray-500 font-medium text-sm border-r border-gray-200">
@@ -178,7 +178,7 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                                         required
                                         placeholder="Mobile Number"
                                         type="tel"
-                                        className="h-12 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none flex-1"
+                                        className="h-10 md:h-12 text-sm border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none flex-1"
                                     />
                                 </div>
                             </div>
@@ -188,27 +188,27 @@ export function PackagesPopup({ isOpen, onClose }: PackagesPopupProps) {
                                 required
                                 placeholder="Email Address"
                                 type="email"
-                                className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
+                                className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                             />
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <Input
                                     name="location"
                                     required
                                     placeholder="Project Location"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                                 <Input
                                     name="land_area"
                                     placeholder="Land Area (Sq.ft)"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                             </div>
 
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full h-14 text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-[#C11336] to-[#E91E63] hover:from-red-700 hover:to-red-600 text-white shadow-lg shadow-red-500/30 rounded-lg mt-6 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer relative z-20"
+                                className="w-full h-12 md:h-14 text-base md:text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-[#C11336] to-[#E91E63] hover:from-red-700 hover:to-red-600 text-white shadow-lg shadow-red-500/30 rounded-lg mt-3 md:mt-6 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer relative z-20"
                             >
                                 {isSubmitting ? (
                                     <span className="flex items-center gap-2">

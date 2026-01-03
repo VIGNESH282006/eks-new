@@ -287,7 +287,7 @@ export default function AboutUsSection() {
 
                 <motion.div
                     ref={statsRef}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-6"
                     initial="hidden"
                     animate={isStatsInView ? "visible" : "hidden"}
                     variants={containerVariants}
@@ -420,7 +420,7 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
 
     return (
         <motion.div
-            className="bg-white rounded-2xl p-8 flex flex-col items-center text-center group shadow-lg hover:shadow-2xl hover:shadow-[#082E6D]/10 transition-all duration-300 border border-gray-100"
+            className="bg-white rounded-xl p-3 flex flex-col items-center justify-center text-center group shadow-lg hover:shadow-2xl hover:shadow-[#082E6D]/10 transition-all duration-300 border border-gray-100 aspect-square"
             variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: {
@@ -432,18 +432,16 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
         >
             <motion.div
-                className="w-16 h-16 rounded-full bg-[#082E6D]/5 flex items-center justify-center mb-5 text-[#C11336] group-hover:bg-[#C11336]/10 transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#082E6D]/5 flex items-center justify-center mb-2 text-[#C11336] group-hover:bg-[#C11336]/10 transition-colors duration-300"
                 whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
             >
-                {/* Scale up icon slightly */}
-                <div className="scale-125">{icon}</div>
+                <div className="scale-100">{icon}</div>
             </motion.div>
-            <motion.div ref={countRef} className="text-4xl font-bold text-[#082E6D] flex items-center mb-2">
+            <motion.div ref={countRef} className="text-2xl font-bold text-[#082E6D] flex items-center mb-1">
                 <motion.span>{displayValue}</motion.span>
                 <span>{suffix}</span>
             </motion.div>
-            <p className="text-gray-500 text-sm font-medium uppercase tracking-wide">{label}</p>
-            <motion.div className="w-12 h-1 bg-[#C11336] mt-4 rounded-full group-hover:w-20 transition-all duration-300" />
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide leading-tight">{label}</p>
         </motion.div>
     )
 }

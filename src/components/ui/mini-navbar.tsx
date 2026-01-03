@@ -9,17 +9,28 @@ const AnimatedNavLink = ({ href, children, isActive }: { href: string; children:
     const textSizeClass = 'text-base font-bold'; // Bold font
 
     return (
-        <Link to={href} className={`group relative block overflow-hidden h-6 ${textSizeClass}`}> {/* Removed flex items-center, changed inline-block to block (or inline-block is fine, but flex was the issue) */}
-            <div className="flex flex-col transition-transform duration-400 ease-out transform group-hover:-translate-y-1/2 whitespace-nowrap">
-                <span className={`${defaultTextColor} h-6 flex items-center`}>{children}</span>
-                <span className={`${hoverTextColor} h-6 flex items-center`}>{children}</span>
+        <Link
+            to={href}
+            className={`
+                group relative px-5 py-2.5 rounded-[1.25rem] transition-all duration-300 ease-out
+                ${isActive
+                    ? 'bg-gray-200/40 backdrop-blur-md shadow-inner border border-white/50'
+                    : 'hover:bg-gray-100/30'
+                }
+            `}
+        >
+            <div className={`overflow-hidden h-6 ${textSizeClass}`}>
+                <div className="flex flex-col transition-transform duration-400 ease-out transform group-hover:-translate-y-1/2 whitespace-nowrap">
+                    <span className={`${defaultTextColor} h-6 flex items-center justify-center`}>{children}</span>
+                    <span className={`${hoverTextColor} h-6 flex items-center justify-center`}>{children}</span>
+                </div>
             </div>
         </Link>
     );
 };
 
 interface NavbarProps {
-    links?: { label: string; href: string }[];
+    links?: { label: string; href: string; isActive?: boolean }[];
     showBrand?: boolean;
     showAuth?: boolean;
 }
@@ -28,8 +39,6 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
     const [isOpen, _setIsOpen] = useState(false);
     const [headerShapeClass, setHeaderShapeClass] = useState('rounded-full');
     const shapeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-
 
     useEffect(() => {
         if (shapeTimeoutRef.current) {
@@ -90,10 +99,10 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
 
     return (
         <header className={`relative z-20 flex flex-col items-center
-                       px-4 md:px-10 py-5 md:py-5 backdrop-blur-md
+                       px-6 md:px-14 py-6 md:py-6 backdrop-blur-md
                        rounded-[2rem] lg:rounded-full
                        border border-gray-200 bg-white/90
-                       w-[95%] lg:w-fit lg:min-w-[600px] mx-auto
+                       w-[98%] lg:w-fit lg:min-w-[700px] mx-auto
                        transition-all duration-300 ease-in-out shadow-lg`}>
 
             <div className="flex items-center justify-between gap-x-4 md:gap-x-12 sm:gap-x-16 w-full md:px-4">
@@ -105,7 +114,11 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
 
                 <nav className="grid grid-cols-2 gap-x-6 gap-y-3 w-full justify-items-center lg:flex lg:items-center lg:space-x-8 lg:w-auto lg:justify-center">
                     {navLinksData.map((link) => (
-                        <AnimatedNavLink key={link.href} href={link.href} isActive={location.search.includes(link.href.split('?')[1] || '')}>
+                        <AnimatedNavLink
+                            key={link.href}
+                            href={link.href}
+                            isActive={link.isActive ?? (location.search.includes(link.href.split('?')[1] || '') && link.href.includes('?'))}
+                        >
                             {link.label}
                         </AnimatedNavLink>
                     ))}
@@ -117,8 +130,6 @@ export function Navbar({ links, showBrand = true, showAuth = true }: NavbarProps
                         {signupButtonElement}
                     </div>
                 )}
-
-                {/* Mobile Toggle - Hide if no auth and simple links, or keep? Keeping simplified for now since 'pill' implies simple nav. */}
             </div>
         </header>
     );

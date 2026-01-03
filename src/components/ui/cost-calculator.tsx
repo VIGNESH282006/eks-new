@@ -2,10 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X, Loader2, CheckCircle2, XCircle } from "lucide-react";
+import { ChevronDown, X, Loader2, CheckCircle2, XCircle, Check } from "lucide-react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
 import emailjs from '@emailjs/browser';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // ========================================
 // EMAILJS CONFIGURATION
@@ -385,10 +391,10 @@ export function CostCalculator() {
                 </p>
             </div>
 
-            <div className="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden relative">
+            <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-xl border border-gray-100 overflow-hidden relative">
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-blue-400 to-primary-red" />
 
-                <div className="p-6 md:p-12">
+                <div className="p-4 md:p-12 overflow-x-hidden">
                     {/* Form Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-12">
                         <div className="space-y-6">
@@ -426,42 +432,59 @@ export function CostCalculator() {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="space-y-3">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-700 ml-1">No. of Floors <span className="text-red-500">*</span></label>
-                                        <div className="relative">
-                                            <select
-                                                name="floors"
-                                                value={formData.floors}
-                                                onChange={handleInputChange}
-                                                className="w-full p-4 bg-gray-50 rounded-xl border-2 border-transparent focus:bg-white focus:border-primary/20 focus:ring-0 transition-all outline-none font-medium text-gray-900 appearance-none hover:bg-gray-100/80 cursor-pointer"
-                                            >
-                                                <option value="Ground">Ground Only</option>
-                                                <option value="Ground + 1">Ground + 1</option>
-                                                <option value="Ground + 2">Ground + 2</option>
-                                                <option value="Ground + 3">Ground + 3</option>
-                                            </select>
-                                            <ChevronDown className="absolute right-4 top-4.5 h-5 w-5 text-gray-400 pointer-events-none" />
-                                        </div>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <button
+                                                    type="button"
+                                                    className="w-full p-2.5 md:p-4 pr-8 md:pr-10 text-xs md:text-base bg-gray-50 rounded-lg md:rounded-xl border-2 border-transparent hover:bg-gray-100/80 focus:bg-white focus:border-primary/20 transition-all outline-none font-medium text-gray-900 cursor-pointer flex items-center justify-between"
+                                                >
+                                                    <span>{formData.floors === "Ground" ? "Ground Only" : formData.floors}</span>
+                                                    <ChevronDown className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+                                                </button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-white border border-gray-200 shadow-lg">
+                                                {(["Ground", "Ground + 1", "Ground + 2", "Ground + 3"] as FloorsType[]).map((floor) => (
+                                                    <DropdownMenuItem
+                                                        key={floor}
+                                                        onClick={() => setFormData(prev => ({ ...prev, floors: floor }))}
+                                                        className="flex items-center justify-between px-3 py-2 text-sm cursor-pointer hover:bg-blue-50"
+                                                    >
+                                                        <span>{floor === "Ground" ? "Ground Only" : floor}</span>
+                                                        {formData.floors === floor && <Check className="h-4 w-4 text-primary" />}
+                                                    </DropdownMenuItem>
+                                                ))}
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </div>
 
-                                    <div className="space-y-3">
+                                    <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-700 ml-1">Package Type <span className="text-red-500">*</span></label>
-                                        <div className="relative">
-                                            <select
-                                                name="packageType"
-                                                value={formData.packageType}
-                                                onChange={handleInputChange}
-                                                className="w-full p-4 bg-gray-50 rounded-xl border-2 border-transparent focus:bg-white focus:border-primary/20 focus:ring-0 transition-all outline-none font-medium text-gray-900 appearance-none hover:bg-gray-100/80 cursor-pointer"
-                                            >
-                                                {Object.entries(PACKAGES).map(([key]) => (
-                                                    <option key={key} value={key}>
-                                                        {key}
-                                                    </option>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <button
+                                                    type="button"
+                                                    className="w-full p-2.5 md:p-4 pr-8 md:pr-10 text-xs md:text-base bg-gray-50 rounded-lg md:rounded-xl border-2 border-transparent hover:bg-gray-100/80 focus:bg-white focus:border-primary/20 transition-all outline-none font-medium text-gray-900 cursor-pointer flex items-center justify-between"
+                                                >
+                                                    <span>{formData.packageType}</span>
+                                                    <ChevronDown className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+                                                </button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)] bg-white border border-gray-200 shadow-lg">
+                                                {(Object.keys(PACKAGES) as PackageType[]).map((pkg) => (
+                                                    <DropdownMenuItem
+                                                        key={pkg}
+                                                        onClick={() => setFormData(prev => ({ ...prev, packageType: pkg }))}
+                                                        className="flex items-center justify-between px-3 py-2 text-sm cursor-pointer hover:bg-blue-50"
+                                                    >
+                                                        <span>{pkg}</span>
+                                                        {formData.packageType === pkg && <Check className="h-4 w-4 text-primary" />}
+                                                    </DropdownMenuItem>
                                                 ))}
-                                            </select>
-                                            <ChevronDown className="absolute right-4 top-4.5 h-5 w-5 text-gray-400 pointer-events-none" />
-                                        </div>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
                                     </div>
                                 </div>
                             </div>
@@ -470,13 +493,21 @@ export function CostCalculator() {
 
                     {/* Cost Breakdown Table */}
                     <div className="rounded-3xl border border-gray-200/60 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5">
-                        {/* Header */}
-                        <div className="bg-gray-50/80 backdrop-blur-sm grid grid-cols-12 p-5 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                        {/* Header - Hidden on mobile */}
+                        <div className="hidden md:grid bg-gray-50/80 backdrop-blur-sm grid-cols-12 p-5 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
                             <div className="col-span-5 pl-4">Description of Work</div>
                             <div className="col-span-2 text-center">Area / Qty</div>
                             <div className="col-span-1 text-center">Unit</div>
                             <div className="col-span-2 text-center">Rate</div>
                             <div className="col-span-2 text-center">Amount</div>
+                        </div>
+
+                        {/* Mobile Header */}
+                        <div className="md:hidden bg-gray-50/80 backdrop-blur-sm grid grid-cols-4 p-3 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                            <div className="col-span-1">Description</div>
+                            <div className="col-span-1 text-center">Qty</div>
+                            <div className="col-span-1 text-center">Rate</div>
+                            <div className="col-span-1 text-center">Amount</div>
                         </div>
 
                         <div className="divide-y divide-gray-100">
@@ -487,24 +518,48 @@ export function CostCalculator() {
                                         initial={{ opacity: 0, height: 0 }}
                                         animate={{ opacity: 1, height: "auto" }}
                                         exit={{ opacity: 0, height: 0 }}
-                                        className="grid grid-cols-12 p-5 items-center group hover:bg-blue-50/30 transition-colors"
+                                        className="p-3 md:p-5 group hover:bg-blue-50/30 transition-colors"
                                     >
-                                        <div className="col-span-5 pl-4 font-medium text-gray-900 text-sm md:text-base">{row.label}</div>
-                                        <div className="col-span-2 px-2">
-                                            <input
-                                                type="number"
-                                                placeholder="Area in sqft"
-                                                value={rowInputs[row.key as keyof typeof rowInputs] === 0 ? "" : rowInputs[row.key as keyof typeof rowInputs]}
-                                                onChange={(e) =>
-                                                    setRowInputs((prev) => ({ ...prev, [row.key]: e.target.value === "" ? "" : Number(e.target.value) }))
-                                                }
-                                                className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all font-medium text-gray-700 placeholder:text-gray-300 placeholder:text-xs"
-                                            />
+                                        {/* Desktop Layout */}
+                                        <div className="hidden md:grid grid-cols-12 items-center">
+                                            <div className="col-span-5 pl-4 font-medium text-gray-900 text-sm md:text-base">{row.label}</div>
+                                            <div className="col-span-2 px-2">
+                                                <input
+                                                    type="number"
+                                                    placeholder="Area"
+                                                    value={rowInputs[row.key as keyof typeof rowInputs] === 0 ? "" : rowInputs[row.key as keyof typeof rowInputs]}
+                                                    onChange={(e) =>
+                                                        setRowInputs((prev) => ({ ...prev, [row.key]: e.target.value === "" ? "" : Number(e.target.value) }))
+                                                    }
+                                                    className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all font-medium text-gray-700 placeholder:text-gray-300 placeholder:text-xs"
+                                                />
+                                            </div>
+                                            <div className="col-span-1 text-center text-gray-400 text-sm font-medium">{row.unit}</div>
+                                            <div className="col-span-2 text-center text-gray-500 text-sm font-medium">Rs. {row.rate}</div>
+                                            <div className="col-span-2 text-center font-bold text-gray-900 text-lg">
+                                                {formatCurrency(calculateCost(Number(rowInputs[row.key as keyof typeof rowInputs] || 0), row.rate))}
+                                            </div>
                                         </div>
-                                        <div className="col-span-1 text-center text-gray-400 text-sm font-medium">{row.unit}</div>
-                                        <div className="col-span-2 text-center text-gray-500 text-sm font-medium font-variant-numeric">Rs. {row.rate}</div>
-                                        <div className="col-span-2 text-center font-bold text-gray-900 text-lg">
-                                            {formatCurrency(calculateCost(Number(rowInputs[row.key as keyof typeof rowInputs] || 0), row.rate))}
+
+                                        {/* Mobile Layout */}
+                                        <div className="md:hidden grid grid-cols-4 items-center gap-2">
+                                            <div className="col-span-1 font-medium text-gray-900 text-xs leading-tight">{row.label}</div>
+                                            <div className="col-span-1">
+                                                <input
+                                                    type="number"
+                                                    placeholder="-"
+                                                    value={rowInputs[row.key as keyof typeof rowInputs] === 0 ? "" : rowInputs[row.key as keyof typeof rowInputs]}
+                                                    onChange={(e) =>
+                                                        setRowInputs((prev) => ({ ...prev, [row.key]: e.target.value === "" ? "" : Number(e.target.value) }))
+                                                    }
+                                                    className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg text-center text-xs focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary/20 font-medium text-gray-700"
+                                                />
+                                                <div className="text-[10px] text-gray-400 text-center mt-0.5">{row.unit}</div>
+                                            </div>
+                                            <div className="col-span-1 text-center text-gray-500 text-xs font-medium">Rs.{row.rate}</div>
+                                            <div className="col-span-1 text-center font-bold text-gray-900 text-sm">
+                                                ₹{calculateCost(Number(rowInputs[row.key as keyof typeof rowInputs] || 0), row.rate).toLocaleString('en-IN')}
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -545,7 +600,7 @@ export function CostCalculator() {
                             whileTap={{ scale: 0.98 }}
                             onClick={calculateTotal}
                             disabled={isSubmitting}
-                            className={`bg-gradient-to-r from-primary-red to-[#d91f42] hover:shadow-2xl hover:shadow-red-500/30 text-white font-bold py-5 px-12 rounded-2xl shadow-xl text-xl uppercase tracking-wider transition-all duration-300 w-full md:w-auto flex items-center gap-3 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed`}
+                            className={`bg-gradient-to-r from-primary-red to-[#d91f42] hover:shadow-2xl hover:shadow-red-500/30 text-white font-bold py-3 px-6 md:py-5 md:px-12 rounded-xl md:rounded-2xl shadow-xl text-sm md:text-xl uppercase tracking-wider transition-all duration-300 w-full md:w-auto flex items-center justify-center gap-2 md:gap-3 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed`}
                         >
                             {isSubmitting ? (
                                 <>
@@ -596,21 +651,43 @@ function TableRow({ label, value, unit, rate, placeholder, onChange }: { label: 
     };
 
     return (
-        <div className="grid grid-cols-12 p-5 items-center group hover:bg-blue-50/30 transition-colors border-t border-gray-100">
-            <div className="col-span-5 pl-4 font-medium text-gray-900 text-sm md:text-base">{label}</div>
-            <div className="col-span-2 px-2">
-                <input
-                    type="number"
-                    placeholder={placeholder}
-                    value={value === 0 ? "" : value}
-                    onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))}
-                    className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all font-medium text-gray-700 placeholder:text-gray-300 placeholder:text-xs"
-                />
+        <div className="p-3 md:p-5 group hover:bg-blue-50/30 transition-colors border-t border-gray-100">
+            {/* Desktop Layout */}
+            <div className="hidden md:grid grid-cols-12 items-center">
+                <div className="col-span-5 pl-4 font-medium text-gray-900 text-sm md:text-base">{label}</div>
+                <div className="col-span-2 px-2">
+                    <input
+                        type="number"
+                        placeholder={placeholder}
+                        value={value === 0 ? "" : value}
+                        onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))}
+                        className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all font-medium text-gray-700 placeholder:text-gray-300 placeholder:text-xs"
+                    />
+                </div>
+                <div className="col-span-1 text-center text-gray-400 text-sm font-medium">{unit}</div>
+                <div className="col-span-2 text-center text-gray-500 text-sm font-medium">Rs. {rate}</div>
+                <div className="col-span-2 text-center font-bold text-gray-900 text-lg">
+                    {formatCurrency(Number(value || 0) * rate)}
+                </div>
             </div>
-            <div className="col-span-1 text-center text-gray-400 text-sm font-medium">{unit}</div>
-            <div className="col-span-2 text-center text-gray-500 text-sm font-medium font-variant-numeric">Rs. {rate}</div>
-            <div className="col-span-2 text-center font-bold text-gray-900 text-lg">
-                {formatCurrency(Number(value || 0) * rate)}
+
+            {/* Mobile Layout */}
+            <div className="md:hidden grid grid-cols-4 items-center gap-2">
+                <div className="col-span-1 font-medium text-gray-900 text-xs leading-tight">{label}</div>
+                <div className="col-span-1">
+                    <input
+                        type="number"
+                        placeholder="-"
+                        value={value === 0 ? "" : value}
+                        onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))}
+                        className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg text-center text-xs focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary/20 font-medium text-gray-700"
+                    />
+                    <div className="text-[10px] text-gray-400 text-center mt-0.5">{unit}</div>
+                </div>
+                <div className="col-span-1 text-center text-gray-500 text-xs font-medium">Rs.{rate}</div>
+                <div className="col-span-1 text-center font-bold text-gray-900 text-sm">
+                    ₹{(Number(value || 0) * rate).toLocaleString('en-IN')}
+                </div>
             </div>
         </div>
     );

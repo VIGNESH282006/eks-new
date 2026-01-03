@@ -1,15 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   Navbar,
   NavBody,
   NavItems,
-  MobileNav,
   NavbarLogo,
   NavbarButton,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
 } from '@/components/ui/resizable-navbar';
 import { Link } from 'react-router-dom';
 import Home from '@/pages/Home';
@@ -22,6 +18,7 @@ import Contact from '@/pages/Contact';
 import { MinimalistHero } from '@/components/ui/minimalist-hero';
 import { Footer } from '@/components/ui/footer-taped-design';
 import { GenieChat } from '@/components/ui/genie-chat';
+import { StaggeredMenu } from '@/components/ui/staggered-menu';
 
 const navItems = [
   { label: 'HOME', href: '/' },
@@ -93,7 +90,6 @@ const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const customHeroProps = pageHeroConfig[location.pathname];
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const defaultHeroProps = {
     mainText: "Building your dreams with precision and passion.",
@@ -111,6 +107,19 @@ const Layout = () => {
     .filter(item => item.label !== 'CONTACT US')
     .map(item => ({ name: item.label, link: item.href }));
 
+  // StaggeredMenu items for mobile
+  const staggeredMenuItems = navItems.map(item => ({
+    label: item.label,
+    ariaLabel: `Go to ${item.label.toLowerCase()}`,
+    link: item.href
+  }));
+
+  const socialItems = [
+    { label: 'Instagram', link: 'https://instagram.com/eksconstruction' },
+    { label: 'Facebook', link: 'https://facebook.com/eksconstruction' },
+    { label: 'WhatsApp', link: 'https://wa.me/919876543210' }
+  ];
+
   return (
     <>
       <ScrollToTop />
@@ -123,42 +132,23 @@ const Layout = () => {
           </div>
         </NavBody>
 
-        <MobileNav>
-          <MobileNavHeader>
-            <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
-          </MobileNavHeader>
-
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {formattedNavItems.map((item, idx) => (
-              <Link
-                key={`mobile-link-${idx}`}
-                to={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
-              >
-                <span className="block">{item.name}</span>
-              </Link>
-            ))}
-            <div className="flex w-full flex-col gap-4 mt-4">
-              <NavbarButton
-                as={Link}
-                href="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                CONTACT US
-              </NavbarButton>
-            </div>
-          </MobileNavMenu>
-        </MobileNav>
+        {/* Mobile StaggeredMenu - only visible on mobile */}
+        <div className="lg:hidden">
+          <StaggeredMenu
+            position="right"
+            items={staggeredMenuItems}
+            socialItems={socialItems}
+            displaySocials={true}
+            displayItemNumbering={false}
+            menuButtonColor="#000"
+            openMenuButtonColor="#000"
+            changeMenuColorOnOpen={true}
+            colors={['#082E6D', '#C11336']}
+            logoUrl="/logo.png"
+            accentColor="#C11336"
+            isFixed={true}
+          />
+        </div>
       </Navbar>
       {!isHomePage && !location.pathname.startsWith('/interior') && (
         <MinimalistHero

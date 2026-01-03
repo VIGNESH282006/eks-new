@@ -45,7 +45,7 @@ export function Pricing({
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
     return (
-        <div className="container py-20">
+        <div className="container py-20 px-6 md:px-4">
             <div className="text-center space-y-4 mb-24">
                 <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
                     {title}
@@ -55,7 +55,7 @@ export function Pricing({
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-8 max-w-5xl mx-auto px-2 md:px-0">
                 {plans.map((plan, index) => (
                     <div key={index} className="relative">
                         <motion.div
@@ -80,7 +80,7 @@ export function Pricing({
                             }}
                             className={cn(
                                 `relative w-full h-full transition-all duration-500`,
-                                !plan.isPopular && "mt-5",
+                                plan.isPopular ? "mt-2 md:mt-0" : "mt-5",
                                 index === 0 || index === 2
                                     ? "z-0"
                                     : "z-10"
@@ -88,7 +88,7 @@ export function Pricing({
                         >
                             <div
                                 className={cn(
-                                    "rounded-xl border-[1px] p-4 bg-background text-center flex flex-col h-full relative z-10",
+                                    "rounded-xl border-[1px] p-5 md:p-4 bg-background text-center flex flex-col h-full relative z-10 mx-2 md:mx-0",
                                     plan.isPopular ? "border-[#ef4444] border-2 shadow-xl" : "border-blue-600"
                                 )}
                             >
@@ -139,7 +139,7 @@ export function Pricing({
                                                 <AccordionItem key={idx} value={`item-${idx}`} className="border-b-0">
                                                     <AccordionTrigger
                                                         className={cn(
-                                                            "hover:no-underline py-2 text-sm font-medium",
+                                                            "hover:no-underline py-3 text-base md:text-sm font-medium",
                                                             plan.isPopular ? "text-foreground hover:text-[#ef4444]" : "text-foreground hover:text-blue-600"
                                                         )}
                                                     >
@@ -148,7 +148,7 @@ export function Pricing({
                                                     <AccordionContent>
                                                         <ul className="space-y-2 pb-2 pl-1">
                                                             {feature.details.map((detail, dIdx) => (
-                                                                <li key={dIdx} className="flex items-start gap-2 text-xs text-muted-foreground">
+                                                                <li key={dIdx} className="flex items-start gap-2 text-sm md:text-xs text-muted-foreground">
                                                                     <Check className={cn("h-3.5 w-3.5 mt-0.5 flex-shrink-0", plan.isPopular ? "text-[#ef4444]" : "text-blue-600")} />
                                                                     <span>{detail}</span>
                                                                 </li>
@@ -183,9 +183,10 @@ export function Pricing({
                             </div>
                         </motion.div>
                     </div>
-                ))}
-            </div>
-        </div>
+                ))
+                }
+            </div >
+        </div >
     );
 }
 

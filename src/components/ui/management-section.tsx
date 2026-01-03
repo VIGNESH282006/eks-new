@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Smartphone, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 const ManagementSection = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -79,9 +79,9 @@ const ManagementSection = () => {
 
                         {/* App Availability */}
                         <div className="flex flex-col md:flex-row gap-6">
-                            <div className="flex items-center gap-6 text-gray-700 bg-white p-6 rounded-2xl border border-gray-100 w-full md:w-fit shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
-                                <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl text-blue-600 group-hover:scale-110 transition-transform duration-300">
-                                    <Smartphone size={32} />
+                            <div className="flex items-center gap-6 text-gray-700 bg-white p-8 rounded-2xl border border-gray-100 w-full md:w-fit shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
+                                <div className="w-20 h-20 rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                                    <img src="/mobile-app-logo.jpg" alt="EKS Construction" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Available on Mobile App</h4>

@@ -4,12 +4,12 @@ import { Navbar } from "../components/ui/mini-navbar";
 import { ProjectCard } from "@/components/ui/project-card";
 import { useProjects } from "@/hooks/use-projects";
 import { useGallery } from "@/hooks/use-gallery";
-import { ContainerScroll, ContainerSticky, GalleryContainer, GalleryCol } from "@/components/ui/animated-gallery";
+import { FocusCards } from "@/components/ui/focus-cards";
 
 const GallerySection = () => {
     const { gallery, loading, error } = useGallery();
 
-    if (loading) return <div className="text-center py-20 text-white">Loading gallery...</div>;
+    if (loading) return <div className="text-center py-20 text-gray-500">Loading gallery...</div>;
     if (error) return <div className="text-center py-20 text-red-500">Error loading gallery</div>;
 
     // Flatten all images from all gallery items, attaching the heading to each image
@@ -23,66 +23,15 @@ const GallerySection = () => {
 
     if (allImages.length === 0) return <div className="text-center py-20 text-neutral-400">No images found in gallery.</div>;
 
-    // Split images into 3 columns
-    const chunk1 = allImages.filter((_, i) => i % 3 === 0);
-    const chunk2 = allImages.filter((_, i) => i % 3 === 1);
-    const chunk3 = allImages.filter((_, i) => i % 3 === 2);
+    const cards = allImages.map((img) => ({
+        title: img.heading || "Project Image",
+        src: `https://eks-projectmanager.eksconstruction.in/${img.url}`
+    }));
 
     return (
-        <ContainerScroll className="relative h-[200vh] w-full">
-            <ContainerSticky className="h-[80vh] w-full">
-                <GalleryContainer className="w-full">
-                    <GalleryCol yRange={["-20%", "0%"]} className="-mt-2">
-                        {chunk1.map((img, index) => (
-                            <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-                                <img
-                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
-                                    src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
-                                    alt={img.heading}
-                                />
-                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                    <p className="text-white font-bold text-lg md:text-xl text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        {img.heading}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </GalleryCol>
-                    <GalleryCol className="mt-[-20%]" yRange={["10%", "-10%"]}>
-                        {chunk2.map((img, index) => (
-                            <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-                                <img
-                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
-                                    src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
-                                    alt={img.heading}
-                                />
-                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                    <p className="text-white font-bold text-lg md:text-xl text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        {img.heading}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </GalleryCol>
-                    <GalleryCol yRange={["-20%", "0%"]} className="-mt-2">
-                        {chunk3.map((img, index) => (
-                            <div key={index} className="relative group overflow-hidden rounded-lg shadow-lg">
-                                <img
-                                    className="block h-auto w-full transition-transform duration-500 group-hover:scale-110"
-                                    src={`https://eks-projectmanager.eksconstruction.in/${img.url}`}
-                                    alt={img.heading}
-                                />
-                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                    <p className="text-white font-bold text-lg md:text-xl text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        {img.heading}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </GalleryCol>
-                </GalleryContainer>
-            </ContainerSticky>
-        </ContainerScroll>
+        <div className="py-10">
+            <FocusCards cards={cards} />
+        </div>
     );
 };
 
@@ -92,10 +41,10 @@ const Projects = () => {
     const { projects, loading, error } = useProjects();
 
     const navItems = [
-        { label: "Completed projects", href: "/projects?category=Completed Projects" },
-        { label: "Ongoing projects", href: "/projects?category=Ongoing Projects" },
-        { label: "Upcoming projects", href: "/projects?category=Upcoming Projects" },
-        { label: "Our gallery", href: "/projects?category=Gallery" },
+        { label: "Completed projects", href: "/projects?category=Completed Projects", isActive: activeCategory === "Completed Projects" },
+        { label: "Ongoing projects", href: "/projects?category=Ongoing Projects", isActive: activeCategory === "Ongoing Projects" },
+        { label: "Upcoming projects", href: "/projects?category=Upcoming Projects", isActive: activeCategory === "Upcoming Projects" },
+        { label: "Our gallery", href: "/projects?category=Gallery", isActive: activeCategory === "Gallery" },
     ];
 
     // Filter projects based on active Category

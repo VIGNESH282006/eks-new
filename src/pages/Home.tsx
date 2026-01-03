@@ -5,8 +5,6 @@ import ManagementSection from '@/components/ui/management-section';
 import RetailPartnersSection from '@/components/ui/retail-partners-section';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
-import RetailPartnersSection from '@/components/ui/retail-partners-section';
-
 const Home = () => {
     return (
         <div className="min-h-screen bg-white">
@@ -85,7 +83,6 @@ const Home = () => {
                     autoplay={true}
                 />
             </section>
-            <RetailPartnersSection />
         </div>
     );
 };

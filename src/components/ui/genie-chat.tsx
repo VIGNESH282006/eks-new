@@ -1,11 +1,26 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import { MessageCircle, Phone, X } from "lucide-react";
 
 export function GenieChat() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const hasAutoOpened = useRef(false);
     const { scrollY } = useScroll();
+
+    // Listen for mobile menu open/close events
+    useEffect(() => {
+        const handleMenuOpen = () => setIsMenuOpen(true);
+        const handleMenuClose = () => setIsMenuOpen(false);
+
+        window.addEventListener('mobileMenuOpen', handleMenuOpen);
+        window.addEventListener('mobileMenuClose', handleMenuClose);
+
+        return () => {
+            window.removeEventListener('mobileMenuOpen', handleMenuOpen);
+            window.removeEventListener('mobileMenuClose', handleMenuClose);
+        };
+    }, []);
 
     // Auto-open when scrolling past hero section (approx 600px)
     // Also handle hiding when near footer (approx bottom 100px)
@@ -43,7 +58,7 @@ export function GenieChat() {
     const openPhone = () => window.open("tel:+919962590632");
 
     return (
-        <div id="genie-chat-container" className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2 transition-opacity duration-300">
+        <div id="genie-chat-container" className={`fixed bottom-2 right-2 z-[100] flex flex-col items-end gap-2 transition-all duration-300 ${isMenuOpen ? 'opacity-0 pointer-events-none' : ''}`}>
 
             {/* Chat Popup Menu */}
             <AnimatePresence>
