@@ -4,6 +4,8 @@ import StoryBehindSection from '@/components/ui/story-behind-section';
 import ManagementSection from '@/components/ui/management-section';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
+import RetailPartnersSection from '@/components/ui/retail-partners-section';
+
 const Home = () => {
     return (
         <div className="min-h-screen bg-white">
@@ -39,6 +41,7 @@ const Home = () => {
             <AboutUsSection />
             <ManagementSection />
             <StoryBehindSection />
+
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mb-4">Why Choose Us</h2>
@@ -80,6 +83,7 @@ const Home = () => {
                     autoplay={true}
                 />
             </section>
+            <RetailPartnersSection />
         </div>
     );
 };

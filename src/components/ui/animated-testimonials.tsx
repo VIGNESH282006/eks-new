@@ -131,10 +131,10 @@ export const AnimatedTestimonials = ({
                                 <ArrowRight className="h-8 w-8 md:h-6 md:w-6 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" />
                             </button>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+                        <h3 className="text-3xl md:text-4xl font-bold text-[#082E6D]">
                             {testimonials[active].name}
                         </h3>
-                        <p className="text-xl text-muted-foreground font-medium">
+                        <p className="text-xl text-[#FB0224] font-medium">
                             {testimonials[active].designation}
                         </p>
                         <motion.p className="text-xl md:text-2xl text-muted-foreground mt-8 leading-relaxed">
