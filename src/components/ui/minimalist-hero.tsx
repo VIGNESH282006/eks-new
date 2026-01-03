@@ -103,9 +103,7 @@ export const MinimalistHero = ({
                 >
                     <div>
                         <p className="mx-auto max-w-sm text-base leading-relaxed md:mx-0 drop-shadow-md font-medium text-white">{mainText}</p>
-                        <a href={readMoreLink} className="mt-4 inline-block text-sm font-bold text-white underline decoration-white decoration-2 underline-offset-4 hover:opacity-80 transition-opacity">
-                            Read More
-                        </a>
+
                     </div>
                 </motion.div>
             </div>

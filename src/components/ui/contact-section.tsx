@@ -172,7 +172,7 @@ export const ContactSection = () => {
                         <div className="absolute top-0 right-0 w-64 h-64 bg-orange-200/40 rounded-full blur-[80px] -mr-16 -mt-16 pointer-events-none" />
 
                         <div className="relative z-10">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-2">Reach out to us today! ✨</h2>
+                            <h2 className="text-3xl font-bold text-gray-900 mb-2">Reach out to us today!</h2>
                             <div className="mb-8">
                                 <p className="text-gray-500 text-sm mb-1">Mail us at</p>
                                 <a href="mailto:info@eksconstruction.in" className="text-gray-900 font-medium hover:text-orange-600 transition-colors">info@eksconstruction.in</a>
