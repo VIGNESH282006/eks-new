@@ -90,7 +90,7 @@ const Services = () => {
                         <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mt-4 mb-6">
                             Our Premium Services
                         </h2>
-                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                        <p className="text-gray-600 text-lg max-w-2xl mx-auto text-center">
                             From concept to completion, we provide comprehensive construction services tailored to your unique vision and requirements.
                         </p>
                     </div>
@@ -131,19 +131,19 @@ const Services = () => {
                 </div>
 
                 {/* Blue Overlay */}
-                <div className="absolute inset-0 z-0 bg-gray-50/90 mix-blend-multiply"></div>
+                <div className="absolute inset-0 z-0 bg-[#0e3b7e]/60"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#082E6D] mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                         Ready to Start Your Project?
                     </h2>
-                    <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                    <p className="text-gray-100/90 text-lg mb-8 max-w-2xl mx-auto text-center font-light">
                         Let's discuss how we can bring your vision to life. Contact us today for a free consultation and quote.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href="/contact"
-                            className="px-8 py-4 bg-[#C11336] hover:bg-red-700 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg shadow-red-100"
+                            className="px-8 py-4 bg-[#C11336] hover:bg-red-700 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105"
                         >
                             Get Free Quote
                         </a>

@@ -21,7 +21,7 @@ const SUCCESS_FACTORS = [
         id: "factor-1",
         index: "1",
         title: "120+ Standard Quality Checks",
-        description: "We don't compromise on quality. Our rigorous 120+ point inspection process ensures every material and construction stage meets the highest industry standards.",
+        description: "We verify 120+ quality checkpoints at every stage to ensure highest industry standards.",
         icon: <ClipboardCheck className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
         image: "/success/success-card-img1.jpg"
@@ -30,7 +30,7 @@ const SUCCESS_FACTORS = [
         id: "factor-2",
         index: "2",
         title: "Construction on Your Budget",
-        description: "Your dream home shouldn't break the bank. We offer transparent pricing and tailored solutions to ensure your project stays strictly within your financial comfort zone.",
+        description: "Transparent pricing and tailored solutions to keep your project strictly within budget.",
         icon: <Wallet className="w-8 h-8 text-white" />,
         bg: "#C11336", // Red
         image: "/success/success-card-img2.jpg"
@@ -39,7 +39,7 @@ const SUCCESS_FACTORS = [
         id: "factor-3",
         index: "3",
         title: "No Hidden Charges",
-        description: "Honesty is our policy. Our quotes are comprehensive, with absolutely no surprise costs or hidden fees down the line. What we agree on is what you pay.",
+        description: "Comprehensive quotes with zero surprise costs. What we agree on is exactly what you pay.",
         icon: <Ban className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
         image: "/success/success-card-img3.jpg"
@@ -48,7 +48,7 @@ const SUCCESS_FACTORS = [
         id: "factor-4",
         index: "4",
         title: "Stress Free Construction",
-        description: "Building a home should be exciting, not exhausting. We handle all the permits, procurement, and management so you can enjoy the journey.",
+        description: "We handle all permits, procurement, and management so you can enjoy the journey.",
         icon: <Smile className="w-8 h-8 text-white" />,
         bg: "#C11336", // Red
         image: "/success/success-card-img9.jpg"
@@ -57,7 +57,7 @@ const SUCCESS_FACTORS = [
         id: "factor-5",
         index: "5",
         title: "Creative Design",
-        description: "Our diverse team of architects and designers bring fresh, innovative ideas to the table, ensuring your space is unique, functional, and aesthetically stunning.",
+        description: "Innovative architects designing unique, functional, and aesthetically stunning spaces.",
         icon: <Palette className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
         image: "/success/success-card-img5.jpg"
@@ -66,7 +66,7 @@ const SUCCESS_FACTORS = [
         id: "factor-6",
         index: "6",
         title: "On time Delivery",
-        description: "We respect your time. Our efficient project management ensures that we stick to the schedule and hand over your keys exactly when promised.",
+        description: "Efficient management ensures we stick to schedule and hand over keys on time.",
         icon: <Clock className="w-8 h-8 text-white" />,
         bg: "#C11336", // Red
         image: "/success/success-card-img6.jpg"
@@ -75,7 +75,7 @@ const SUCCESS_FACTORS = [
         id: "factor-7",
         index: "7",
         title: "Daily Progress Update",
-        description: "Stay in the loop, wherever you are. We provide detailed daily updates and photos so you can track the progress of your dream project in real-time.",
+        description: "Detailed daily updates and photos to track your dream project's progress in real-time.",
         icon: <TrendingUp className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
         image: "/success/success-card-img7.jpg"
@@ -84,7 +84,7 @@ const SUCCESS_FACTORS = [
         id: "factor-8",
         index: "8",
         title: "No Subcontracts",
-        description: "We take full responsibility. Our in-house team of skilled professionals handles execution, ensuring consistent quality control and accountability.",
+        description: "In-house team handles execution, ensuring consistent quality control and accountability.",
         icon: <Users className="w-8 h-8 text-white" />,
         bg: "#C11336", // Red
         image: "/success/success-card-img8.jpg"
@@ -93,7 +93,7 @@ const SUCCESS_FACTORS = [
         id: "factor-9",
         index: "9",
         title: "End to End Construction",
-        description: "From the first sketch to the final coat of paint, we manage everything. A complete turnkey solution for a hassle-free experience.",
+        description: "Complete turnkey solution managing everything from first sketch to final coat of paint.",
         icon: <Building className="w-8 h-8 text-white" />,
         bg: "#082E6D", // Blue
         image: "/success/success-card-img4.jpg"
@@ -104,7 +104,7 @@ const SuccessCard = ({ factor }: { factor: typeof SUCCESS_FACTORS[0] }) => (
     <div className="h-full w-full p-4">
         <div className="h-full w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row">
             {/* Image */}
-            <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+            <div className="w-full md:w-1/2 h-52 md:h-auto relative">
                 <img
                     src={factor.image}
                     alt={factor.title}
@@ -113,7 +113,7 @@ const SuccessCard = ({ factor }: { factor: typeof SUCCESS_FACTORS[0] }) => (
                 />
             </div>
             {/* Content */}
-            <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center items-center text-center">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="p-2 rounded-lg" style={{ backgroundColor: factor.bg }}>
                         {factor.icon}
@@ -123,7 +123,7 @@ const SuccessCard = ({ factor }: { factor: typeof SUCCESS_FACTORS[0] }) => (
                     </span>
                 </div>
                 <h3 className="text-2xl font-bold text-[#082E6D] mb-3">{factor.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{factor.description}</p>
+                <p className="text-gray-600 leading-relaxed text-sm md:text-base text-center">{factor.description}</p>
             </div>
         </div>
     </div>
@@ -147,7 +147,7 @@ export default function StoryBehindSection() {
                         Reason Behind <br />
                         <span className="text-[#C11336]">Our Success</span>
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto text-center">
                         Excellence in every aspect of construction. We believe in transparency, quality, and delivering exactly what we promise.
                     </p>
                 </motion.div>

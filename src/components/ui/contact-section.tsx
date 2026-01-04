@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Facebook, Instagram, Linkedin, Loader2, CheckCircle2, XCircle, X } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Loader2, CheckCircle2, XCircle, X } from 'lucide-react';
 
 // ========================================
 // EMAILJS CONFIGURATION
@@ -150,13 +150,13 @@ export const ContactSection = () => {
                         transition={{ duration: 0.8 }}
                         className="space-y-8"
                     >
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 tracking-tighter leading-[0.9] drop-shadow-sm">
+                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-[#082E6D] tracking-tighter leading-[0.9] drop-shadow-sm">
                             Let's build <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-600">something</span> <br />
+                            <span className="text-[#C11336]">something</span> <br />
                             amazing <br />
                             together!
                         </h1>
-                        <p className="text-xl text-gray-600 max-w-lg font-light leading-relaxed">
+                        <p className="text-xl text-gray-600 max-w-lg font-light leading-relaxed text-left">
                             From dream homes to iconic skylines, we turn your vision into concrete reality.
                         </p>
                     </motion.div>
@@ -180,11 +180,15 @@ export const ContactSection = () => {
                                 <div className="flex items-center gap-4 mt-4">
                                     <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Follow Us</span>
                                     <div className="flex gap-2">
-                                        {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                                            <a key={i} href="#" className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-black hover:text-white transition-all">
-                                                <Icon size={14} />
-                                            </a>
-                                        ))}
+                                        <a href="https://www.facebook.com/eksconstruction.in/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all">
+                                            <Facebook size={14} />
+                                        </a>
+                                        <a href="https://www.instagram.com/eks_construction/?hl=en" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 hover:bg-pink-600 hover:text-white transition-all">
+                                            <Instagram size={14} />
+                                        </a>
+                                        <a href="https://www.youtube.com/@eksconstructions" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all">
+                                            <Youtube size={14} />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

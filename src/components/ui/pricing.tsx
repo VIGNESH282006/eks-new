@@ -50,7 +50,7 @@ export function Pricing({
                 <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
                     {title}
                 </h2>
-                <p className="text-muted-foreground text-lg whitespace-pre-line">
+                <p className="text-muted-foreground text-lg whitespace-pre-line text-justify [text-justify:inter-word] md:text-center max-w-3xl mx-auto">
                     {description}
                 </p>
             </div>
@@ -100,8 +100,8 @@ export function Pricing({
                                         </span>
                                     </div>
                                 )}
-                                <div className="flex-1 flex flex-col pt-4">
-                                    <p className={cn("text-base font-bold uppercase tracking-wider", plan.isPopular ? "text-[#ef4444]" : "text-foreground")}>
+                                <div className={cn("flex-1 flex flex-col pt-4", plan.isPopular && "pt-8")}>
+                                    <p className={cn("text-base font-bold uppercase tracking-wider text-center", plan.isPopular ? "text-[#ef4444]" : "text-foreground")}>
                                         {plan.name}
                                     </p>
                                     <div className="mt-4 flex items-center justify-center gap-x-2">
@@ -129,7 +129,7 @@ export function Pricing({
                                         )}
                                     </div>
 
-                                    <p className="text-xs leading-5 text-muted-foreground mt-2">
+                                    <p className="text-xs leading-5 text-muted-foreground mt-2 text-center">
                                         billed monthly
                                     </p>
 
@@ -176,7 +176,7 @@ export function Pricing({
                                     >
                                         {plan.buttonText}
                                     </Link>
-                                    <p className="mt-6 text-xs leading-5 text-muted-foreground px-4">
+                                    <p className="mt-6 text-xs leading-5 text-muted-foreground px-4 text-center">
                                         {plan.description}
                                     </p>
                                 </div>

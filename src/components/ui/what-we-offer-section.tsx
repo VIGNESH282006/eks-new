@@ -45,7 +45,7 @@ export default function WhatWeOfferSection() {
                     <h2 className="text-4xl md:text-6xl font-black text-stone-900 uppercase tracking-tighter mb-4">
                         What We <span className="text-[#dc2626]">Offer</span>
                     </h2>
-                    <p className="text-stone-500 text-lg max-w-2xl mx-auto font-medium">
+                    <p className="text-stone-500 text-lg max-w-2xl mx-auto font-medium text-center">
                         Excellence in every detail. Explore our core construction and design services.
                     </p>
                 </div>
@@ -118,7 +118,7 @@ export default function WhatWeOfferSection() {
                                                     <p className="text-stone-200 leading-relaxed mb-6 max-w-lg hidden md:block drop-shadow-sm">
                                                         {service.description}
                                                     </p>
-                                                    <p className="text-stone-200 leading-relaxed mb-4 md:hidden text-sm line-clamp-2 drop-shadow-sm">
+                                                    <p className="text-stone-200 leading-relaxed mb-4 md:hidden text-sm line-clamp-2 drop-shadow-sm text-center">
                                                         {service.description}
                                                     </p>
 

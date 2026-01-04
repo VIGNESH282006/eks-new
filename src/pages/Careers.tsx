@@ -112,7 +112,7 @@ const Careers = () => {
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                     Why Choose <span className="text-[#082E6D]">e</span><span className="text-[#C11336]">k</span><span className="text-[#082E6D]">s construction</span>?
                 </h1>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-relaxed text-justify [text-justify:inter-word] md:text-center max-w-3xl mx-auto">
                     Are you passionate about architecture and construction? eks Construction, a leading Turnkey Home construction service provider, is expanding its team...
                 </p>
             </div>

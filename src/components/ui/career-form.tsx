@@ -175,7 +175,7 @@ export function CareerApplicationForm() {
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/3" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-100/50 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3" />
 
-            <div className="flex items-center justify-center p-4 md:p-10">
+            <div className="flex items-center justify-center px-0 md:p-10">
                 <AnimatePresence>
                     {toast.show && (
                         <Toast
@@ -186,7 +186,7 @@ export function CareerApplicationForm() {
                     )}
                 </AnimatePresence>
 
-                <div className="w-full max-w-4xl bg-white/80 backdrop-blur-3xl p-8 md:p-14 rounded-[2.5rem] border border-white/50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)]">
+                <div className="w-full max-w-4xl bg-white/80 backdrop-blur-3xl p-6 md:p-14 rounded-[2.5rem] border border-white/50 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)]">
                     <div className="text-center mb-12 space-y-3">
                         <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold tracking-wide border border-blue-100 animate-fade-in-up">
                             CAREERS
@@ -194,7 +194,7 @@ export function CareerApplicationForm() {
                         <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
                             Join <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">The Team</span>
                         </h3>
-                        <p className="text-slate-500 text-lg max-w-lg mx-auto leading-relaxed">
+                        <p className="text-slate-500 text-lg max-w-lg mx-auto leading-relaxed text-justify [text-justify:inter-word] md:text-center">
                             Ready to build something amazing? Fill out the form below and let's get started.
                         </p>
                     </div>

@@ -115,15 +115,15 @@ export function ServicePopup({ isOpen, onClose }: ServicePopupProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-md"
                 onClick={onClose}
             >
                 <motion.div
-                    initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                    initial={{ scale: 0.95, opacity: 0, y: 30 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
-                    exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                    exit={{ scale: 0.95, opacity: 0, y: 30 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:max-h-[600px]"
+                    className="relative w-full max-w-5xl bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[95vh] md:max-h-[650px]"
                 >
                     {/* Toast Inside Popup */}
                     <AnimatePresence>
@@ -139,98 +139,76 @@ export function ServicePopup({ isOpen, onClose }: ServicePopupProps) {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-gray-100 rounded-full transition-colors text-gray-500 hover:text-red-500 backdrop-blur-md"
+                        className="absolute top-4 left-4 md:left-auto md:right-4 z-50 p-2 bg-white/20 hover:bg-red-50 rounded-full transition-colors text-gray-500 hover:text-red-600 backdrop-blur-sm"
                     >
                         <X size={24} />
                     </button>
 
-                    {/* Left Column: Branding & Image */}
-                    <div className="w-full md:w-5/12 bg-gray-50 relative flex flex-col hidden md:flex">
-                        {/* Logo Area */}
-                        <div className="absolute top-0 left-0 w-full p-8 z-10 bg-gradient-to-b from-white/90 to-transparent flex justify-center">
-                            <img
-                                src="/logo.png"
-                                alt="eks Construction Logo"
-                                className="h-24 w-auto object-contain drop-shadow-sm"
-                            />
-                        </div>
-                        {/* Main Image */}
-                        <img
-                            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2671&auto=format&fit=crop"
-                            alt="Modern Luxury Home"
-                            className="w-full h-full object-cover"
-                        />
+                    {/* Left Column: Form (Flipped) */}
+                    <div className="w-full md:w-7/12 p-5 md:p-12 lg:p-14 bg-white flex flex-col justify-center order-2 md:order-1 relative overflow-y-auto">
+                        {/* Decorative Background Element */}
+                        <div className="absolute top-0 left-0 w-32 h-32 bg-red-50 rounded-br-full -z-10 opacity-50"></div>
+                        <div className="absolute bottom-0 right-0 w-40 h-40 bg-red-50 rounded-tl-full -z-10 opacity-50"></div>
 
-                        {/* Bottom Tagline */}
-                        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent text-white text-center">
-                            <p className="font-medium text-lg text-shadow-sm">We offer Turnkey and Interior Designing Services!!</p>
-                        </div>
-                    </div>
-
-                    {/* Right Column: Form */}
-                    <div className="w-full md:w-7/12 p-6 md:p-10 lg:p-12 overflow-y-auto bg-white flex flex-col justify-center">
-                        <div className="mb-8 text-center md:text-left">
-                            <h2 className="text-3xl md:text-4xl font-black text-[#082E6D] leading-tight uppercase">
+                        <div className="mb-4 md:mb-8 text-center md:text-left relative">
+                            <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-600 text-[10px] md:text-xs font-bold tracking-wider mb-2 md:mb-4 border border-red-100 uppercase">
+                                Limited Time Offer
+                            </span>
+                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#082E6D] leading-tight uppercase font-display">
                                 Home Construction<br />
                                 <span className="text-[#C11336]">Experts in </span>
-                                <span className="text-[#C11336]">Chennai</span>
+                                <span className="text-[#C11336] underline decoration-4 decoration-red-200 underline-offset-4">Chennai</span>
                             </h2>
                         </div>
 
-                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-                            <div>
+                        <form ref={formRef} onSubmit={handleSubmit} className="space-y-3 md:space-y-4 relative z-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <Input
                                     name="user_name"
                                     required
-                                    placeholder="Enter your Name"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary/20 rounded-xl"
+                                    placeholder="Your Name"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
-                            </div>
-
-                            <div className="flex gap-2">
-                                <div className="flex items-center justify-center px-4 bg-gray-100 rounded-xl text-gray-500 font-medium text-sm border border-gray-200">
-                                    IN +91
+                                <div className="flex bg-gray-50 border border-gray-200 rounded-lg overflow-hidden transition-all hover:bg-white focus-within:ring-2 focus-within:ring-red-500/20 focus-within:border-red-500">
+                                    <div className="flex items-center justify-center px-3 bg-gray-100 text-gray-500 font-medium text-sm border-r border-gray-200">
+                                        +91
+                                    </div>
+                                    <Input
+                                        name="user_mobile"
+                                        required
+                                        placeholder="Mobile Number"
+                                        type="tel"
+                                        className="h-10 md:h-12 text-sm border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none flex-1"
+                                    />
                                 </div>
-                                <Input
-                                    name="user_mobile"
-                                    required
-                                    placeholder="Enter mobile number"
-                                    type="tel"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary/20 rounded-xl flex-1"
-                                />
                             </div>
 
-                            <div>
-                                <Input
-                                    name="user_email"
-                                    required
-                                    placeholder="Enter your Email ID"
-                                    type="email"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary/20 rounded-xl"
-                                />
-                            </div>
+                            <Input
+                                name="user_email"
+                                required
+                                placeholder="Email Address"
+                                type="email"
+                                className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
+                            />
 
-                            <div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <Input
                                     name="location"
                                     required
-                                    placeholder="Enter your Location"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary/20 rounded-xl"
+                                    placeholder="Project Location"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
-                            </div>
-
-                            <div>
                                 <Input
                                     name="land_area"
-                                    placeholder="Enter Total Land area"
-                                    className="h-12 bg-gray-50 border-gray-200 focus:border-primary focus:ring-primary/20 rounded-xl"
+                                    placeholder="Land Area (Sq.ft)"
+                                    className="h-10 md:h-12 text-sm bg-gray-50 border-gray-200 focus:border-red-500 focus:ring-red-500/20 rounded-lg transition-all hover:bg-white"
                                 />
                             </div>
 
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full h-14 text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white shadow-xl shadow-primary/20 rounded-xl mt-4 transition-all hover:scale-[1.02] cursor-pointer relative z-20"
+                                className="w-full h-12 md:h-14 text-base md:text-lg font-bold uppercase tracking-wide bg-gradient-to-r from-[#C11336] to-[#E91E63] hover:from-red-700 hover:to-red-600 text-white shadow-lg shadow-red-500/30 rounded-lg mt-3 md:mt-6 transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer relative z-20"
                             >
                                 {isSubmitting ? (
                                     <span className="flex items-center gap-2">
@@ -242,6 +220,25 @@ export function ServicePopup({ isOpen, onClose }: ServicePopupProps) {
                                 )}
                             </Button>
                         </form>
+                    </div>
+
+                    {/* Right Column: Image (Flipped) */}
+                    <div className="w-full md:w-5/12 relative order-1 md:order-2 h-48 md:h-auto">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 md:hidden"></div>
+
+                        {/* Red Overlay Effect */}
+                        <div className="absolute inset-0 bg-[#C11336]/10 mix-blend-multiply z-10 hidden md:block"></div>
+
+                        {/* Logo Overlay */}
+                        <div className="absolute top-6 right-6 z-20 bg-white/90 p-3 rounded-xl shadow-lg backdrop-blur-sm">
+                            <img src="/logo.png" alt="eks Constructions" className="h-12 w-auto object-contain" />
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2671&auto=format&fit=crop"
+                            alt="Modern Luxury Home"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 </motion.div>
             </motion.div>

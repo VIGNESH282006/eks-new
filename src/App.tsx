@@ -53,7 +53,7 @@ const pageHeroConfig: Record<string, any> = {
     backgroundImage: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
   },
   '/projects': {
-    mainText: "A showcase of our finest work. Explore our portfolio of completed projects across the region.",
+    mainText: "Showcasing our completed projects and architectural excellence across the region.",
     overlayText: { part1: 'Our', part2: 'Work' },
     imageSrc: "/genie-img-projects.png",
     imageAlt: "EKS Construction Genie Mascot",

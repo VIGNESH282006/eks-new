@@ -20,7 +20,7 @@ const Home = () => {
                 subtitle={
                     <div className="flex flex-col items-center gap-2">
                         <div className="w-24 h-1 bg-[#C11336] mb-2 rounded-full hidden md:block opacity-80" /> {/* Decorative line similar to image */}
-                        <p className="text-xl md:text-3xl font-semibold text-[#ef4444] tracking-wide" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                        <p className="text-xl md:text-3xl font-semibold text-[#ef4444] tracking-wide text-center" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
                             Feel the happiness in your Home
                         </p>
                         <div className="w-24 h-1 bg-[#C11336] mt-2 rounded-full hidden md:block opacity-80" />
@@ -45,7 +45,7 @@ const Home = () => {
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto text-center mb-10">
                     <h2 className="text-4xl md:text-5xl font-bold text-[#082E6D] mb-4">Why Choose Us</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">We don't just build structures; we build relationships. Here is what makes us the preferred choice for construction.</p>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto text-center">We don't just build structures; we build relationships. Here is what makes us the preferred choice for construction.</p>
                 </div>
                 <AnimatedTestimonials
                     testimonials={[

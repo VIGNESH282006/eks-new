@@ -96,7 +96,7 @@ export const AnimatedTestimonials = ({
                         </AnimatePresence>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center gap-8 py-4">
+                <div className="flex flex-col justify-center gap-8 py-4 md:items-center md:text-center">
                     <motion.div
                         key={active}
                         initial={{
@@ -117,7 +117,7 @@ export const AnimatedTestimonials = ({
                         }}
                     >
                         {/* Arrows - above heading, centered, increased size */}
-                        <div className="flex gap-4 pb-4 justify-center md:justify-start">
+                        <div className="flex gap-4 pb-4 justify-center">
                             <button
                                 onClick={handlePrev}
                                 className="h-14 w-14 md:h-12 md:w-12 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-secondary/80 transition-colors"
@@ -137,29 +137,31 @@ export const AnimatedTestimonials = ({
                         <p className="text-xl text-[#FB0224] font-medium">
                             {testimonials[active].designation}
                         </p>
-                        <motion.p className="text-xl md:text-2xl text-muted-foreground mt-8 leading-relaxed">
+                        <motion.p className="text-xl md:text-2xl text-muted-foreground mt-8 leading-relaxed text-justify [text-justify:inter-word]">
                             {testimonials[active].quote.split(" ").map((word, index) => (
-                                <motion.span
-                                    key={index}
-                                    initial={{
-                                        filter: "blur(10px)",
-                                        opacity: 0,
-                                        y: 5,
-                                    }}
-                                    animate={{
-                                        filter: "blur(0px)",
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    transition={{
-                                        duration: 0.2,
-                                        ease: "easeInOut",
-                                        delay: 0.02 * index,
-                                    }}
-                                    className="inline-block"
-                                >
-                                    {word}&nbsp;
-                                </motion.span>
+                                <span key={index}>
+                                    <motion.span
+                                        initial={{
+                                            filter: "blur(10px)",
+                                            opacity: 0,
+                                            y: 5,
+                                        }}
+                                        animate={{
+                                            filter: "blur(0px)",
+                                            opacity: 1,
+                                            y: 0,
+                                        }}
+                                        transition={{
+                                            duration: 0.2,
+                                            ease: "easeInOut",
+                                            delay: 0.02 * index,
+                                        }}
+                                        className="inline-block"
+                                    >
+                                        {word}
+                                    </motion.span>
+                                    {" "}
+                                </span>
                             ))}
                         </motion.p>
                     </motion.div>

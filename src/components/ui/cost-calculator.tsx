@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X, Loader2, CheckCircle2, XCircle, Check } from "lucide-react";
+import { ChevronDown, X, Loader2, CheckCircle2, XCircle, Check, Phone, MessageCircle } from "lucide-react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
 import emailjs from '@emailjs/browser';
@@ -322,34 +322,55 @@ export function CostCalculator() {
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="bg-white rounded-[2rem] p-8 max-w-md w-full relative shadow-2xl text-center overflow-hidden border border-white/20 ring-1 ring-black/5"
+                            className="bg-white rounded-[2rem] p-5 md:p-8 max-w-md md:max-w-4xl w-full relative shadow-2xl text-center overflow-hidden border border-white/20 ring-1 ring-black/5"
                             onClick={e => e.stopPropagation()}
                         >
                             <button
                                 onClick={() => setShowResult(false)}
-                                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors z-50"
                             >
                                 <X className="h-6 w-6 text-gray-400" />
                             </button>
 
-                            <div className="mb-8 mt-2">
-                                <div className="flex justify-center mb-6">
+                            {/* Desktop: Side Genies (Centered in Modal) */}
+                            <div className="hidden md:block absolute -left-4 top-1/2 -translate-y-1/2 w-64 transform pointer-events-none opacity-100 z-0">
+                                <img
+                                    src="/success/estimate-celebration.png"
+                                    alt="Success"
+                                    className="w-full h-auto object-contain drop-shadow-lg"
+                                />
+                            </div>
+                            <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-64 transform pointer-events-none opacity-100 z-0">
+                                <img
+                                    src="/success/estimate-celebration.png"
+                                    alt="Success"
+                                    className="w-full h-auto object-contain drop-shadow-lg scale-x-[-1]"
+                                />
+                            </div>
+
+                            <div className="mb-4 mt-2 relative">
+
+
+                                {/* Mobile: Center Genie */}
+                                <div className="flex justify-center mb-4 md:hidden">
                                     <img
                                         src="/success/estimate-celebration.png"
                                         alt="Success"
-                                        className="w-48 h-auto object-contain drop-shadow-lg"
+                                        className="w-32 h-auto object-contain drop-shadow-lg"
                                     />
                                 </div>
-                                <h3 className="text-3xl font-bold text-gray-900 mb-2 font-display">Congratulations!</h3>
-                                <p className="text-gray-500 font-medium">Your estimated construction cost is ready</p>
+                                <div className="relative z-10 mx-auto max-w-xs md:max-w-xl px-4 md:px-20 text-center">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1 font-display">Congratulations!</h3>
+                                    <p className="text-gray-500 font-medium text-base md:text-xl text-center">Your estimated construction cost is ready</p>
+                                </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-8 mb-8 border border-primary/10 relative overflow-hidden">
+                            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-3xl p-4 md:p-6 mb-4 md:mb-6 border border-primary/10 relative overflow-hidden max-w-sm mx-auto">
                                 <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
                                 <div className="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-blue-400/5 rounded-full blur-2xl" />
 
-                                <p className="text-sm font-bold text-primary/70 uppercase tracking-widest mb-2">Total Estimate</p>
-                                <span className="text-5xl font-bold text-primary block tracking-tight">
+                                <p className="text-sm font-bold text-primary/70 uppercase tracking-widest mb-1 md:mb-2 text-center">Total Estimate</p>
+                                <span className="text-4xl md:text-5xl font-bold text-primary block tracking-tight text-center">
                                     <NumberFlow
                                         value={totalCost}
                                         format={{
@@ -361,15 +382,26 @@ export function CostCalculator() {
                                 </span>
                             </div>
 
-                            <div className="space-y-4">
-                                {/* <motion.button
-                                    whileHover={{ scale: 1.02, translateY: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-gradient-to-r from-primary to-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-primary/25 text-lg"
-                                    onClick={() => setShowResult(false)}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6 max-w-lg mx-auto">
+                                <a
+                                    href="https://wa.me/918148353564"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 md:py-4 rounded-xl shadow-lg shadow-green-500/20 transition-all hover:scale-[1.02] text-sm md:text-base w-full"
                                 >
-                                    Start Your Project
-                                </motion.button> */}
+                                    <MessageCircle className="w-5 h-5" />
+                                    WhatsApp
+                                </a>
+                                <a
+                                    href="tel:+918148353564"
+                                    className="flex items-center justify-center gap-2 bg-[#082E6D] hover:bg-[#062356] text-white font-bold py-3 md:py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all hover:scale-[1.02] text-sm md:text-base"
+                                >
+                                    <Phone className="w-5 h-5" />
+                                    Call Now
+                                </a>
+                            </div>
+
+                            <div className="space-y-4">
                                 <p className="text-xs text-center text-gray-400 max-w-xs mx-auto leading-relaxed">
                                     * This acts as an approximate estimate. Final pricing may vary based on material selection and site conditions.
                                 </p>
@@ -380,13 +412,13 @@ export function CostCalculator() {
             </AnimatePresence>
 
             <div className="text-center mb-12 space-y-4">
-                <span className="bg-blue-50 text-primary px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block">
-                    2025 Pricing
+                <span className="bg-blue-50 text-primary px-4 py-2 rounded-full text-sm font-bold tracking-widest uppercase mb-4 inline-block">
+                    2026 Pricing
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 font-display tracking-tight">
                     Construction Cost Calculator
                 </h2>
-                <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">
+                <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light text-center">
                     Get an instant estimate for your dream home construction in Chennai based on your specific needs.
                 </p>
             </div>

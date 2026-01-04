@@ -178,7 +178,7 @@ export default function AboutUsSection() {
                     ></motion.div>
                 </motion.div>
 
-                <motion.p className="text-center max-w-2xl mx-auto mb-16 text-gray-600" variants={itemVariants}>
+                <motion.p className="text-justify max-w-2xl mx-auto mb-16 text-gray-600" variants={itemVariants}>
                     We are a passionate team of designers and architects dedicated to creating beautiful, functional spaces that
                     inspire and elevate everyday living. With attention to detail and commitment to excellence, we transform
                     visions into reality.
@@ -368,7 +368,7 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
                 </h3>
             </motion.div>
             <motion.p
-                className="text-sm text-gray-600 leading-relaxed pl-12"
+                className="text-sm text-gray-600 leading-relaxed pl-12 text-justify"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: delay + 0.4 }}
@@ -432,16 +432,16 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
         >
             <motion.div
-                className="w-10 h-10 rounded-full bg-[#082E6D]/5 flex items-center justify-center mb-2 text-[#C11336] group-hover:bg-[#C11336]/10 transition-colors duration-300"
+                className="w-16 h-16 rounded-full bg-[#082E6D]/5 flex items-center justify-center mb-2 text-[#C11336] group-hover:bg-[#C11336]/10 transition-colors duration-300"
                 whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
             >
-                <div className="scale-100">{icon}</div>
+                <div className="scale-150">{icon}</div>
             </motion.div>
             <motion.div ref={countRef} className="text-2xl font-bold text-[#082E6D] flex items-center mb-1">
                 <motion.span>{displayValue}</motion.span>
                 <span>{suffix}</span>
             </motion.div>
-            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide leading-tight">{label}</p>
+            <p className="text-gray-500 text-xs font-medium uppercase tracking-wide leading-tight text-center">{label}</p>
         </motion.div>
     )
 }

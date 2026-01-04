@@ -236,7 +236,7 @@ export default function TimelineSection() {
                         Handover
                     </span>
                 </h2>
-                <p className="text-white/60 text-base max-w-2xl mx-auto">
+                <p className="text-white/60 text-base max-w-2xl mx-auto text-center">
                     Scroll to explore our 21-step construction journey
                 </p>
             </div>

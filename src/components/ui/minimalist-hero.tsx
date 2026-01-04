@@ -27,7 +27,7 @@ export const MinimalistHero = ({
     return (
         <div
             className={cn(
-                'relative flex min-h-[100dvh] md:h-screen w-full flex-col items-center justify-center overflow-hidden bg-background p-4 md:p-12 font-sans',
+                'relative flex min-h-[100dvh] md:h-screen w-full flex-col items-center justify-center overflow-hidden bg-background px-6 md:px-12 py-12 font-sans',
                 className
             )}
         >
@@ -45,7 +45,7 @@ export const MinimalistHero = ({
             )}
 
             {/* Main Content Area */}
-            <div className="relative z-10 grid w-full max-w-7xl flex-grow grid-cols-1 items-center md:grid-cols-3 pt-20">
+            <div className="relative z-10 grid w-full max-w-full flex-grow grid-cols-1 items-center md:grid-cols-3 pt-20 gap-12">
                 {/* Left Side: Heading Text */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ export const MinimalistHero = ({
                     className="order-3 flex items-center justify-center text-center md:justify-end md:text-right"
                 >
                     <div>
-                        <p className="mx-auto max-w-sm text-base leading-relaxed md:mx-0 drop-shadow-md font-medium text-white">{mainText}</p>
+                        <p className="mx-auto max-w-2xl text-lg md:text-xl leading-relaxed md:mx-0 drop-shadow-md font-medium text-white">{mainText}</p>
 
                     </div>
                 </motion.div>
